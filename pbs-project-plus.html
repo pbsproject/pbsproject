@@ -129,7 +129,6 @@
     </section>
     
 <!-- Блок реакций -->
-    
 <div class="reaction-box fade-in-up" data-id="mod1">
   <button class="reaction-btn like-btn">
     <i class="fas fa-thumbs-up"></i> 
@@ -234,24 +233,42 @@
 
     // лайк
     likeBtn.addEventListener('click', async () => {
-      if (reacted) return; 
       const snap = await get(modRef);
       const data = snap.val() || { likes: 0, dislikes: 0 };
-      update(modRef, { likes: (data.likes || 0) + 1 });
-      localStorage.setItem("reacted_" + modId, "like");
-      likeBtn.classList.add("active");
-      reacted = "like";
+
+      if (reacted === "like") {
+        // зняти лайк
+        update(modRef, { likes: Math.max((data.likes || 0) - 1, 0) });
+        localStorage.removeItem("reacted_" + modId);
+        likeBtn.classList.remove("active");
+        reacted = null;
+      } else if (!reacted) {
+        // поставити лайк
+        update(modRef, { likes: (data.likes || 0) + 1 });
+        localStorage.setItem("reacted_" + modId, "like");
+        likeBtn.classList.add("active");
+        reacted = "like";
+      }
     });
 
     // дизлайк
     dislikeBtn.addEventListener('click', async () => {
-      if (reacted) return;
       const snap = await get(modRef);
       const data = snap.val() || { likes: 0, dislikes: 0 };
-      update(modRef, { dislikes: (data.dislikes || 0) + 1 });
-      localStorage.setItem("reacted_" + modId, "dislike");
-      dislikeBtn.classList.add("active");
-      reacted = "dislike";
+
+      if (reacted === "dislike") {
+        // зняти дизлайк
+        update(modRef, { dislikes: Math.max((data.dislikes || 0) - 1, 0) });
+        localStorage.removeItem("reacted_" + modId);
+        dislikeBtn.classList.remove("active");
+        reacted = null;
+      } else if (!reacted) {
+        // поставити дизлайк
+        update(modRef, { dislikes: (data.dislikes || 0) + 1 });
+        localStorage.setItem("reacted_" + modId, "dislike");
+        dislikeBtn.classList.add("active");
+        reacted = "dislike";
+      }
     });
   });
 </script>
