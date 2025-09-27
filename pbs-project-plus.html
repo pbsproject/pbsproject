@@ -231,26 +231,6 @@
       dislikeBtn.classList.add("active");
     }
 
-    // лайк
-    likeBtn.addEventListener('click', async () => {
-      const snap = await get(modRef);
-      const data = snap.val() || { likes: 0, dislikes: 0 };
-
-      if (reacted === "like") {
-        // зняти лайк
-        update(modRef, { likes: Math.max((data.likes || 0) - 1, 0) });
-        localStorage.removeItem("reacted_" + modId);
-        likeBtn.classList.remove("active");
-        reacted = null;
-      } else if (!reacted) {
-        // поставити лайк
-        update(modRef, { likes: (data.likes || 0) + 1 });
-        localStorage.setItem("reacted_" + modId, "like");
-        likeBtn.classList.add("active");
-        reacted = "like";
-      }
-    });
-
 // лайк
   likeBtn.addEventListener('click', async () => {
   const snap = await get(modRef);
