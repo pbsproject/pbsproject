@@ -251,26 +251,63 @@
       }
     });
 
-    // дизлайк
-    dislikeBtn.addEventListener('click', async () => {
-      const snap = await get(modRef);
-      const data = snap.val() || { likes: 0, dislikes: 0 };
+// лайк
+  likeBtn.addEventListener('click', async () => {
+  const snap = await get(modRef);
+  const data = snap.val() || { likes: 0, dislikes: 0 };
 
-      if (reacted === "dislike") {
-        // зняти дизлайк
-        update(modRef, { dislikes: Math.max((data.dislikes || 0) - 1, 0) });
-        localStorage.removeItem("reacted_" + modId);
-        dislikeBtn.classList.remove("active");
-        reacted = null;
-      } else if (!reacted) {
-        // поставити дизлайк
-        update(modRef, { dislikes: (data.dislikes || 0) + 1 });
-        localStorage.setItem("reacted_" + modId, "dislike");
-        dislikeBtn.classList.add("active");
-        reacted = "dislike";
-      }
-    });
-  });
+  if (reacted === "like") {
+    // Зняти лайк
+    update(modRef, { likes: Math.max(data.likes - 1, 0) });
+    localStorage.removeItem("reacted_" + modId);
+    likeBtn.classList.remove("active");
+    reacted = null;
+  } else {
+    // Якщо був дизлайк — знімаємо його
+    if (reacted === "dislike") {
+      update(modRef, {
+        dislikes: Math.max(data.dislikes - 1, 0),
+        likes: data.likes + 1
+      });
+      dislikeBtn.classList.remove("active");
+    } else {
+      update(modRef, { likes: data.likes + 1 });
+    }
+    localStorage.setItem("reacted_" + modId, "like");
+    likeBtn.classList.add("active");
+    dislikeBtn.classList.remove("active");
+    reacted = "like";
+  }
+});
+
+// дизлайк
+  dislikeBtn.addEventListener('click', async () => {
+  const snap = await get(modRef);
+  const data = snap.val() || { likes: 0, dislikes: 0 };
+
+   if (reacted === "dislike") {
+    // Зняти дизлайк
+    update(modRef, { dislikes: Math.max(data.dislikes - 1, 0) });
+    localStorage.removeItem("reacted_" + modId);
+    dislikeBtn.classList.remove("active");
+    reacted = null;
+  } else {
+    // Якщо був лайк — знімаємо його
+    if (reacted === "like") {
+      update(modRef, {
+        likes: Math.max(data.likes - 1, 0),
+        dislikes: data.dislikes + 1
+      });
+      likeBtn.classList.remove("active");
+    } else {
+      update(modRef, { dislikes: data.dislikes + 1 });
+    }
+    localStorage.setItem("reacted_" + modId, "dislike");
+    dislikeBtn.classList.add("active");
+    likeBtn.classList.remove("active");
+    reacted = "dislike";
+  }
+});
 </script>
 
     <!-- Gallery Section -->
