@@ -128,7 +128,8 @@
         </div>
     </section>
     
-    <!-- Like/Dislike Section -->
+<!-- Блок реакций -->
+    
 <div class="reaction-box fade-in-up" data-id="mod1">
   <button class="reaction-btn like-btn">
     <i class="fas fa-thumbs-up"></i> 
@@ -175,12 +176,22 @@
 .reaction-btn:active i {
   transform: scale(1.4) rotate(-15deg);
 }
+
+/* активні кнопки */
+.reaction-btn.active.like-btn {
+  background: var(--primary-blue);
+  color: white;
+}
+
+.reaction-btn.active.dislike-btn {
+  background: var(--accent-red);
+  color: white;
+}
 </style>
 
 <script type="module">
-  // Firebase
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-  import { getDatabase, ref, get, set, update, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+  import { getDatabase, ref, get, update, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
   const firebaseConfig = {
   apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
@@ -196,9 +207,8 @@
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 
-  // Обробка всіх блоків реакцій
   document.querySelectorAll('.reaction-box').forEach(box => {
-    const modId = box.dataset.id; // унікальний ID мода
+    const modId = box.dataset.id;
     const likeBtn = box.querySelector('.like-btn');
     const dislikeBtn = box.querySelector('.dislike-btn');
     const likeCount = box.querySelector('.like-count');
@@ -206,25 +216,42 @@
 
     const modRef = ref(db, 'mods/' + modId);
 
-    // Завантажуємо значення
+    // показуємо дані в реальному часі
     onValue(modRef, snapshot => {
       const data = snapshot.val() || { likes: 0, dislikes: 0 };
-      likeCount.textContent = data.likes;
-      dislikeCount.textContent = data.dislikes;
+      likeCount.textContent = data.likes || 0;
+      dislikeCount.textContent = data.dislikes || 0;
     });
 
-    // Лайк
+    // перевіряємо чи голосував юзер
+    let reacted = localStorage.getItem("reacted_" + modId);
+
+    if (reacted === "like") {
+      likeBtn.classList.add("active");
+    } else if (reacted === "dislike") {
+      dislikeBtn.classList.add("active");
+    }
+
+    // лайк
     likeBtn.addEventListener('click', async () => {
+      if (reacted) return; 
       const snap = await get(modRef);
       const data = snap.val() || { likes: 0, dislikes: 0 };
-      update(modRef, { likes: data.likes + 1 });
+      update(modRef, { likes: (data.likes || 0) + 1 });
+      localStorage.setItem("reacted_" + modId, "like");
+      likeBtn.classList.add("active");
+      reacted = "like";
     });
 
-    // Дизлайк
+    // дизлайк
     dislikeBtn.addEventListener('click', async () => {
+      if (reacted) return;
       const snap = await get(modRef);
       const data = snap.val() || { likes: 0, dislikes: 0 };
-      update(modRef, { dislikes: data.dislikes + 1 });
+      update(modRef, { dislikes: (data.dislikes || 0) + 1 });
+      localStorage.setItem("reacted_" + modId, "dislike");
+      dislikeBtn.classList.add("active");
+      reacted = "dislike";
     });
   });
 </script>
