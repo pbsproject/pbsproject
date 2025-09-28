@@ -144,213 +144,11 @@
             <span class="dislike-count">0</span>
         </button>
     </div>
-
-    <style>
-        .reaction-box {
-            display: flex;
-            gap: var(--space-lg);
-            justify-content: center;
-            margin-top: var(--space-md);
-        }
-
-        .reaction-btn {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-md);
-            padding: 12px 24px;
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-            transition: all var(--transition);
-            display: flex;
-            align-items: center;
-            gap: var(--space-sm);
-        }
-
-        .reaction-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: var(--shadow-glow-cyan);
-        }
-
-        .reaction-btn i {
-            transition: transform 0.3s ease;
-        }
-
-        .reaction-btn:active i {
-            transform: scale(1.4) rotate(-15deg);
-        }
-
-        /* активні кнопки */
-        .reaction-btn.active.like-btn {
-            background: var(--primary-blue);
-            color: white;
-        }
-
-        .reaction-btn.active.dislike-btn {
-            background: var(--accent-red);
-            color: white;
-        }
-
-        /* анімація підстрибування цифри */
-        @keyframes bounce {
-            0% {
-                transform: scale(1);
-            }
-
-            30% {
-                transform: scale(1.4);
-            }
-
-            60% {
-                transform: scale(0.9);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .bounce {
-            animation: bounce 0.4s ease;
-        }
-    </style>
-
-    <script type="module">
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-        import {
-            getDatabase,
-            ref,
-            get,
-            update,
-            onValue
-        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
-            authDomain: "pbsproject-39041.firebaseapp.com",
-            databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "pbsproject-39041",
-            storageBucket: "pbsproject-39041.firebasestorage.app",
-            messagingSenderId: "695400532049",
-            appId: "1:695400532049:web:31d2de08045c4d3eeb1070",
-            measurementId: "G-FGLT883PDC"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        document.querySelectorAll('.reaction-box').forEach(box => {
-            const modId = box.dataset.id;
-            const likeBtn = box.querySelector('.like-btn');
-            const dislikeBtn = box.querySelector('.dislike-btn');
-            const likeCount = box.querySelector('.like-count');
-            const dislikeCount = box.querySelector('.dislike-count');
-
-            const modRef = ref(db, 'mods/' + modId);
-
-            // показуємо дані в реальному часі
-            onValue(modRef, snapshot => {
-                const data = snapshot.val() || {
-                    likes: 0,
-                    dislikes: 0
-                };
-                likeCount.textContent = data.likes || 0;
-                dislikeCount.textContent = data.dislikes || 0;
-            });
-
-            // перевірка чи голосував
-            let reacted = localStorage.getItem("reacted_" + modId);
-
-            if (reacted === "like") likeBtn.classList.add("active");
-            if (reacted === "dislike") dislikeBtn.classList.add("active");
-
-            // bounce анімація
-            function bounce(el) {
-                el.classList.add("bounce");
-                setTimeout(() => el.classList.remove("bounce"), 400);
-            }
-
-            // лайк
-            likeBtn.addEventListener('click', async () => {
-                const snap = await get(modRef);
-                const data = snap.val() || {
-                    likes: 0,
-                    dislikes: 0
-                };
-
-                if (reacted === "like") {
-                    // зняти лайк
-                    update(modRef, {
-                        likes: Math.max((data.likes || 0) - 1, 0)
-                    });
-                    localStorage.removeItem("reacted_" + modId);
-                    likeBtn.classList.remove("active");
-                    reacted = null;
-                } else {
-                    // якщо був дизлайк → зняти його
-                    if (reacted === "dislike") {
-                        update(modRef, {
-                            dislikes: Math.max((data.dislikes || 0) - 1, 0)
-                        });
-                        dislikeBtn.classList.remove("active");
-                    }
-                    // поставити лайк
-                    update(modRef, {
-                        likes: (data.likes || 0) + 1
-                    });
-                    localStorage.setItem("reacted_" + modId, "like");
-                    likeBtn.classList.add("active");
-                    dislikeBtn.classList.remove("active");
-                    reacted = "like";
-                    bounce(likeCount);
-                }
-            });
-
-            // дизлайк
-            dislikeBtn.addEventListener('click', async () => {
-                const snap = await get(modRef);
-                const data = snap.val() || {
-                    likes: 0,
-                    dislikes: 0
-                };
-
-                if (reacted === "dislike") {
-                    // зняти дизлайк
-                    update(modRef, {
-                        dislikes: Math.max((data.dislikes || 0) - 1, 0)
-                    });
-                    localStorage.removeItem("reacted_" + modId);
-                    dislikeBtn.classList.remove("active");
-                    reacted = null;
-                } else {
-                    // якщо був лайк → зняти його
-                    if (reacted === "like") {
-                        update(modRef, {
-                            likes: Math.max((data.likes || 0) - 1, 0)
-                        });
-                        likeBtn.classList.remove("active");
-                    }
-                    // поставити дизлайк
-                    update(modRef, {
-                        dislikes: (data.dislikes || 0) + 1
-                    });
-                    localStorage.setItem("reacted_" + modId, "dislike");
-                    dislikeBtn.classList.add("active");
-                    likeBtn.classList.remove("active");
-                    reacted = "dislike";
-                    bounce(dislikeCount);
-                }
-            });
-        });
-    </script>
     
-    <!-- Footer -->
-    <div class="comments-section">
+    <!-- Блок комментариев -->
+<div class="comments-section">
   <h3>Комментарии</h3>
-  
+
   <!-- Форма додавання -->
   <form id="commentForm" class="comment-form">
     <input type="text" id="nickname" placeholder="Ваш ник" required>
@@ -361,6 +159,7 @@
   <!-- Список коментарів -->
   <div id="commentsList"></div>
 </div>
+
 
 <script type="module">
   // Ініціалізація Firebase (сюди вставляєш свій apiKey, databaseURL і т.д.)
@@ -824,8 +623,268 @@
                 });
             });
         });
+		
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import {
+            getDatabase,
+            ref,
+            get,
+            update,
+            onValue
+        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
+            authDomain: "pbsproject-39041.firebaseapp.com",
+            databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "pbsproject-39041",
+            storageBucket: "pbsproject-39041.firebasestorage.app",
+            messagingSenderId: "695400532049",
+            appId: "1:695400532049:web:31d2de08045c4d3eeb1070",
+            measurementId: "G-FGLT883PDC"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        document.querySelectorAll('.reaction-box').forEach(box => {
+            const modId = box.dataset.id;
+            const likeBtn = box.querySelector('.like-btn');
+            const dislikeBtn = box.querySelector('.dislike-btn');
+            const likeCount = box.querySelector('.like-count');
+            const dislikeCount = box.querySelector('.dislike-count');
+
+            const modRef = ref(db, 'mods/' + modId);
+
+            // показуємо дані в реальному часі
+            onValue(modRef, snapshot => {
+                const data = snapshot.val() || {
+                    likes: 0,
+                    dislikes: 0
+                };
+                likeCount.textContent = data.likes || 0;
+                dislikeCount.textContent = data.dislikes || 0;
+            });
+
+            // перевірка чи голосував
+            let reacted = localStorage.getItem("reacted_" + modId);
+
+            if (reacted === "like") likeBtn.classList.add("active");
+            if (reacted === "dislike") dislikeBtn.classList.add("active");
+
+            // bounce анімація
+            function bounce(el) {
+                el.classList.add("bounce");
+                setTimeout(() => el.classList.remove("bounce"), 400);
+            }
+
+            // лайк
+            likeBtn.addEventListener('click', async () => {
+                const snap = await get(modRef);
+                const data = snap.val() || {
+                    likes: 0,
+                    dislikes: 0
+                };
+
+                if (reacted === "like") {
+                    // зняти лайк
+                    update(modRef, {
+                        likes: Math.max((data.likes || 0) - 1, 0)
+                    });
+                    localStorage.removeItem("reacted_" + modId);
+                    likeBtn.classList.remove("active");
+                    reacted = null;
+                } else {
+                    // якщо був дизлайк → зняти його
+                    if (reacted === "dislike") {
+                        update(modRef, {
+                            dislikes: Math.max((data.dislikes || 0) - 1, 0)
+                        });
+                        dislikeBtn.classList.remove("active");
+                    }
+                    // поставити лайк
+                    update(modRef, {
+                        likes: (data.likes || 0) + 1
+                    });
+                    localStorage.setItem("reacted_" + modId, "like");
+                    likeBtn.classList.add("active");
+                    dislikeBtn.classList.remove("active");
+                    reacted = "like";
+                    bounce(likeCount);
+                }
+            });
+
+            // дизлайк
+            dislikeBtn.addEventListener('click', async () => {
+                const snap = await get(modRef);
+                const data = snap.val() || {
+                    likes: 0,
+                    dislikes: 0
+                };
+
+                if (reacted === "dislike") {
+                    // зняти дизлайк
+                    update(modRef, {
+                        dislikes: Math.max((data.dislikes || 0) - 1, 0)
+                    });
+                    localStorage.removeItem("reacted_" + modId);
+                    dislikeBtn.classList.remove("active");
+                    reacted = null;
+                } else {
+                    // якщо був лайк → зняти його
+                    if (reacted === "like") {
+                        update(modRef, {
+                            likes: Math.max((data.likes || 0) - 1, 0)
+                        });
+                        likeBtn.classList.remove("active");
+                    }
+                    // поставити дизлайк
+                    update(modRef, {
+                        dislikes: (data.dislikes || 0) + 1
+                    });
+                    localStorage.setItem("reacted_" + modId, "dislike");
+                    dislikeBtn.classList.add("active");
+                    likeBtn.classList.remove("active");
+                    reacted = "dislike";
+                    bounce(dislikeCount);
+                }
+            });
+        });
 
         console.log('PBS.project Website - Loaded successfully!');
+    </script>
+
+	<script type="module">
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import {
+            getDatabase,
+            ref,
+            get,
+            update,
+            onValue
+        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
+            authDomain: "pbsproject-39041.firebaseapp.com",
+            databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "pbsproject-39041",
+            storageBucket: "pbsproject-39041.firebasestorage.app",
+            messagingSenderId: "695400532049",
+            appId: "1:695400532049:web:31d2de08045c4d3eeb1070",
+            measurementId: "G-FGLT883PDC"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        document.querySelectorAll('.reaction-box').forEach(box => {
+            const modId = box.dataset.id;
+            const likeBtn = box.querySelector('.like-btn');
+            const dislikeBtn = box.querySelector('.dislike-btn');
+            const likeCount = box.querySelector('.like-count');
+            const dislikeCount = box.querySelector('.dislike-count');
+
+            const modRef = ref(db, 'mods/' + modId);
+
+            // показуємо дані в реальному часі
+            onValue(modRef, snapshot => {
+                const data = snapshot.val() || {
+                    likes: 0,
+                    dislikes: 0
+                };
+                likeCount.textContent = data.likes || 0;
+                dislikeCount.textContent = data.dislikes || 0;
+            });
+
+            // перевірка чи голосував
+            let reacted = localStorage.getItem("reacted_" + modId);
+
+            if (reacted === "like") likeBtn.classList.add("active");
+            if (reacted === "dislike") dislikeBtn.classList.add("active");
+
+            // bounce анімація
+            function bounce(el) {
+                el.classList.add("bounce");
+                setTimeout(() => el.classList.remove("bounce"), 400);
+            }
+
+            // лайк
+            likeBtn.addEventListener('click', async () => {
+                const snap = await get(modRef);
+                const data = snap.val() || {
+                    likes: 0,
+                    dislikes: 0
+                };
+
+                if (reacted === "like") {
+                    // зняти лайк
+                    update(modRef, {
+                        likes: Math.max((data.likes || 0) - 1, 0)
+                    });
+                    localStorage.removeItem("reacted_" + modId);
+                    likeBtn.classList.remove("active");
+                    reacted = null;
+                } else {
+                    // якщо був дизлайк → зняти його
+                    if (reacted === "dislike") {
+                        update(modRef, {
+                            dislikes: Math.max((data.dislikes || 0) - 1, 0)
+                        });
+                        dislikeBtn.classList.remove("active");
+                    }
+                    // поставити лайк
+                    update(modRef, {
+                        likes: (data.likes || 0) + 1
+                    });
+                    localStorage.setItem("reacted_" + modId, "like");
+                    likeBtn.classList.add("active");
+                    dislikeBtn.classList.remove("active");
+                    reacted = "like";
+                    bounce(likeCount);
+                }
+            });
+
+            // дизлайк
+            dislikeBtn.addEventListener('click', async () => {
+                const snap = await get(modRef);
+                const data = snap.val() || {
+                    likes: 0,
+                    dislikes: 0
+                };
+
+                if (reacted === "dislike") {
+                    // зняти дизлайк
+                    update(modRef, {
+                        dislikes: Math.max((data.dislikes || 0) - 1, 0)
+                    });
+                    localStorage.removeItem("reacted_" + modId);
+                    dislikeBtn.classList.remove("active");
+                    reacted = null;
+                } else {
+                    // якщо був лайк → зняти його
+                    if (reacted === "like") {
+                        update(modRef, {
+                            likes: Math.max((data.likes || 0) - 1, 0)
+                        });
+                        likeBtn.classList.remove("active");
+                    }
+                    // поставити дизлайк
+                    update(modRef, {
+                        dislikes: (data.dislikes || 0) + 1
+                    });
+                    localStorage.setItem("reacted_" + modId, "dislike");
+                    dislikeBtn.classList.add("active");
+                    likeBtn.classList.remove("active");
+                    reacted = "dislike";
+                    bounce(dislikeCount);
+                }
+            });
+        });
     </script>
 </body>
 

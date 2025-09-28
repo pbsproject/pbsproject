@@ -975,6 +975,75 @@
     text-decoration: none;
 }
 
+       .reaction-box {
+            display: flex;
+            gap: var(--space-lg);
+            justify-content: center;
+            margin-top: var(--space-md);
+        }
+
+        .reaction-btn {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            padding: 12px 24px;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .reaction-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: var(--shadow-glow-cyan);
+        }
+
+        .reaction-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .reaction-btn:active i {
+            transform: scale(1.4) rotate(-15deg);
+        }
+
+        /* активні кнопки */
+        .reaction-btn.active.like-btn {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .reaction-btn.active.dislike-btn {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        /* анімація підстрибування цифри */
+        @keyframes bounce {
+            0% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.4);
+            }
+
+            60% {
+                transform: scale(0.9);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .bounce {
+            animation: bounce 0.4s ease;
+        }
+
 .comments-section {
   margin-top: 40px;
   padding: 20px;
