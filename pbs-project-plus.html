@@ -130,7 +130,7 @@
     </section>
 
     <!-- Информационный блок -->
-    <section id="#about" class="section" style="background: var(--bg-secondary);">
+    <section id="#about" class="section">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge fade-in-up">Информация</div>
@@ -197,7 +197,7 @@
     </section>
 
     <!-- Секция со списком -->
-    <section id="spisok" class="section">
+    <section id="spisok" class="section" style="background: var(--bg-secondary);">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge fade-in-up">Список дополнений</div>
@@ -326,7 +326,7 @@
     </section>
 
     <!-- Секция галереи -->
-    <section class="section" id="gallery" style="background: var(--bg-secondary);">
+    <section class="section" id="gallery">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge fade-in-up">Галерея</div>
@@ -385,7 +385,7 @@
     </section>
 
     <!-- Блок взаимодействия -->
-    <section class="section" data-id="Test">
+    <section class="section" data-id="pbs-project-plus" style="background: var(--bg-secondary);">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge fade-in-up">Отзывы</div>
@@ -419,7 +419,7 @@
                     <button type="submit">Отправить</button>
                 </form>
                 <br>
-                <h2>Комментари</h2>
+                <h2>Комментарии</h2>
                 <br>
                 <div id="commentsList"></div>
             </div>
@@ -427,7 +427,7 @@
 
 
     <!-- Блок социальных сетей -->
-    <section class="section" id="socials" style="background: var(--bg-secondary); padding-top: 60px; padding-bottom: 60px;">
+    <section class="section" id="socials" padding-top: 60px; padding-bottom: 60px;">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge fade-in-up">Мы в соцсетях</div>
@@ -503,8 +503,9 @@
         const db = getDatabase(app);
 
         // беремо pageId з HTML
-        const interactionSection = document.querySelector('[data-id="Test"]');
+        const interactionSection = document.querySelector('[data-id]');
         const pageId = interactionSection?.dataset.id;
+
 
         // ==================
         // Реакции

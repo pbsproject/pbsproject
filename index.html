@@ -162,7 +162,7 @@
     </section>
 
     <!-- Блок последних дополнений -->
-    <section class="section" id="newdownloads" style="background: var(--bg-secondary);">
+    <section class="section" id="newdownloads">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge fade-in-up">Новинки</div>
@@ -366,7 +366,7 @@
         const db = getDatabase(app);
 
         // беремо pageId з HTML
-        const interactionSection = document.querySelector('[data-id="Test"]');
+        const interactionSection = document.querySelector('[data-id]');
         const pageId = interactionSection?.dataset.id;
 
         // ==================

@@ -1153,6 +1153,94 @@
             margin-top: 10px;
         }
 
+        .carousel {
+            max-width: 600px;
+            margin: 30px auto;
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .thumbnails {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .thumbnail.active,
+        .thumbnail:hover {
+            border-color: #007bff;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: 50px auto;
+        }
+
+        .modal img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .close,
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 32px;
+            color: white;
+            cursor: pointer;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            user-select: none;
+        }
+
+        .close {
+            top: 20px;
+            right: 20px;
+            transform: none;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
         #downloads {
             margin-top: 100px;
             /* Можно изменить на больше или меньше */
@@ -1164,6 +1252,11 @@
         }
 
         #faqpage {
+            margin-top: 100px;
+            /* Можно изменить на больше или меньше */
+        }
+
+        #modpage {
             margin-top: 100px;
             /* Можно изменить на больше или меньше */
         }

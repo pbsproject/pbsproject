@@ -8,7 +8,7 @@
     <link rel="icon" href="pic/logo/logo.png" type="image/png">
 
     <!-- Описание страницы -->
-    <meta name="description" content="Страница загрузки проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="description" content="Shablon от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
 
     <!-- Ключевые слова -->
     <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
@@ -18,7 +18,7 @@
 
     <!-- Open Graph для соцсетей -->
     <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
-    <meta property="og:description" content="Страница загрузки проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:description" content="Shablon от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
     <meta property="og:image" content="https://pbsproject.github.io/pbsproject/pic/logo/logo.png" />
@@ -26,7 +26,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
-    <meta name="twitter:description" content="Страница загрузки проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:description" content="Shablon от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/pic/logo/logo.png" />
 
     <!-- Google tag (gtag.js) -->
@@ -77,7 +77,7 @@
 
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="index.html" class="nav-link">Главная</a></li>
-                    <li><a href="download-page.html" class="nav-link active">Страница загрузки</a></li>
+                    <li><a href="download-page.html" class="nav-link">Страница загрузки</a></li>
                     <li><a href="pbs-project-plus.html" class="nav-link"><span class="gradient-text-orange">PBS.project <i class="fa-solid fa-plus"></i></span></a></li>
                     <li><a href="about.html" class="nav-link">О нас</a></li>
                 </ul>
@@ -89,73 +89,128 @@
         </div>
     </header>
 
-    <!-- Блок дополнений -->
-    <section id="downloads" class="section" style="background: var(--bg-secondary);">
+    <section id="modpage" class="section">
         <div class="container">
             <div class="section-header">
-                <div class="section-badge fade-in-up">Страница загрузки</div>
+                <div class="section-badge fade-in-up">Дополнение</div>
                 <h2 class="section-title fade-in-up">
-                    <span class="gradient-text">Дополнения</span>
+                    <span class="gradient-text">ШАБЛОН</span>
+                </h2>
+            </div>
+
+            <div class="carousel">
+                <img id="mainImage" class="main-image" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Main Image" onclick="openModal()">
+
+                <div class="thumbnails">
+                    <img class="thumbnail active" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" onclick="changeImage(0)">
+                    <img class="thumbnail" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" onclick="changeImage(1)">
+                    <img class="thumbnail" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" onclick="changeImage(2)">
+                    <img class="thumbnail" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" onclick="changeImage(3)">
+                </div>
+            </div>
+
+            <!-- Модальное окно -->
+            <div id="modal" class="modal">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <span class="prev" onclick="prevImage()">&#10094;</span>
+                <span class="next" onclick="nextImage()">&#10095;</span>
+                <div class="modal-content">
+                    <img id="modalImage" src="" alt="Full Image">
+                </div>
+            </div>
+
+            <div class="card fade-in-up">
+                <p style="font-size: 16px; line-height: 1.7; margin-bottom: var(--space-lg); color: var(--text-secondary);">
+                    Универсальная страница-шаблон, которая будет использоватся для публикации дополнений.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
+                    <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                        <div style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-at" style="color: white; font-size: 16px;"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор(-ы) модели:</h4>
+                            <p style="color: var(--text-secondary); font-size: 12px;">Тест</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                        <div style="width: 40px; height: 40px; background: var(--gradient-secondary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-at" style="color: white; font-size: 16px;"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор(-ы) конвертации</h4>
+                            <p style="color: var(--text-secondary); font-size: 12px;">Тест</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                        <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-scale-balanced" style="color: white; font-size: 16px;"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Вес дополнения</h4>
+                            <p style="color: var(--text-secondary); font-size: 12px;">Тест</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; padding: var(--space-lg); background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
+
+                    <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+                        <a href="shablon.html" class="btn btn-primary">
+                            <i class="fa-solid fa-download"></i>
+                            Скачать дополнение
+                        </a>
+                        <a href="https://pbsu.busmods.com/static/309/" class="btn btn-secondary">
+                            <i class="fa-solid fa-gamepad"></i>
+                            Скачать актуальную версию игры
+                        </a>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Блок взаимодействия -->
+    <section class="section" data-id="shablon" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge fade-in-up">Отзывы</div>
+                <h2 class="section-title fade-in-up">
+                    Оставь свой <span class="gradient-text">отзыв</span>
                 </h2>
                 <p class="section-description fade-in-up">
-                    Выкладка дополнений на другие ресурсы разрешена строго с использованием оригинальной ссылки на скач
+                    Ждём ваших отзывов и комментариев о наших модах!
                 </p>
             </div>
 
-            <div class="departments-grid">
-                <div class="department-card fade-in-up" style="display: flex; flex-direction: column;">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Тест" style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
-
-                    <h3 class="department-title">Тест</h3>
-                    <p class="department-description">
-                        Тест.
-                    </p>
-
-                    <a href="download-page.html" class="btn btn-primary" style="position: relative; overflow: hidden; margin-left: auto;">
-                        <span>Подробнее</span>
-                    </a>
-                </div>
-
-                <div class="department-card fade-in-up" style="display: flex; flex-direction: column;">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Тест" style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
-
-                    <h3 class="department-title">Тест</h3>
-                    <p class="department-description">
-                        Тест.
-                    </p>
-
-                    <a href="download-page.html" class="btn btn-primary" style="position: relative; overflow: hidden; margin-left: auto;">
-                        <span>Подробнее</span>
-                    </a>
-                </div>
-
-                <div class="department-card fade-in-up" style="display: flex; flex-direction: column;">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Тест" style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
-
-                    <h3 class="department-title">Тест</h3>
-                    <p class="department-description">
-                        Тест.
-                    </p>
-
-                    <a href="download-page.html" class="btn btn-primary" style="position: relative; overflow: hidden; margin-left: auto;">
-                        <span>Подробнее</span>
-                    </a>
-                </div>
-
-                <div class="department-card fade-in-up" style="display: flex; flex-direction: column;">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Тест" style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
-
-                    <h3 class="department-title">Тест</h3>
-                    <p class="department-description">
-                        Тест.
-                    </p>
-
-                    <a href="download-page.html" class="btn btn-primary" style="position: relative; overflow: hidden; margin-left: auto;">
-                        <span>Подробнее</span>
-                    </a>
-                </div>
+            <!-- 🔹 Блок реакций -->
+            <div class="reaction-box">
+                <button class="reaction-btn like-btn">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span class="like-count">0</span>
+                </button>
+                <button class="reaction-btn dislike-btn">
+                    <i class="fas fa-thumbs-down"></i>
+                    <span class="dislike-count">0</span>
+                </button>
             </div>
-        </div>
+
+            <!-- 🔹 Блок комментариев -->
+            <div class="comments-section">
+                <h2>Оставить комментарий</h2>
+                <br>
+                <form id="commentForm" class="comment-form">
+                    <input type="text" id="nickname" placeholder="Ваш ник" required>
+                    <textarea id="commentText" placeholder="Ваш комментарий..." required></textarea>
+                    <button type="submit">Отправить</button>
+                </form>
+                <br>
+                <h2>Комментарии</h2>
+                <br>
+                <div id="commentsList"></div>
+            </div>
     </section>
 
     <!-- Блок социальных сетей -->
@@ -207,6 +262,61 @@
     </button>
 
     <!-- Scripts -->
+    <script>
+        const images = [
+            "https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg",
+            "https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg",
+            "https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg",
+            "https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg"
+        ];
+
+        let currentIndex = 0;
+
+        function changeImage(index) {
+            currentIndex = index;
+            document.getElementById('mainImage').src = images[index];
+
+            const thumbs = document.querySelectorAll('.thumbnail');
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumbs[index].classList.add('active');
+        }
+
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+            document.getElementById('modalImage').src = images[currentIndex];
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateModalImage();
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateModalImage();
+        }
+
+        function updateModalImage() {
+            document.getElementById('modalImage').src = images[currentIndex];
+            document.getElementById('mainImage').src = images[currentIndex];
+
+            const thumbs = document.querySelectorAll('.thumbnail');
+            thumbs.forEach(t => t.classList.remove('active'));
+            thumbs[currentIndex].classList.add('active');
+        }
+
+        // Закрытие модального окна по ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+    </script>
+
     <script type="module">
         import {
             initializeApp
@@ -382,9 +492,9 @@
                 commentsList.appendChild(div);
             });
         });
-</script>
-		
-<script type="module">
+    </script>
+
+    <script type="module">
         // Loading Screen
         setTimeout(() => {
             document.getElementById('loading').classList.add('hidden');
