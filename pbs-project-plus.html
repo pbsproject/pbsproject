@@ -162,7 +162,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getDatabase, ref, push, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+  import { getDatabase, ref, push, onValue, update, runTransaction } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
   const firebaseConfig = {
             apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
@@ -184,14 +184,15 @@
   const commentForm = document.getElementById("commentForm");
   const commentsList = document.getElementById("commentsList");
 
+  // Форматирование даты по Киеву/Москве
   function formatDate(timestamp) {
-    const options = {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      timeZone: "Europe/Kiev"
+    const options = { 
+      year: "numeric", 
+      month: "2-digit", 
+      day: "2-digit", 
+      hour: "2-digit", 
+      minute: "2-digit", 
+      timeZone: "Europe/Kiev" // можно заменить на Europe/Moscow
     };
     return new Intl.DateTimeFormat("ru-RU", options).format(new Date(timestamp));
   }
@@ -219,12 +220,12 @@
   onValue(commentsRef, (snapshot) => {
     commentsList.innerHTML = "";
     snapshot.forEach((child) => {
-      renderComment(child.key, child.val(), commentsList, commentsRef);
+      renderComment(child.key, child.val(), commentsList);
     });
   });
 
-  // Рендер комментария + вложенных ответов
-  function renderComment(id, data, container, parentRef) {
+  // Рендер комментария (рекурсивно с ответами)
+  function renderComment(id, data, container) {
     const div = document.createElement("div");
     div.classList.add("comment");
 
@@ -232,75 +233,51 @@
       <div class="comment-header">${data.nickname}</div>
       <div class="comment-time">${formatDate(data.timestamp)}</div>
       <div class="comment-text">${data.text}</div>
-      <div class="reaction-box">
-        <button class="reaction-btn like-btn" onclick="likeComment('${id}', '${parentRef.key}')">
-          👍 <span>${data.likes || 0}</span>
-        </button>
-        <button class="reaction-btn dislike-btn" onclick="dislikeComment('${id}', '${parentRef.key}')">
-          👎 <span>${data.dislikes || 0}</span>
-        </button>
-        <span class="reply-btn" onclick="showReplyForm('${id}', '${parentRef.key}')">Ответить</span>
+      <div class="comment-actions">
+        <button onclick="likeComment('${id}')">👍 ${data.likes || 0}</button>
+        <button onclick="dislikeComment('${id}')">👎 ${data.dislikes || 0}</button>
+        <span class="reply-btn" onclick="replyTo('${id}')">Ответить</span>
       </div>
       <div class="replies" id="replies-${id}"></div>
     `;
 
     container.appendChild(div);
 
-    // ответы
+    // Отображение ответов
     if (data.replies) {
       const repliesContainer = div.querySelector(`#replies-${id}`);
       Object.entries(data.replies).forEach(([rid, reply]) => {
-        renderComment(rid, reply, repliesContainer, ref(db, `${parentRef.toString()}/${id}/replies`));
+        renderComment(rid, reply, repliesContainer);
       });
     }
   }
 
   // Лайк
-  window.likeComment = (id, parentPath) => {
-    const likesRef = ref(db, `${parentPath}/${id}/likes`);
-    runTransaction(likesRef, (current) => (current || 0) + 1);
+  window.likeComment = (id) => {
+    const commentRef = ref(db, `comments/${pageId}/${id}/likes`);
+    runTransaction(commentRef, (current) => (current || 0) + 1);
   };
 
   // Дизлайк
-  window.dislikeComment = (id, parentPath) => {
-    const dislikesRef = ref(db, `${parentPath}/${id}/dislikes`);
-    runTransaction(dislikesRef, (current) => (current || 0) + 1);
+  window.dislikeComment = (id) => {
+    const commentRef = ref(db, `comments/${pageId}/${id}/dislikes`);
+    runTransaction(commentRef, (current) => (current || 0) + 1);
   };
 
-  // Форма ответа
-  window.showReplyForm = (id, parentPath) => {
-    const repliesContainer = document.getElementById(`replies-${id}`);
+  // Ответ
+  window.replyTo = (id) => {
+    const nickname = prompt("Введите ваш ник:");
+    if (!nickname) return;
+    const text = prompt("Введите ваш ответ:");
+    if (!text) return;
 
-    // проверяем, нет ли уже формы
-    if (repliesContainer.querySelector(".reply-form")) return;
-
-    const form = document.createElement("form");
-    form.classList.add("reply-form");
-
-    form.innerHTML = `
-      <input type="text" placeholder="Ваш ник" required class="reply-nick">
-      <textarea placeholder="Ваш ответ..." required class="reply-text"></textarea>
-      <button type="submit">Отправить</button>
-    `;
-
-    repliesContainer.prepend(form);
-
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const nickname = form.querySelector(".reply-nick").value.trim();
-      const text = form.querySelector(".reply-text").value.trim();
-      if (!nickname || !text) return;
-
-      const repliesRef = ref(db, `${parentPath}/${id}/replies`);
-      push(repliesRef, {
-        nickname,
-        text,
-        likes: 0,
-        dislikes: 0,
-        timestamp: Date.now()
-      });
-
-      form.remove();
+    const repliesRef = ref(db, `comments/${pageId}/${id}/replies`);
+    push(repliesRef, {
+      nickname,
+      text,
+      likes: 0,
+      dislikes: 0,
+      timestamp: Date.now()
     });
   };
 </script>
