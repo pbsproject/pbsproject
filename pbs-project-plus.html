@@ -120,11 +120,11 @@
 /* Мобільне меню (виїжджає справа) */
 .mobile-menu {
   position: fixed;
-  top: 0; 
-  right: -100%; /* спочатку сховане */
+  top: 0;
+  right: -100%;
   width: 80%;
   max-width: 320px;
-  height: 100vh;
+  height: 100dvh; /* використовуємо dynamic vh замість 100vh */
   background: var(--bg-primary);
   box-shadow: -4px 0 20px rgba(0,0,0,0.6);
   z-index: 10000;
@@ -205,6 +205,16 @@
 
 .mobile-socials a:hover .boosty-img {
   transform: scale(1.2);
+}
+
+/* Ховаємо десктопне меню на мобілках */
+@media (max-width: 900px) {
+  .nav-menu {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
 }
 </style>
 
