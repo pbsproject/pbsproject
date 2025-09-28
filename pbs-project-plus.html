@@ -8,7 +8,7 @@
     <link rel="icon" href="pic/logo/logo.png" type="image/png">
 
     <!-- Описание страницы -->
-    <meta name="description" content="PBS.project+ проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="description" content="PBS.project+ от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
 
     <!-- Ключевые слова -->
     <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
@@ -50,10 +50,6 @@
 
     <!-- Иконки -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-    <style>
-
-    </style>
 </head>
 
 <body>
@@ -78,9 +74,8 @@
                 <ul class="nav-menu" id="navMenu">
                     <li><a href="index.html" class="nav-link">Главная</a></li>
                     <li><a href="download-page.html" class="nav-link">Страница загрузки</a></li>
-                    <li><a href="pbs-project-plus.html" class="nav-link active"><span class="gradient-text">PBS.project+</span></a></li>
+                    <li><a href="pbs-project-plus.html" class="nav-link active"><span class="gradient-text-orange">PBS.project <i class="fa-solid fa-plus"></i></span></a></li>
                     <li><a href="about.html" class="nav-link">О нас</a></li>
-                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
                 </ul>
 
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -101,171 +96,245 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge fade-in-up">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Оффициальный сайт проекта</span>
+                    <i class="fa-solid fa-star"></i>
+                    <span>PBS.project</span>
+                    <i class="fa-solid fa-plus"></i>
                 </div>
 
                 <h1 class="hero-title fade-in-up">
-                    Новое поколение<br>
-                    <span class="gradient-text">модов для игры</span><br>
-                    Proton Bus Simulator
+                    <span class="gradient-text-orange">PBS.project <i class="fa-solid fa-plus"></i></span> —<br>
+                    <span class="gradient-text">только эксклюзивный</span><br>
+                    контент
                 </h1>
 
                 <p class="hero-subtitle fade-in-up">
-                    PBS.project — это ваш ключ к бесконечным возможностям в мире Proton Bus Simulator. Здесь вы можете найти уникальные моды, которые преобразят вашу игру и сделают каждую поездку незабываемой.
+                    Это приватный Telegram-канал, с эксклюзивными и очень качественными дополнениями для PBS, а так же общение с интересными людьми. По сравнению с подпиской на boosty или любой другой подпиской, в наш канал доступ покупается единоразово, по этому, не надо будет каждый месяц платить деньги за доступ к эксклюзивному контенту.
                 </p>
 
                 <div class="hero-buttons fade-in-up">
-                    <a href="#about" class="btn btn-primary">
-                        <i class="fas fa-info-circle"></i>
-                        Узнать больше
+                    <a href="https://t.me/zaliznyy_vershnyk" class="btn btn-primary">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        Купить
                     </a>
-                    <a href="pbs-project-plus.html" class="btn btn-outline">
-                        <i class="fas fa-user-plus"></i>
-                        PBS.project+
+                    <a href="#gallery" class="btn btn-outline">
+                        <i class="fa-solid fa-question"></i>
+                        Содержимое
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+        <div class="scroll-indicator" onclick="document.getElementById('#about').scrollIntoView({behavior: 'smooth'})">
             <i class="fas fa-chevron-down" style="color: var(--accent-cyan);"></i>
         </div>
     </section>
 
-    <!-- Блок реакций -->
-    <div class="reaction-box fade-in-up" data-id="mod1">
-        <button class="reaction-btn like-btn">
-            <i class="fas fa-thumbs-up"></i>
-            <span class="like-count">0</span>
-        </button>
-        <button class="reaction-btn dislike-btn">
-            <i class="fas fa-thumbs-down"></i>
-            <span class="dislike-count">0</span>
-        </button>
-    </div>
-    
-    <!-- Блок комментариев -->
-    <div class="comments-section">
-  <h3>Комментарии</h3>
-  
-  <!-- Форма додавання -->
-  <form id="commentForm" class="comment-form">
-    <input type="text" id="nickname" placeholder="Ваш ник" required>
-    <textarea id="commentText" placeholder="Ваш комментарий..." required></textarea>
-    <button type="submit">Отправить</button>
-  </form>
-
-  <!-- Список коментарів -->
-  <div id="commentsList"></div>
-</div>
-
-<script type="module">
-  // Ініціалізація Firebase (сюди вставляєш свій apiKey, databaseURL і т.д.)
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import { getDatabase, ref, push, onValue, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-  const firebaseConfig = {
-            apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
-            authDomain: "pbsproject-39041.firebaseapp.com",
-            databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "pbsproject-39041",
-            storageBucket: "pbsproject-39041.firebasestorage.app",
-            messagingSenderId: "695400532049",
-            appId: "1:695400532049:web:31d2de08045c4d3eeb1070",
-            measurementId: "G-FGLT883PDC"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  const pageId = "mod1"; // ідентифікатор сторінки/мода
-  const commentsRef = ref(db, "comments/" + pageId);
-
-  const commentForm = document.getElementById("commentForm");
-  const commentsList = document.getElementById("commentsList");
-
-  // Додавання коментаря
-  commentForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const nickname = document.getElementById("nickname").value.trim();
-    const text = document.getElementById("commentText").value.trim();
-
-    if (!nickname || !text) return;
-
-    push(commentsRef, {
-      nickname,
-      text,
-      likes: 0,
-      dislikes: 0,
-      timestamp: Date.now()
-    });
-
-    commentForm.reset();
-  });
-
-  // Відображення коментарів
-  onValue(commentsRef, (snapshot) => {
-    commentsList.innerHTML = "";
-    snapshot.forEach((child) => {
-      const comment = child.val();
-      const id = child.key;
-
-      const div = document.createElement("div");
-      div.classList.add("comment");
-
-      div.innerHTML = `
-        <div class="comment-header">${comment.nickname}</div>
-        <div class="comment-text">${comment.text}</div>
-        <div class="comment-actions">
-          <button onclick="likeComment('${id}')">👍 ${comment.likes || 0}</button>
-          <button onclick="dislikeComment('${id}')">👎 ${comment.dislikes || 0}</button>
-          <span class="reply-btn" onclick="replyTo('${id}')">Ответить</span>
-        </div>
-        <div class="replies" id="replies-${id}"></div>
-      `;
-
-      commentsList.appendChild(div);
-    });
-  });
-
-  // Лайк
-  window.likeComment = (id) => {
-    const commentRef = ref(db, "comments/" + pageId + "/" + id);
-    update(commentRef, { likes: (Math.random() * 1000).toFixed(0) }); // тут перероблю під реальне збільшення
-  };
-
-  // Дизлайк
-  window.dislikeComment = (id) => {
-    const commentRef = ref(db, "comments/" + pageId + "/" + id);
-    update(commentRef, { dislikes: (Math.random() * 1000).toFixed(0) });
-  };
-
-  // Відповідь (поки що простий prompt)
-  window.replyTo = (id) => {
-    const replyText = prompt("Введите ваш ответ:");
-    if (!replyText) return;
-    const repliesRef = ref(db, "comments/" + pageId + "/" + id + "/replies");
-    push(repliesRef, {
-      nickname: "Гость",
-      text: replyText,
-      likes: 0,
-      dislikes: 0,
-      timestamp: Date.now()
-    });
-  };
-</script>
-
-    <!-- Gallery Section -->
-    <section class="section" style="background: var(--bg-secondary);">
+    <!-- Информационный блок -->
+    <section id="#about" class="section" style="background: var(--bg-secondary);">
         <div class="container">
             <div class="section-header">
-                <div class="section-badge fade-in-up">Наши работы</div>
+                <div class="section-badge fade-in-up">Информация</div>
                 <h2 class="section-title fade-in-up">
-                    <span class="gradient-text">Галерея</span> работ
+                    Основная <span class="gradient-text">информация</span>
                 </h2>
                 <p class="section-description fade-in-up">
-                    Насладитесь вайбом этих работ!
+                    Ответы на самые популярные вопросы
+                </p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">
+                        <span>Стоимость</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-content">
+                            <p style="margin-bottom: var(--space-md); font-weight: 600; color: var(--accent-cyan);">Какая стоимость «PBS.project+»?</p>
+                            <ul class="faq-list">
+                                <li><i class="fa-solid fa-dollar-sign" style="color: var(--accent-green);"></i>Стоимость «PBS.project+» - 1500 российских рублей | 750 украинских гривен | 19 евро.</li>
+                                <li><i class="fa-solid fa-credit-card" style="color: var(--accent-green);"></i>Оплату можно проводить как на банковскую карту или бусти, так и через TON кошёлек, Pay Pal и другие удобные вам сервисы.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">
+                        <span>Преимущества</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-content">
+                            <p style="margin-bottom: var(--space-md); font-weight: 600; color: var(--accent-cyan);">Какие преимущества я получу купив «PBS.project+»?</p>
+                            <ul class="faq-list">
+                                <li><i class="fa-solid fa-star" style="color: var(--accent-green);"></i>Доступ к огромному количеству эксклюзивного контента.</li>
+                                <li><i class="fa-solid fa-comments" style="color: var(--accent-green);"></i>Большое адекватное комьюнити единомышлеников в нашем чате.</li>
+                                <li><i class="fa-solid fa-headset" style="color: var(--accent-green);"></i>Личное общение с администрацией проекта.</li>
+                                <li><i class="fa-solid fa-wrench" style="color: var(--accent-green);"></i>Оказание круглосуточной тех-поддержки.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in-up">
+                    <button class="faq-question">
+                        <span>Реферальная система</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-content">
+                            <p style="margin-bottom: var(--space-md); font-weight: 600; color: var(--accent-cyan);">У вас есть реферальная система?</p>
+                            <ul class="faq-list">
+                                <li><i class="fa-solid fa-user-plus" style="color: var(--accent-green);"></i>За каждого приведённого РЕАЛЬНОГО покупателя вы получаете скидку на «PBS.project+» в размере 20%.</li>
+                                <li><i class="fa-solid fa-user-plus" style="color: var(--accent-green);"></i>Если у вас уже есть «PBS.project+». За каждого приведённого РЕАЛЬНОГО покупателя вы получаете бонус в размере одного подарка от проекта на выбор администрации.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция со списком -->
+    <section id="spisok" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge fade-in-up">Список дополнений</div>
+                <h2 class="section-title fade-in-up">
+                    Список дополнений в <span class="gradient-text">PBS.project+</span>
+                </h2>
+                <p class="section-description fade-in-up">
+                    Список актуальных дополнений, а так же список следующих дополнений в «PBS.project+»
+                </p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="card fade-in-up">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl);">
+                        <div>
+                            <h4 style="color: var(--accent-green); margin-bottom: var(--space-lg); font-size: 16px; font-weight: 700; text-align: center; padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">Доступно</h4>
+                            <div style="display: grid; gap: var(--space-sm);">
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Троллейбус ЗиУ 682Г</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Троллейбус ЗиУ 682Г-016 (017)</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Троллейбус ЗиУ 682Г (Троллейбусный поезд)</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Автобус МАЗ 103.065</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов ПАЗ-4234</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Автобус ПАЗ-8234</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Карта «Серповский регион v.0.1»</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов MAN UEL</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Карта «Суздаль»</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов ПАЗ-3205</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--accent-green); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Автобус ПАЗ-320412-05</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 style="color: var(--secondary-orange); margin-bottom: var(--space-lg); font-size: 16px; font-weight: 700; text-align: center; padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">Скоро будет</h4>
+                            <div style="display: grid; gap: var(--space-sm);">
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Икарус 250</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Икарус 256</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Икарус 260</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Икарус 280</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Karosa B961</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Karosa CX34</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов MAN NL T-Rex</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов MAN NL202</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Mercedes-Benz Coach O560</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Автобус Mercedes-Benz O407</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Mercedes-Benz O530</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Setra S31x</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+                                    <div style="width: 8px; height: 8px; background: var(--secondary-orange); border-radius: 50%;"></div>
+                                    <span style="font-size: 13px; font-weight: 500;">Пак автобусов Setra S200</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция галереи -->
+    <section class="section" id="gallery" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge fade-in-up">Галерея</div>
+                <h2 class="section-title fade-in-up">
+                    <span class="gradient-text">Галерея</span> PBS.project+
+                </h2>
+                <p class="section-description fade-in-up">
+                    Небольшая визуальная часть дополнений, которые находятся в «PBS.project+».
                 </p>
             </div>
 
@@ -315,8 +384,50 @@
         </div>
     </section>
 
+    <!-- Блок взаимодействия -->
+    <section class="section" data-id="Test">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge fade-in-up">Отзывы</div>
+                <h2 class="section-title fade-in-up">
+                    Отзывы о <span class="gradient-text">PBS.project+</span>
+                </h2>
+                <p class="section-description fade-in-up">
+                    Если вы уже являетесь пользователем PBS.project+, можете оценить продукт, а так же написать комментарий.
+                </p>
+            </div>
+
+            <!-- 🔹 Блок реакций -->
+            <div class="reaction-box">
+                <button class="reaction-btn like-btn">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span class="like-count">0</span>
+                </button>
+                <button class="reaction-btn dislike-btn">
+                    <i class="fas fa-thumbs-down"></i>
+                    <span class="dislike-count">0</span>
+                </button>
+            </div>
+
+            <!-- 🔹 Блок комментариев -->
+            <div class="comments-section">
+                <h2>Оставить комментарий</h2>
+                <br>
+                <form id="commentForm" class="comment-form">
+                    <input type="text" id="nickname" placeholder="Ваш ник" required>
+                    <textarea id="commentText" placeholder="Ваш комментарий..." required></textarea>
+                    <button type="submit">Отправить</button>
+                </form>
+                <br>
+                <h2>Комментари</h2>
+                <br>
+                <div id="commentsList"></div>
+            </div>
+    </section>
+
+
     <!-- Блок социальных сетей -->
-    <section class="section" id="socials" style="background: var(--bg-primary); padding-top: 60px; padding-bottom: 60px;">
+    <section class="section" id="socials" style="background: var(--bg-secondary); padding-top: 60px; padding-bottom: 60px;">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge fade-in-up">Мы в соцсетях</div>
@@ -367,14 +478,15 @@
     <script type="module">
         import {
             initializeApp
-        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import {
             getDatabase,
             ref,
             get,
+            push,
             update,
             onValue
-        } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
@@ -390,112 +502,157 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        document.querySelectorAll('.reaction-box').forEach(box => {
-            const modId = box.dataset.id;
-            const likeBtn = box.querySelector('.like-btn');
-            const dislikeBtn = box.querySelector('.dislike-btn');
-            const likeCount = box.querySelector('.like-count');
-            const dislikeCount = box.querySelector('.dislike-count');
+        // беремо pageId з HTML
+        const interactionSection = document.querySelector('[data-id="Test"]');
+        const pageId = interactionSection?.dataset.id;
 
-            const modRef = ref(db, 'mods/' + modId);
+        // ==================
+        // Реакции
+        // ==================
+        const reactionBox = interactionSection.querySelector('.reaction-box');
+        const likeBtn = reactionBox.querySelector('.like-btn');
+        const dislikeBtn = reactionBox.querySelector('.dislike-btn');
+        const likeCount = reactionBox.querySelector('.like-count');
+        const dislikeCount = reactionBox.querySelector('.dislike-count');
 
-            // показуємо дані в реальному часі
-            onValue(modRef, snapshot => {
-                const data = snapshot.val() || {
-                    likes: 0,
-                    dislikes: 0
-                };
-                likeCount.textContent = data.likes || 0;
-                dislikeCount.textContent = data.dislikes || 0;
-            });
+        const modRef = ref(db, 'react/' + pageId);
 
-            // перевірка чи голосував
-            let reacted = localStorage.getItem("reacted_" + modId);
+        onValue(modRef, snapshot => {
+            const data = snapshot.val() || {
+                likes: 0,
+                dislikes: 0
+            };
+            likeCount.textContent = data.likes || 0;
+            dislikeCount.textContent = data.dislikes || 0;
+        });
 
-            if (reacted === "like") likeBtn.classList.add("active");
-            if (reacted === "dislike") dislikeBtn.classList.add("active");
+        let reacted = localStorage.getItem("reacted_" + pageId);
 
-            // bounce анімація
-            function bounce(el) {
-                el.classList.add("bounce");
-                setTimeout(() => el.classList.remove("bounce"), 400);
-            }
+        if (reacted === "like") likeBtn.classList.add("active");
+        if (reacted === "dislike") dislikeBtn.classList.add("active");
 
-            // лайк
-            likeBtn.addEventListener('click', async () => {
-                const snap = await get(modRef);
-                const data = snap.val() || {
-                    likes: 0,
-                    dislikes: 0
-                };
+        function reactbounce(el) {
+            el.classList.add("reactbounce");
+            setTimeout(() => el.classList.remove("reactbounce"), 400);
+        }
 
-                if (reacted === "like") {
-                    // зняти лайк
-                    update(modRef, {
-                        likes: Math.max((data.likes || 0) - 1, 0)
-                    });
-                    localStorage.removeItem("reacted_" + modId);
-                    likeBtn.classList.remove("active");
-                    reacted = null;
-                } else {
-                    // якщо був дизлайк → зняти його
-                    if (reacted === "dislike") {
-                        update(modRef, {
-                            dislikes: Math.max((data.dislikes || 0) - 1, 0)
-                        });
-                        dislikeBtn.classList.remove("active");
-                    }
-                    // поставити лайк
-                    update(modRef, {
-                        likes: (data.likes || 0) + 1
-                    });
-                    localStorage.setItem("reacted_" + modId, "like");
-                    likeBtn.classList.add("active");
-                    dislikeBtn.classList.remove("active");
-                    reacted = "like";
-                    bounce(likeCount);
-                }
-            });
+        likeBtn.addEventListener('click', async () => {
+            const snap = await get(modRef);
+            const data = snap.val() || {
+                likes: 0,
+                dislikes: 0
+            };
 
-            // дизлайк
-            dislikeBtn.addEventListener('click', async () => {
-                const snap = await get(modRef);
-                const data = snap.val() || {
-                    likes: 0,
-                    dislikes: 0
-                };
-
+            if (reacted === "like") {
+                update(modRef, {
+                    likes: Math.max((data.likes || 0) - 1, 0)
+                });
+                localStorage.removeItem("reacted_" + pageId);
+                likeBtn.classList.remove("active");
+                reacted = null;
+            } else {
                 if (reacted === "dislike") {
-                    // зняти дизлайк
                     update(modRef, {
                         dislikes: Math.max((data.dislikes || 0) - 1, 0)
                     });
-                    localStorage.removeItem("reacted_" + modId);
                     dislikeBtn.classList.remove("active");
-                    reacted = null;
-                } else {
-                    // якщо був лайк → зняти його
-                    if (reacted === "like") {
-                        update(modRef, {
-                            likes: Math.max((data.likes || 0) - 1, 0)
-                        });
-                        likeBtn.classList.remove("active");
-                    }
-                    // поставити дизлайк
-                    update(modRef, {
-                        dislikes: (data.dislikes || 0) + 1
-                    });
-                    localStorage.setItem("reacted_" + modId, "dislike");
-                    dislikeBtn.classList.add("active");
-                    likeBtn.classList.remove("active");
-                    reacted = "dislike";
-                    bounce(dislikeCount);
                 }
+                update(modRef, {
+                    likes: (data.likes || 0) + 1
+                });
+                localStorage.setItem("reacted_" + pageId, "like");
+                likeBtn.classList.add("active");
+                dislikeBtn.classList.remove("active");
+                reacted = "like";
+                reactbounce(likeCount);
+            }
+        });
+
+        dislikeBtn.addEventListener('click', async () => {
+            const snap = await get(modRef);
+            const data = snap.val() || {
+                likes: 0,
+                dislikes: 0
+            };
+
+            if (reacted === "dislike") {
+                update(modRef, {
+                    dislikes: Math.max((data.dislikes || 0) - 1, 0)
+                });
+                localStorage.removeItem("reacted_" + pageId);
+                dislikeBtn.classList.remove("active");
+                reacted = null;
+            } else {
+                if (reacted === "like") {
+                    update(modRef, {
+                        likes: Math.max((data.likes || 0) - 1, 0)
+                    });
+                    likeBtn.classList.remove("active");
+                }
+                update(modRef, {
+                    dislikes: (data.dislikes || 0) + 1
+                });
+                localStorage.setItem("reacted_" + pageId, "dislike");
+                dislikeBtn.classList.add("active");
+                likeBtn.classList.remove("active");
+                reacted = "dislike";
+                reactbounce(dislikeCount);
+            }
+        });
+
+        // ==================
+        // Комментарии
+        // ==================
+        const commentsRef = ref(db, "comments/" + pageId);
+        const commentForm = document.getElementById("commentForm");
+        const commentsList = document.getElementById("commentsList");
+
+        function formatDate(timestamp) {
+            return new Intl.DateTimeFormat("ru-RU", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                timeZone: "Europe/Moscow"
+            }).format(new Date(timestamp));
+        }
+
+        commentForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const nickname = document.getElementById("nickname").value.trim();
+            const text = document.getElementById("commentText").value.trim();
+
+            if (!nickname || !text) return;
+
+            push(commentsRef, {
+                nickname,
+                text,
+                timestamp: Date.now()
+            });
+            commentForm.reset();
+        });
+
+        onValue(commentsRef, (snapshot) => {
+            commentsList.innerHTML = "";
+            snapshot.forEach((child) => {
+                const comment = child.val();
+                const div = document.createElement("div");
+                div.classList.add("comment");
+
+                div.innerHTML = `
+        <div class="comment-header">
+          <span class="comment-nickname">${comment.nickname}</span>
+          <span class="comment-time">${formatDate(comment.timestamp)}</span>
+        </div>
+        <div class="comment-text">${comment.text}</div>
+      `;
+                commentsList.appendChild(div);
             });
         });
-    </script>
-
-    <script type="module">
+</script>
+		
+<script type="module">
         // Loading Screen
         setTimeout(() => {
             document.getElementById('loading').classList.add('hidden');

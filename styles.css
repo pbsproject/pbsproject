@@ -6,38 +6,39 @@
             --accent-purple: #8B5CF6;
             --accent-green: #10B981;
             --accent-red: #EF4444;
-            
+
             --bg-primary: #0A0A0F;
             --bg-secondary: #111118;
             --bg-tertiary: #1A1A24;
             --bg-card: #1E1E2E;
             --bg-glass: rgba(30, 30, 46, 0.85);
-            
+
             --text-primary: #FFFFFF;
             --text-secondary: #B4B4C7;
             --text-muted: #8B8BA7;
-            
+
             --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4FF 100%);
+            --gradient-primary-orange: linear-gradient(135deg, #FF6B35 10%, #FFFF00 100%);
             --gradient-secondary: linear-gradient(135deg, #FF6B35 0%, #8B5CF6 100%);
-            
+
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
             --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.25);
             --shadow-glow-blue: 0 0 20px rgba(0, 102, 255, 0.3);
             --shadow-glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
-            
+
             --space-xs: 0.25rem;
             --space-sm: 0.5rem;
             --space-md: 1rem;
             --space-lg: 1.5rem;
             --space-xl: 2rem;
             --space-2xl: 3rem;
-            
+
             --radius-sm: 6px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 20px;
-            
+
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -93,6 +94,13 @@
             background-clip: text;
         }
 
+        .gradient-text-orange {
+            background: var(--gradient-primary-orange);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         /* Button Styles */
         .btn {
             display: inline-flex;
@@ -119,14 +127,14 @@
             transform: translateY(-2px);
             box-shadow: var(--shadow-glow-blue);
         }
-		
-		/* Анімація кнопки */
+
+        /* Анімація кнопки */
         .btn-primary {
             position: relative;
             overflow: hidden;
             z-index: 1;
         }
-    
+
         .btn-primary::after {
             content: "";
             position: absolute;
@@ -134,12 +142,12 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             transform: skewX(-25deg);
             transition: left 0.4s ease;
             z-index: -1;
         }
-    
+
         .btn-primary:hover::after {
             left: 100%;
         }
@@ -344,11 +352,14 @@
         }
 
         @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px) translateX(0px); 
+
+            0%,
+            100% {
+                transform: translateY(0px) translateX(0px);
             }
-            50% { 
-                transform: translateY(-20px) translateX(10px); 
+
+            50% {
+                transform: translateY(-20px) translateX(10px);
             }
         }
 
@@ -421,14 +432,21 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { 
-                transform: translateX(-50%) translateY(0); 
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
             }
-            40% { 
-                transform: translateX(-50%) translateY(-10px); 
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
             }
-            60% { 
-                transform: translateX(-50%) translateY(-5px); 
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
             }
         }
 
@@ -597,11 +615,13 @@
             gap: var(--space-sm);
         }
 
-        /* Departments Grid */		
+        /* Departments Grid */
         .departments-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 карточки в ряд */
-            gap: 2rem; /* Расстояние между карточками */
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 карточки в ряд */
+            gap: 2rem;
+            /* Расстояние между карточками */
         }
 
 
@@ -919,8 +939,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Animations */
@@ -945,37 +970,39 @@
             opacity: 1;
             transform: scale(1);
         }
-		
-.social-link {
-    font-size: 32px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.social-link:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.4); /* можно настроить под цвет соцсети */
-    color: var(--accent-cyan); /* или оставить текущий цвет */
-}
+        .social-link {
+            font-size: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.boosty-img {
-    width: 32px;
-    height: 32px;
-    transition: transform 0.3s ease, filter 0.3s ease;
-}
+        .social-link:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.4);
+            /* можно настроить под цвет соцсети */
+            color: var(--accent-cyan);
+            /* или оставить текущий цвет */
+        }
 
-.boosty-icon:hover .boosty-img {
-    transform: scale(1.15);
-    filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.6));
-}
+        .boosty-img {
+            width: 32px;
+            height: 32px;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
 
-.social-link {
-    text-decoration: none;
-}
+        .boosty-icon:hover .boosty-img {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.6));
+        }
 
-       .reaction-box {
+        .social-link {
+            text-decoration: none;
+        }
+
+        .reaction-box {
             display: flex;
             gap: var(--space-lg);
             justify-content: center;
@@ -1022,7 +1049,7 @@
         }
 
         /* анімація підстрибування цифри */
-        @keyframes bounce {
+        @keyframes reactbounce {
             0% {
                 transform: scale(1);
             }
@@ -1040,92 +1067,109 @@
             }
         }
 
-        .bounce {
-            animation: bounce 0.4s ease;
+        .reactbounce {
+            animation: reactbounce 0.4s ease;
         }
 
-.comments-section {
-  margin-top: 40px;
-  padding: 20px;
-  background: var(--bg-secondary);
-  border-radius: var(--radius-md);
-}
-
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.comment-form input, 
-.comment-form textarea {
-  padding: 10px;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255,255,255,0.1);
-  background: var(--bg-card);
-  color: var(--text-primary);
-}
-
-.comment-form button {
-  align-self: flex-end;
-  padding: 10px 20px;
-  border: none;
-  border-radius: var(--radius-md);
-  background: var(--primary-blue);
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.comment-form button:hover {
-  background: var(--accent-cyan);
-}
-
-.comment {
-  margin-bottom: 15px;
-  padding: 12px;
-  background: var(--bg-card);
-  border-radius: var(--radius-md);
-}
-
-.comment-header {
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.comment-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-top: 8px;
-}
-
-.reply-btn {
-  font-size: 14px;
-  cursor: pointer;
-  color: var(--accent-blue);
-}
-
-.replies {
-  margin-left: 20px;
-  margin-top: 10px;
-}
-		
-		#downloads {
-            margin-top: 100px; /* Можно изменить на больше или меньше */
+        .comments-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
         }
-		
-		#aboutpage {
-            margin-top: 100px; /* Можно изменить на больше или меньше */
-        }	
-		
-		#faqpage {
-            margin-top: 100px; /* Можно изменить на больше или меньше */
-        }			
 
-		
-		
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            padding: 10px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--bg-card);
+            color: var(--text-primary);
+        }
+
+        .comment-form button {
+            align-self: flex-end;
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius-md);
+            background: var(--primary-blue);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .comment-form button:hover {
+            background: var(--accent-cyan);
+        }
+
+        .comment {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            /* нік зліва, час справа */
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .comment-nickname {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .comment-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .comment-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .reply-btn {
+            font-size: 14px;
+            cursor: pointer;
+            color: var(--accent-blue);
+        }
+
+        .replies {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        #downloads {
+            margin-top: 100px;
+            /* Можно изменить на больше или меньше */
+        }
+
+        #aboutpage {
+            margin-top: 100px;
+            /* Можно изменить на больше или меньше */
+        }
+
+        #faqpage {
+            margin-top: 100px;
+            /* Можно изменить на больше или меньше */
+        }
+
+
+
 
         /* Responsive - FIXED */
         @media (max-width: 768px) {
