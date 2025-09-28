@@ -1058,11 +1058,11 @@
   margin-bottom: 20px;
 }
 
-.comment-form input, 
+.comment-form input,
 .comment-form textarea {
   padding: 10px;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background: var(--bg-card);
   color: var(--text-primary);
 }
@@ -1091,20 +1091,93 @@
 
 .comment-header {
   font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.comment-time {
+  font-size: 12px;
+  color: var(--text-secondary);
   margin-bottom: 6px;
 }
 
-.comment-actions {
+.comment-text {
+  margin-bottom: 10px;
+}
+
+.reaction-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.reaction-btn {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-top: 8px;
+  gap: 6px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.reaction-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-glow-cyan);
+}
+
+.reaction-btn.active.like-btn {
+  background: var(--primary-blue);
+  color: white;
+}
+
+.reaction-btn.active.dislike-btn {
+  background: var(--accent-red);
+  color: white;
 }
 
 .reply-btn {
   font-size: 14px;
   cursor: pointer;
   color: var(--accent-blue);
+  margin-left: 10px;
+}
+
+.reply-form {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reply-form input,
+.reply-form textarea {
+  padding: 8px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.reply-form button {
+  align-self: flex-end;
+  padding: 6px 14px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--primary-blue);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reply-form button:hover {
+  background: var(--accent-cyan);
 }
 
 .replies {
