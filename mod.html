@@ -418,12 +418,18 @@
                 update(reactRef, {
                     likes: (d.likes || 0) + 1
                 });
+                reactbounce(likeCount);
                 localStorage.setItem("reacted_" + pageId, "like");
                 likeBtn.classList.add("active");
                 dislikeBtn.classList.remove("active");
                 reacted = "like";
             }
         };
+        
+        function reactbounce(el) {
+            el.classList.add("reactbounce");
+            setTimeout(() => el.classList.remove("reactbounce"), 400);
+         }
 
         dislikeBtn.onclick = async () => {
             const snap = await get(reactRef);
@@ -445,6 +451,7 @@
                 update(reactRef, {
                     dislikes: (d.dislikes || 0) + 1
                 });
+                reactbounce(dislikeCount);
                 localStorage.setItem("reacted_" + pageId, "dislike");
                 dislikeBtn.classList.add("active");
                 likeBtn.classList.remove("active");
