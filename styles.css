@@ -121,18 +121,14 @@
             background: var(--gradient-primary);
             color: white;
             box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-glow-blue);
-        }
-
-        /* Анімація кнопки */
-        .btn-primary {
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
         }
 
         .btn-primary::after {
@@ -624,8 +620,6 @@
             /* Расстояние между карточками */
         }
 
-
-
         .department-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -977,6 +971,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            text-decoration: none;
         }
 
         .social-link:hover {
@@ -996,10 +991,6 @@
         .boosty-icon:hover .boosty-img {
             transform: scale(1.15);
             filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.6));
-        }
-
-        .social-link {
-            text-decoration: none;
         }
 
         .reaction-box {
@@ -1142,103 +1133,130 @@
             margin-top: 8px;
         }
 
-        .reply-btn {
-            font-size: 14px;
-            cursor: pointer;
-            color: var(--accent-blue);
-        }
-
-        .replies {
-            margin-left: 20px;
-            margin-top: 10px;
-        }
-
         .carousel {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
             max-width: 600px;
             margin: 30px auto;
+            margin-bottom: 30px;
         }
 
         .main-image {
             width: 100%;
             height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
             cursor: pointer;
-            border-radius: 8px;
         }
 
         .thumbnails {
-            margin-top: 10px;
             display: flex;
-            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            /* Важно — выравнивание по левому краю */
+            overflow-x: auto;
             gap: 10px;
+            padding-bottom: 10px;
+            padding-left: 0;
+            /* Убери ненужные отступы */
+            margin-left: 0;
+            margin-top: 10px;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+
+
+        .thumbnails::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .thumbnails::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
         }
 
         .thumbnail {
-            width: 80px;
-            height: 60px;
+            height: 80px;
+            width: auto;
             object-fit: cover;
             cursor: pointer;
+            border-radius: 8px;
             border: 2px solid transparent;
-            border-radius: 4px;
-            transition: 0.3s;
+            scroll-snap-align: start;
+            opacity: 0.7;
+            transition: box-shadow 0.3s, opacity 0.3s;
+            box-sizing: border-box;
+            /* Важно! */
+
         }
 
         .thumbnail.active,
         .thumbnail:hover {
             border-color: #007bff;
+            opacity: 1;
         }
 
-        /* Модальное окно */
-        .modal {
-            display: none;
+        .lightbox-overlay {
             position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
         }
 
-        .modal-content {
+        .lightbox-content {
             position: relative;
             max-width: 90%;
             max-height: 90%;
-            margin: 50px auto;
         }
 
-        .modal img {
+        .lightbox-content img {
             width: 100%;
             height: auto;
-            border-radius: 6px;
+            object-fit: contain;
+            border-radius: 12px;
         }
 
-        .close,
-        .prev,
-        .next {
+        /* Стили для кнопки крестика */
+        .lightbox-close {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 32px;
-            color: white;
-            cursor: pointer;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
-            user-select: none;
-        }
-
-        .close {
             top: 20px;
             right: 20px;
-            transform: none;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: white;
+            font-size: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 10001;
         }
 
-        .prev {
-            left: 10px;
+        .lightbox-close:hover {
+            background: rgba(0, 0, 0, 0.8);
         }
 
-        .next {
-            right: 10px;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         #downloads {
@@ -1260,7 +1278,7 @@
             margin-top: 100px;
             /* Можно изменить на больше или меньше */
         }
-		
+
         #modpage {
             margin-top: 100px;
             /* Можно изменить на больше или меньше */
