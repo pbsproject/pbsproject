@@ -1,72 +1,584 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Адмінка PBS.project</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBS.project - Твой ключ к лучшим модам для Proton Bus Simulator!</title>
+    <link rel="icon" href="pic/logo/logo.png" type="image/png">
+
+    <!-- Описание страницы -->
+    <meta name="description" content="Админ-панель проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+
+    <!-- Ключевые слова -->
+    <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
+
+    <!-- Автор -->
+    <meta name="author" content="Vitaliy Shkarupa" />
+
+    <!-- Open Graph для соцсетей -->
+    <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta property="og:description" content="Админ-панель проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
+    <meta property="og:image" content="https://pbsproject.github.io/pbsproject/pic/logo/logo.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta name="twitter:description" content="Админ-панель проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/pic/logo/logo.png" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FGLT883PDC');
+    </script>
+
+    <style>
+        :root {
+            --bg-primary: #081016;
+            --bg-tertiary: rgba(255, 255, 255, 0.03);
+            --card: rgba(255, 255, 255, 0.04);
+            --text-primary: #E6F0F6;
+            --text-secondary: rgba(230, 240, 246, 0.7);
+            --accent-cyan: #00d4ff;
+            --accent-blue: #007bff;
+            --radius-md: 12px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 22px;
+        }
+
+        h2 {
+            margin: 0 0 15px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 14px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-primary);
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--accent-cyan);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all var(--transition);
+        }
+
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-25deg);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        /* PRIMARY BUTTON */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* LOGOUT BUTTON with animation */
+        .btn-logout {
+            background: #ff5d5d;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-logout:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(255, 93, 93, 0.4);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .msg {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* password field with eye */
+        .password-wrap {
+            position: relative;
+        }
+
+        .toggle-pass {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* select custom arrow */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        select option {
+            background: #101820;
+            color: var(--text-primary);
+            padding: 10px;
+        }
+
+        select option:hover {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        /* gallery preview block */
+        .img-preview-wrap {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .img-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            max-height: 180px;
+            object-fit: contain;
+            transition: transform .3s ease;
+            display: block;
+        }
+
+        @media(max-width:600px) {
+            .gallery-image {
+                max-height: 140px;
+            }
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            transition: opacity .3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .lightbox.show {
+            opacity: 1;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+
+    <!-- Шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Иконки -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
-  <section class="section">
     <div class="container">
-      <h2 class="section-title">Добавить мод</h2>
-      <form id="addModForm" class="comment-form">
-        <input type="text" id="title" placeholder="Название" required>
-        <input type="text" id="type" placeholder="Тип мода" required>
-        <textarea id="description" placeholder="Описание"></textarea>
-        <input type="text" id="modelAuthor" placeholder="Автор модели">
-        <input type="text" id="convertAuthor" placeholder="Автор конвертации">
-        <input type="text" id="weight" placeholder="Вес">
-        <input type="text" id="download" placeholder="Ссылка на мод">
-        <textarea id="images" placeholder="Ссылки на картинки (через запятую)" required></textarea>
-        <button type="submit" class="btn btn-primary">Опубликовать</button>
-      </form>
+        <div class="panel" id="loginPanel">
+            <h2>🔒 Вход</h2>
+            <input id="email" type="email" placeholder="Email" required>
+            <div class="password-wrap">
+                <input id="password" type="password" placeholder="Пароль" required>
+                <button type="button" id="togglePass" class="toggle-pass"><i class="fa fa-eye"></i></button>
+            </div>
+            <button id="loginBtn" class="btn btn-primary">Войти</button>
+            <div id="loginError" class="msg" style="color:#ff8b8b;display:none;"></div>
+        </div>
+
+        <div class="panel hidden" id="adminPanel">
+            <h2>➕ Добавить мод</h2>
+            <form id="addModForm">
+                <input id="title" type="text" placeholder="Название мода (Обязательно)" required>
+                <select id="type" required>
+                    <option value="" disabled selected>Выберите тип мода (Обязательно)</option>
+                    <option value="Автобус">Автобус</option>
+                    <option value="Троллейбус">Троллейбус</option>
+                    <option value="Карта">Карта</option>
+                    <option value="Прочее">Прочее</option>
+                </select>
+                <textarea id="description" placeholder="Описание"></textarea>
+                <input id="modelAuthor" type="text" placeholder="Автор модели (Обязательно)" required>
+                <input id="convertAuthor" type="text" placeholder="Автор конвертации (Обязательно)" required>
+                <input id="weight" type="text" placeholder="Вес">
+                <input id="download" type="url" placeholder="Ссылка на мод (URL) (Обьязательно)" required>
+                <textarea id="images" placeholder="Ссылки на картинки (через запятую), первая — превью" required></textarea>
+
+                <div id="previewWrap" class="img-preview-wrap hidden">
+                    <div id="preview" class="img-preview"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Опубликовать</button>
+                <button id="logoutBtn" type="button" class="btn btn-logout" style="float:right;">Выйти</button>
+                <div id="formMsg" class="msg"></div>
+            </form>
+        </div>
     </div>
-  </section>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    <script type="module">
+        import {
+            initializeApp
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import {
+            getAuth,
+            signInWithEmailAndPassword,
+            signOut,
+            onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import {
+            getDatabase,
+            ref,
+            push,
+            set
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
-      authDomain: "pbsproject-39041.firebaseapp.com",
-      databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "pbsproject-39041",
-      storageBucket: "pbsproject-39041.appspot.com",
-      messagingSenderId: "695400532049",
-      appId: "1:695400532049:web:31d2de08045c4d3eeb1070"
-    };
+        const firebaseConfig = {
+            apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
+            authDomain: "pbsproject-39041.firebaseapp.com",
+            databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "pbsproject-39041",
+            storageBucket: "pbsproject-39041.appspot.com",
+            messagingSenderId: "695400532049",
+            appId: "1:695400532049:web:31d2de08045c4d3eeb1070"
+        };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
 
-    document.getElementById("addModForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
+        const loginPanel = document.getElementById('loginPanel');
+        const adminPanel = document.getElementById('adminPanel');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const addModForm = document.getElementById('addModForm');
+        const formMsg = document.getElementById('formMsg');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const togglePassBtn = document.getElementById('togglePass');
+        const imagesField = document.getElementById('images');
+        const previewWrap = document.getElementById('previewWrap');
+        const preview = document.getElementById('preview');
 
-      const mod = {
-        title: title.value,
-        type: type.value,
-        description: description.value,
-        modelAuthor: modelAuthor.value,
-        convertAuthor: convertAuthor.value,
-        weight: weight.value,
-        download: download.value,
-        images: images.value.split(",").map(i => i.trim()),
-        createdAt: Date.now()
-      };
+        // Toggle password visibility
+        togglePassBtn.addEventListener("click", () => {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePassBtn.innerHTML = '<i class="fa fa-eye-slash"></i>';
+            } else {
+                passwordInput.type = "password";
+                togglePassBtn.innerHTML = '<i class="fa fa-eye"></i>';
+            }
+        });
 
-      try {
-        const newModRef = push(ref(db, "mods")); // створюємо новий запис
-        await set(newModRef, mod); // зберігаємо об'єкт
-        const newId = newModRef.key;
+        // Auth
+        async function doLogin() {
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+            } catch (err) {
+                loginError.style.display = 'block';
+                loginError.textContent = "Ошибка входа. Проверьте email/пароль.";
+            }
+        }
+        loginBtn.addEventListener('click', doLogin);
 
-        alert("Мод опубликован! Переходим на страницу мода.");
-        window.location.href = "mod.html?id=" + newId;
-      } catch (error) {
-        console.error("Помилка при збереженні мода:", error);
-        alert("Щось пішло не так. Перевір консоль.");
-      }
-    });
-  </script>
+        // Enter navigation
+        emailInput.addEventListener("keydown", e => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                passwordInput.focus();
+            }
+        });
+        passwordInput.addEventListener("keydown", e => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                doLogin();
+            }
+        });
+
+        logoutBtn.addEventListener('click', () => signOut(auth));
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                loginPanel.classList.add('hidden');
+                adminPanel.classList.remove('hidden');
+            } else {
+                loginPanel.classList.remove('hidden');
+                adminPanel.classList.add('hidden');
+            }
+        });
+
+        // Preview gallery
+        imagesField.addEventListener('input', () => {
+            const urls = imagesField.value.split(',').map(u => u.trim()).filter(Boolean);
+            if (urls.length > 0) {
+                previewWrap.classList.remove('hidden');
+                preview.innerHTML = urls.map((u, i) =>
+                    isValidUrl(u) ? `
+            <div class="gallery-item" data-url="${u}">
+              <img src="${u}" alt="preview-${i}" class="gallery-image">
+              <div class="gallery-overlay"><span>Превью ${i+1}</span></div>
+            </div>
+          ` : ''
+                ).join('');
+                setupGalleryClicks();
+            } else {
+                previewWrap.classList.add('hidden');
+                preview.innerHTML = '';
+            }
+        });
+
+        function isValidUrl(str) {
+            try {
+                new URL(str);
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        // Lightbox gallery
+        function setupGalleryClicks() {
+            document.querySelectorAll('.gallery-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const url = item.dataset.url;
+                    const lightbox = document.createElement('div');
+                    lightbox.classList.add('lightbox');
+                    const img = document.createElement('img');
+                    img.src = url;
+                    const closeBtn = document.createElement('button');
+                    closeBtn.className = 'lightbox-close';
+                    closeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    lightbox.appendChild(img);
+                    lightbox.appendChild(closeBtn);
+                    document.body.appendChild(lightbox);
+                    setTimeout(() => lightbox.classList.add('show'), 10);
+
+                    function close() {
+                        lightbox.classList.remove('show');
+                        setTimeout(() => lightbox.remove(), 300);
+                    }
+                    closeBtn.addEventListener('click', close);
+                    lightbox.addEventListener('click', e => {
+                        if (e.target === lightbox) close();
+                    });
+                    document.addEventListener('keydown', function escHandler(e) {
+                        if (e.key === 'Escape') {
+                            close();
+                            document.removeEventListener('keydown', escHandler);
+                        }
+                    });
+                });
+            });
+        }
+
+        // Submit
+        addModForm.addEventListener('submit', async e => {
+            e.preventDefault();
+            formMsg.textContent = "";
+            const title = document.getElementById('title').value.trim();
+            const type = document.getElementById('type').value;
+            const description = document.getElementById('description').value.trim();
+            const modelAuthor = document.getElementById('modelAuthor').value.trim();
+            const convertAuthor = document.getElementById('convertAuthor').value.trim();
+            const weight = document.getElementById('weight').value.trim();
+            const download = document.getElementById('download').value.trim();
+            const images = imagesField.value.split(',').map(u => u.trim()).filter(Boolean);
+
+            if (!title || !type || images.length === 0) {
+                formMsg.style.color = "#ff8b8b";
+                formMsg.textContent = "Заполните обязательные поля.";
+                return;
+            }
+            if (download && !isValidUrl(download)) {
+                formMsg.style.color = "#ff8b8b";
+                formMsg.textContent = "Неверная ссылка на мод.";
+                return;
+            }
+            if (images.some(u => !isValidUrl(u))) {
+                formMsg.style.color = "#ff8b8b";
+                formMsg.textContent = "Одна из картинок имеет неверный URL.";
+                return;
+            }
+
+            const mod = {
+                title,
+                type,
+                description,
+                modelAuthor,
+                convertAuthor,
+                weight,
+                download,
+                images,
+                createdAt: Date.now()
+            };
+            try {
+                const newRef = push(ref(db, 'mods'));
+                await set(newRef, mod);
+                const newId = newRef.key;
+                formMsg.style.color = "#8bffb3";
+                formMsg.textContent = "✅ Опубликовано! Переходим на созданую страницу...";
+                setTimeout(() => window.location.href = `mod.html?id=${newId}`, 1000);
+            } catch (err) {
+                formMsg.style.color = "#ff8b8b";
+                formMsg.textContent = "Ошибка при сохранении.";
+                console.error(err);
+            }
+        });
+    </script>
 </body>
+
 </html>
