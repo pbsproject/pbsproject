@@ -1260,6 +1260,11 @@
             margin-top: 100px;
             /* Можно изменить на больше или меньше */
         }
+		
+        #modpage {
+            margin-top: 100px;
+            /* Можно изменить на больше или меньше */
+        }
 
         /* Responsive - FIXED */
         @media (max-width: 768px) {
