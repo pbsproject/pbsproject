@@ -148,6 +148,30 @@
             left: 100%;
         }
 
+        /* Анімація кнопки */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-25deg);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+
         .btn-secondary {
             background: var(--gradient-secondary);
             color: white;
