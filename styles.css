@@ -624,6 +624,8 @@
             /* Расстояние между карточками */
         }
 
+
+
         .department-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -975,7 +977,6 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
         }
 
         .social-link:hover {
@@ -995,6 +996,10 @@
         .boosty-icon:hover .boosty-img {
             transform: scale(1.15);
             filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.6));
+        }
+
+        .social-link {
+            text-decoration: none;
         }
 
         .reaction-box {
