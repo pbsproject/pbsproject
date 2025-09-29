@@ -153,7 +153,7 @@
                         </a>
                         <a href="https://pbsu.busmods.com/static/309/" class="btn btn-secondary">
                             <i class="fa-solid fa-gamepad"></i>
-                            Скачать актуальную версию игры
+                            Скачать игру
                         </a>
                     </div>
                 </div>
@@ -282,7 +282,7 @@
         document.querySelector("#interaction").dataset.id = pageId;
 
         // ----------------
-        // Модульна інфа
+        // Модульная инфа
         // ----------------
         get(ref(db, "mods/" + pageId)).then(snap => {
             if (snap.exists()) {
@@ -320,13 +320,60 @@
                     thumb.className = "thumbnail" + (index === 0 ? " active" : "");
                     thumb.onclick = () => {
                         mainImage.src = url;
+
+                        // Активный стиль
                         document.querySelectorAll(".thumbnail").forEach(t => t.classList.remove("active"));
                         thumb.classList.add("active");
+
+                        // Прокрутка миниатюры к центру
+                        thumb.scrollIntoView({
+                            behavior: 'smooth',
+                            inline: 'center',
+                            block: 'nearest' // или 'center', но 'nearest' более аккуратно
+                        });
                     };
+
                     thumbnailsContainer.appendChild(thumb);
                 });
 
             }
+        });
+
+        // Добавим возможность открыть главное изображение на весь экран
+        mainImage.addEventListener('click', () => {
+            const lightbox = document.createElement('div');
+            lightbox.classList.add('lightbox-overlay');
+
+            lightbox.innerHTML = `
+        <div class="lightbox-content">
+            <img src="${mainImage.src}" alt="${mainImage.alt}">
+            <button class="lightbox-close"><i class="fas fa-times"></i></button>
+        </div>
+    `;
+
+            document.body.appendChild(lightbox);
+
+            // Закрытие по кнопке
+            lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
+                document.body.removeChild(lightbox);
+            });
+
+            // Закрытие по фону
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    document.body.removeChild(lightbox);
+                }
+            });
+
+            // Закрытие по Esc
+            document.addEventListener('keydown', function escHandler(e) {
+                if (e.key === 'Escape') {
+                    if (document.body.contains(lightbox)) {
+                        document.body.removeChild(lightbox);
+                        document.removeEventListener('keydown', escHandler);
+                    }
+                }
+            });
         });
 
         // ----------------
@@ -674,6 +721,8 @@
                     position: absolute;
                     top: 20px;
                     right: 20px;
+                    width: 40px;
+                    height: 40px;
                     background: rgba(255, 255, 255, 0.1);
                     border: none;
                     color: white;
