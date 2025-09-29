@@ -8,7 +8,7 @@
     <link rel="icon" href="pic/logo/logo.png" type="image/png">
 
     <!-- Описание страницы -->
-    <meta name="description" content="Shablon от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
 
     <!-- Ключевые слова -->
     <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
@@ -18,7 +18,7 @@
 
     <!-- Open Graph для соцсетей -->
     <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
-    <meta property="og:description" content="Shablon от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
     <meta property="og:image" content="https://pbsproject.github.io/pbsproject/pic/logo/logo.png" />
@@ -26,7 +26,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
-    <meta name="twitter:description" content="Shablon от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/pic/logo/logo.png" />
 
     <!-- Google tag (gtag.js) -->
@@ -89,39 +89,22 @@
         </div>
     </header>
 
+    <!-- Контент моду -->
     <section id="modpage" class="section">
         <div class="container">
             <div class="section-header">
-                <div class="section-badge fade-in-up">Дополнение</div>
-                <h2 class="section-title fade-in-up">
-                    <span class="gradient-text">ШАБЛОН</span>
-                </h2>
+                <div class="section-badge" id="modType">Тип мода</div>
+                <h2 class="section-title"><span class="gradient-text" id="modTitle">Название</span></h2>
             </div>
 
             <div class="carousel">
-                <img id="mainImage" class="main-image" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Main Image" onclick="openModal()">
-
-                <div class="thumbnails">
-                    <img class="thumbnail active" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" onclick="changeImage(0)">
-                    <img class="thumbnail" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" onclick="changeImage(1)">
-                    <img class="thumbnail" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" onclick="changeImage(2)">
-                    <img class="thumbnail" src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" onclick="changeImage(3)">
-                </div>
-            </div>
-
-            <!-- Модальное окно -->
-            <div id="modal" class="modal">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <span class="prev" onclick="prevImage()">&#10094;</span>
-                <span class="next" onclick="nextImage()">&#10095;</span>
-                <div class="modal-content">
-                    <img id="modalImage" src="" alt="Full Image">
-                </div>
+                <img id="mainImage" class="main-image" src="" alt="Main Image">
+                <div class="thumbnails" id="thumbnails"></div>
             </div>
 
             <div class="card fade-in-up">
-                <p style="font-size: 16px; line-height: 1.7; margin-bottom: var(--space-lg); color: var(--text-secondary);">
-                    Универсальная страница-шаблон, которая будет использоватся для публикации дополнений.
+                <p id="modDescription" style="font-size: 16px; line-height: 1.7; margin-bottom: var(--space-lg); color: var(--text-secondary);">
+                    <!-- Описание будет сюда -->
                 </p>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
@@ -131,7 +114,9 @@
                         </div>
                         <div>
                             <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор(-ы) модели:</h4>
-                            <p style="color: var(--text-secondary); font-size: 12px;">Тест</p>
+                            <p id="modModelAuthor" style="color: var(--text-secondary); font-size: 12px;">
+                                <!-- Автор модели -->
+                            </p>
                         </div>
                     </div>
 
@@ -141,7 +126,9 @@
                         </div>
                         <div>
                             <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор(-ы) конвертации</h4>
-                            <p style="color: var(--text-secondary); font-size: 12px;">Тест</p>
+                            <p id="modConvertAuthor" style="color: var(--text-secondary); font-size: 12px;">
+                                <!-- Автор конвертации -->
+                            </p>
                         </div>
                     </div>
 
@@ -151,15 +138,16 @@
                         </div>
                         <div>
                             <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Вес дополнения</h4>
-                            <p style="color: var(--text-secondary); font-size: 12px;">Тест</p>
+                            <p id="modWeight" style="color: var(--text-secondary); font-size: 12px;">
+                                <!-- Вес -->
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div style="text-align: center; padding: var(--space-lg); background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
-
                     <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
-                        <a href="shablon.html" class="btn btn-primary">
+                        <a id="modDownloadLink" href="" class="btn btn-primary">
                             <i class="fa-solid fa-download"></i>
                             Скачать дополнение
                         </a>
@@ -170,10 +158,11 @@
                     </div>
                 </div>
             </div>
+
     </section>
 
     <!-- Блок взаимодействия -->
-    <section class="section" data-id="shablon" style="background: var(--bg-secondary);">
+    <section class="section" id="interaction" style="background: var(--bg-secondary);" data-id="">
         <div class="container">
             <div class="section-header">
                 <div class="section-badge fade-in-up">Отзывы</div>
@@ -261,62 +250,7 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Scripts -->
-    <script>
-        const images = [
-            "https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg",
-            "https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg",
-            "https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg",
-            "https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg"
-        ];
-
-        let currentIndex = 0;
-
-        function changeImage(index) {
-            currentIndex = index;
-            document.getElementById('mainImage').src = images[index];
-
-            const thumbs = document.querySelectorAll('.thumbnail');
-            thumbs.forEach(t => t.classList.remove('active'));
-            thumbs[index].classList.add('active');
-        }
-
-        function openModal() {
-            document.getElementById('modal').style.display = 'block';
-            document.getElementById('modalImage').src = images[currentIndex];
-        }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-        }
-
-        function prevImage() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            updateModalImage();
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % images.length;
-            updateModalImage();
-        }
-
-        function updateModalImage() {
-            document.getElementById('modalImage').src = images[currentIndex];
-            document.getElementById('mainImage').src = images[currentIndex];
-
-            const thumbs = document.querySelectorAll('.thumbnail');
-            thumbs.forEach(t => t.classList.remove('active'));
-            thumbs[currentIndex].classList.add('active');
-        }
-
-        // Закрытие модального окна по ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') prevImage();
-            if (e.key === 'ArrowRight') nextImage();
-        });
-    </script>
-
+    <!-- Firebase + скрипт -->
     <script type="module">
         import {
             initializeApp
@@ -335,121 +269,150 @@
             authDomain: "pbsproject-39041.firebaseapp.com",
             databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "pbsproject-39041",
-            storageBucket: "pbsproject-39041.firebasestorage.app",
+            storageBucket: "pbsproject-39041.appspot.com",
             messagingSenderId: "695400532049",
-            appId: "1:695400532049:web:31d2de08045c4d3eeb1070",
-            measurementId: "G-FGLT883PDC"
+            appId: "1:695400532049:web:31d2de08045c4d3eeb1070"
         };
-
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // беремо pageId з HTML
-        const interactionSection = document.querySelector('[data-id]');
-        const pageId = interactionSection?.dataset.id;
+        // беремо id з URL
+        const params = new URLSearchParams(window.location.search);
+        const pageId = params.get("id");
+        document.querySelector("#interaction").dataset.id = pageId;
 
-        // ==================
+        // ----------------
+        // Модульна інфа
+        // ----------------
+        get(ref(db, "mods/" + pageId)).then(snap => {
+            if (snap.exists()) {
+                const mod = snap.val();
+                document.getElementById("modTitle").textContent = mod.title;
+                document.getElementById("modType").textContent = mod.type;
+                document.getElementById("modDescription").textContent = mod.description;
+                document.getElementById("modModelAuthor").textContent = mod.modelAuthor;
+                document.getElementById("modConvertAuthor").textContent = mod.convertAuthor;
+                document.getElementById("modWeight").textContent = mod.weight;
+                document.getElementById("modDownloadLink").href = mod.download;
+
+                // галерея
+                // Обработка изображений (массив или строка через запятую)
+                let imageUrls = [];
+
+                if (Array.isArray(mod.images)) {
+                    imageUrls = mod.images;
+                } else if (typeof mod.images === "string") {
+                    imageUrls = mod.images.split(",").map(url => url.trim());
+                }
+
+                // Устанавливаем главное изображение
+                const mainImage = document.getElementById("mainImage");
+                mainImage.src = imageUrls[0] || "https://via.placeholder.com/800x500?text=Нет+изображения";
+                mainImage.alt = mod.title || "Изображение дополнения";
+
+                // Очищаем и добавляем миниатюры
+                const thumbnailsContainer = document.getElementById("thumbnails");
+                thumbnailsContainer.innerHTML = "";
+
+                imageUrls.forEach((url, index) => {
+                    const thumb = document.createElement("img");
+                    thumb.src = url;
+                    thumb.className = "thumbnail" + (index === 0 ? " active" : "");
+                    thumb.onclick = () => {
+                        mainImage.src = url;
+                        document.querySelectorAll(".thumbnail").forEach(t => t.classList.remove("active"));
+                        thumb.classList.add("active");
+                    };
+                    thumbnailsContainer.appendChild(thumb);
+                });
+
+            }
+        });
+
+        // ----------------
         // Реакции
-        // ==================
-        const reactionBox = interactionSection.querySelector('.reaction-box');
-        const likeBtn = reactionBox.querySelector('.like-btn');
-        const dislikeBtn = reactionBox.querySelector('.dislike-btn');
-        const likeCount = reactionBox.querySelector('.like-count');
-        const dislikeCount = reactionBox.querySelector('.dislike-count');
+        // ----------------
+        const likeBtn = document.querySelector(".like-btn");
+        const dislikeBtn = document.querySelector(".dislike-btn");
+        const likeCount = document.querySelector(".like-count");
+        const dislikeCount = document.querySelector(".dislike-count");
+        const reactRef = ref(db, "react/" + pageId);
 
-        const modRef = ref(db, 'react/' + pageId);
-
-        onValue(modRef, snapshot => {
-            const data = snapshot.val() || {
+        onValue(reactRef, snap => {
+            const d = snap.val() || {
                 likes: 0,
                 dislikes: 0
             };
-            likeCount.textContent = data.likes || 0;
-            dislikeCount.textContent = data.dislikes || 0;
+            likeCount.textContent = d.likes || 0;
+            dislikeCount.textContent = d.dislikes || 0;
         });
 
         let reacted = localStorage.getItem("reacted_" + pageId);
-
         if (reacted === "like") likeBtn.classList.add("active");
         if (reacted === "dislike") dislikeBtn.classList.add("active");
 
-        function reactbounce(el) {
-            el.classList.add("reactbounce");
-            setTimeout(() => el.classList.remove("reactbounce"), 400);
-        }
-
-        likeBtn.addEventListener('click', async () => {
-            const snap = await get(modRef);
-            const data = snap.val() || {
+        likeBtn.onclick = async () => {
+            const snap = await get(reactRef);
+            const d = snap.val() || {
                 likes: 0,
                 dislikes: 0
             };
-
             if (reacted === "like") {
-                update(modRef, {
-                    likes: Math.max((data.likes || 0) - 1, 0)
+                update(reactRef, {
+                    likes: Math.max((d.likes || 0) - 1, 0)
                 });
                 localStorage.removeItem("reacted_" + pageId);
                 likeBtn.classList.remove("active");
                 reacted = null;
             } else {
-                if (reacted === "dislike") {
-                    update(modRef, {
-                        dislikes: Math.max((data.dislikes || 0) - 1, 0)
-                    });
-                    dislikeBtn.classList.remove("active");
-                }
-                update(modRef, {
-                    likes: (data.likes || 0) + 1
+                if (reacted === "dislike") update(reactRef, {
+                    dislikes: Math.max((d.dislikes || 0) - 1, 0)
+                });
+                update(reactRef, {
+                    likes: (d.likes || 0) + 1
                 });
                 localStorage.setItem("reacted_" + pageId, "like");
                 likeBtn.classList.add("active");
                 dislikeBtn.classList.remove("active");
                 reacted = "like";
-                reactbounce(likeCount);
             }
-        });
+        };
 
-        dislikeBtn.addEventListener('click', async () => {
-            const snap = await get(modRef);
-            const data = snap.val() || {
+        dislikeBtn.onclick = async () => {
+            const snap = await get(reactRef);
+            const d = snap.val() || {
                 likes: 0,
                 dislikes: 0
             };
-
             if (reacted === "dislike") {
-                update(modRef, {
-                    dislikes: Math.max((data.dislikes || 0) - 1, 0)
+                update(reactRef, {
+                    dislikes: Math.max((d.dislikes || 0) - 1, 0)
                 });
                 localStorage.removeItem("reacted_" + pageId);
                 dislikeBtn.classList.remove("active");
                 reacted = null;
             } else {
-                if (reacted === "like") {
-                    update(modRef, {
-                        likes: Math.max((data.likes || 0) - 1, 0)
-                    });
-                    likeBtn.classList.remove("active");
-                }
-                update(modRef, {
-                    dislikes: (data.dislikes || 0) + 1
+                if (reacted === "like") update(reactRef, {
+                    likes: Math.max((d.likes || 0) - 1, 0)
+                });
+                update(reactRef, {
+                    dislikes: (d.dislikes || 0) + 1
                 });
                 localStorage.setItem("reacted_" + pageId, "dislike");
                 dislikeBtn.classList.add("active");
                 likeBtn.classList.remove("active");
                 reacted = "dislike";
-                reactbounce(dislikeCount);
             }
-        });
+        };
 
-        // ==================
+        // ----------------
         // Комментарии
-        // ==================
-        const commentsRef = ref(db, "comments/" + pageId);
+        // ----------------
         const commentForm = document.getElementById("commentForm");
         const commentsList = document.getElementById("commentsList");
+        const commentsRef = ref(db, "comments/" + pageId);
 
-        function formatDate(timestamp) {
+        function formatDate(ts) {
             return new Intl.DateTimeFormat("ru-RU", {
                 year: "numeric",
                 month: "2-digit",
@@ -457,16 +420,14 @@
                 hour: "2-digit",
                 minute: "2-digit",
                 timeZone: "Europe/Moscow"
-            }).format(new Date(timestamp));
+            }).format(new Date(ts));
         }
 
-        commentForm.addEventListener("submit", (e) => {
+        commentForm.addEventListener("submit", e => {
             e.preventDefault();
             const nickname = document.getElementById("nickname").value.trim();
             const text = document.getElementById("commentText").value.trim();
-
             if (!nickname || !text) return;
-
             push(commentsRef, {
                 nickname,
                 text,
@@ -475,20 +436,19 @@
             commentForm.reset();
         });
 
-        onValue(commentsRef, (snapshot) => {
+        onValue(commentsRef, snap => {
             commentsList.innerHTML = "";
-            snapshot.forEach((child) => {
-                const comment = child.val();
+            snap.forEach(child => {
+                const c = child.val();
                 const div = document.createElement("div");
                 div.classList.add("comment");
-
                 div.innerHTML = `
-        <div class="comment-header">
-          <span class="comment-nickname">${comment.nickname}</span>
-          <span class="comment-time">${formatDate(comment.timestamp)}</span>
-        </div>
-        <div class="comment-text">${comment.text}</div>
-      `;
+          <div class="comment-header">
+            <span class="comment-nickname">${c.nickname}</span>
+            <span class="comment-time">${formatDate(c.timestamp)}</span>
+          </div>
+          <div class="comment-text">${c.text}</div>
+        `;
                 commentsList.appendChild(div);
             });
         });

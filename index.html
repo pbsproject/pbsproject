@@ -174,59 +174,9 @@
                 </p>
             </div>
 
-            <div class="departments-grid">
-                <div class="department-card fade-in-up" style="display: flex; flex-direction: column;">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Тест" style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+            <!-- Здесь будут динамически добавляться моды -->
+            <div class="departments-grid"></div>
 
-                    <h3 class="department-title">Тест</h3>
-                    <p class="department-description">
-                        Тест.
-                    </p>
-
-                    <a href="download-page.html" class="btn btn-primary" style="position: relative; overflow: hidden; margin-left: auto;">
-                        <span>Подробнее</span>
-                    </a>
-                </div>
-
-                <div class="department-card fade-in-up" style="display: flex; flex-direction: column;">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Тест" style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
-
-                    <h3 class="department-title">Тест</h3>
-                    <p class="department-description">
-                        Тест.
-                    </p>
-
-                    <a href="download-page.html" class="btn btn-primary" style="position: relative; overflow: hidden; margin-left: auto;">
-                        <span>Подробнее</span>
-                    </a>
-                </div>
-
-                <div class="department-card fade-in-up" style="display: flex; flex-direction: column;">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Тест" style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
-
-                    <h3 class="department-title">Тест</h3>
-                    <p class="department-description">
-                        Тест.
-                    </p>
-
-                    <a href="download-page.html" class="btn btn-primary" style="position: relative; overflow: hidden; margin-left: auto;">
-                        <span>Подбробнее</span>
-                    </a>
-                </div>
-
-                <div class="department-card fade-in-up" style="display: flex; flex-direction: column;">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Тестт" style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
-
-                    <h3 class="department-title">Тест</h3>
-                    <p class="department-description">
-                        Тест.
-                    </p>
-
-                    <a href="download-page.html" class="btn btn-primary" style="position: relative; overflow: hidden; margin-left: auto;">
-                        <span>Подробнее</span>
-                    </a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -345,10 +295,7 @@
         import {
             getDatabase,
             ref,
-            get,
-            push,
-            update,
-            onValue
+            get
         } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         const firebaseConfig = {
@@ -356,166 +303,62 @@
             authDomain: "pbsproject-39041.firebaseapp.com",
             databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
             projectId: "pbsproject-39041",
-            storageBucket: "pbsproject-39041.firebasestorage.app",
+            storageBucket: "pbsproject-39041.appspot.com",
             messagingSenderId: "695400532049",
-            appId: "1:695400532049:web:31d2de08045c4d3eeb1070",
-            measurementId: "G-FGLT883PDC"
+            appId: "1:695400532049:web:31d2de08045c4d3eeb1070"
         };
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // беремо pageId з HTML
-        const interactionSection = document.querySelector('[data-id]');
-        const pageId = interactionSection?.dataset.id;
-
-        // ==================
-        // Реакции
-        // ==================
-        const reactionBox = interactionSection.querySelector('.reaction-box');
-        const likeBtn = reactionBox.querySelector('.like-btn');
-        const dislikeBtn = reactionBox.querySelector('.dislike-btn');
-        const likeCount = reactionBox.querySelector('.like-count');
-        const dislikeCount = reactionBox.querySelector('.dislike-count');
-
-        const modRef = ref(db, 'react/' + pageId);
-
-        onValue(modRef, snapshot => {
-            const data = snapshot.val() || {
-                likes: 0,
-                dislikes: 0
-            };
-            likeCount.textContent = data.likes || 0;
-            dislikeCount.textContent = data.dislikes || 0;
-        });
-
-        let reacted = localStorage.getItem("reacted_" + pageId);
-
-        if (reacted === "like") likeBtn.classList.add("active");
-        if (reacted === "dislike") dislikeBtn.classList.add("active");
-
-        function reactbounce(el) {
-            el.classList.add("reactbounce");
-            setTimeout(() => el.classList.remove("reactbounce"), 400);
-        }
-
-        likeBtn.addEventListener('click', async () => {
-            const snap = await get(modRef);
-            const data = snap.val() || {
-                likes: 0,
-                dislikes: 0
-            };
-
-            if (reacted === "like") {
-                update(modRef, {
-                    likes: Math.max((data.likes || 0) - 1, 0)
+        get(ref(db, "mods")).then(snapshot => {
+            const mods = [];
+            snapshot.forEach(child => {
+                mods.push({
+                    id: child.key,
+                    ...child.val()
                 });
-                localStorage.removeItem("reacted_" + pageId);
-                likeBtn.classList.remove("active");
-                reacted = null;
-            } else {
-                if (reacted === "dislike") {
-                    update(modRef, {
-                        dislikes: Math.max((data.dislikes || 0) - 1, 0)
-                    });
-                    dislikeBtn.classList.remove("active");
-                }
-                update(modRef, {
-                    likes: (data.likes || 0) + 1
-                });
-                localStorage.setItem("reacted_" + pageId, "like");
-                likeBtn.classList.add("active");
-                dislikeBtn.classList.remove("active");
-                reacted = "like";
-                reactbounce(likeCount);
-            }
-        });
-
-        dislikeBtn.addEventListener('click', async () => {
-            const snap = await get(modRef);
-            const data = snap.val() || {
-                likes: 0,
-                dislikes: 0
-            };
-
-            if (reacted === "dislike") {
-                update(modRef, {
-                    dislikes: Math.max((data.dislikes || 0) - 1, 0)
-                });
-                localStorage.removeItem("reacted_" + pageId);
-                dislikeBtn.classList.remove("active");
-                reacted = null;
-            } else {
-                if (reacted === "like") {
-                    update(modRef, {
-                        likes: Math.max((data.likes || 0) - 1, 0)
-                    });
-                    likeBtn.classList.remove("active");
-                }
-                update(modRef, {
-                    dislikes: (data.dislikes || 0) + 1
-                });
-                localStorage.setItem("reacted_" + pageId, "dislike");
-                dislikeBtn.classList.add("active");
-                likeBtn.classList.remove("active");
-                reacted = "dislike";
-                reactbounce(dislikeCount);
-            }
-        });
-
-        // ==================
-        // Комментарии
-        // ==================
-        const commentsRef = ref(db, "comments/" + pageId);
-        const commentForm = document.getElementById("commentForm");
-        const commentsList = document.getElementById("commentsList");
-
-        function formatDate(timestamp) {
-            return new Intl.DateTimeFormat("ru-RU", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                timeZone: "Europe/Moscow"
-            }).format(new Date(timestamp));
-        }
-
-        commentForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            const nickname = document.getElementById("nickname").value.trim();
-            const text = document.getElementById("commentText").value.trim();
-
-            if (!nickname || !text) return;
-
-            push(commentsRef, {
-                nickname,
-                text,
-                timestamp: Date.now()
             });
-            commentForm.reset();
-        });
 
-        onValue(commentsRef, (snapshot) => {
-            commentsList.innerHTML = "";
-            snapshot.forEach((child) => {
-                const comment = child.val();
-                const div = document.createElement("div");
-                div.classList.add("comment");
+            console.log("Загруженные моды:", mods);
 
-                div.innerHTML = `
-        <div class="comment-header">
-          <span class="comment-nickname">${comment.nickname}</span>
-          <span class="comment-time">${formatDate(comment.timestamp)}</span>
-        </div>
-        <div class="comment-text">${comment.text}</div>
+            const container = document.querySelector("#newdownloads .departments-grid");
+            if (!container) {
+                console.error("Контейнер .departments-grid не найден");
+                return;
+            }
+
+            mods.reverse().slice(0, 4).forEach(mod => {
+                const card = document.createElement("div");
+                card.className = "department-card fade-in-up";
+                card.style = "display: flex; flex-direction: column;";
+
+                card.innerHTML = `
+        <img src="${mod.images?.[0] || 'https://via.placeholder.com/600x400?text=No+Image'}" 
+             alt="${mod.title}" 
+             style="width:100%; border-radius: var(--radius-md); margin-bottom: var(--space-md);">
+
+        <h3 class="department-title">${mod.title}</h3>
+
+        <p class="department-description">
+          ${mod.description || "Без описания."}
+        </p>
+
+        <a href="mod.html?id=${mod.id}" 
+           class="btn btn-primary" 
+           style="position: relative; overflow: hidden; margin-left: auto;">
+          <span>Подробнее</span>
+        </a>
       `;
-                commentsList.appendChild(div);
+
+                container.appendChild(card);
             });
+        }).catch(error => {
+            console.error("Ошибка при загрузке модов:", error);
         });
-</script>
-		
-<script type="module">
+    </script>
+
+    <script type="module">
         // Loading Screen
         setTimeout(() => {
             document.getElementById('loading').classList.add('hidden');

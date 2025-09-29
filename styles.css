@@ -950,8 +950,8 @@
 
         /* Animations */
         .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1;
+            transform: translateY(10px);
             transition: all 0.6s ease;
         }
 
