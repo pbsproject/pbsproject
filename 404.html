@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Страница не найдена</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0066FF;
+            --primary-blue-dark: #0052CC;
+            --secondary-orange: #FF6B35;
+            --accent-cyan: #00D4FF;
+            --accent-purple: #8B5CF6;
+            --accent-green: #10B981;
+            --accent-red: #EF4444;
+
+            --bg-primary: #0A0A0F;
+            --bg-secondary: #111118;
+            --bg-tertiary: #1A1A24;
+            --bg-card: #1E1E2E;
+            --bg-glass: rgba(30, 30, 46, 0.85);
+
+            --text-primary: #FFFFFF;
+            --text-secondary: #B4B4C7;
+            --text-muted: #8B8BA7;
+
+            --gradient-primary: linear-gradient(135deg, #0066FF 0%, #00D4FF 100%);
+            --gradient-primary-orange: linear-gradient(135deg, #FF6B35 10%, #FFFF00 100%);
+            --gradient-secondary: linear-gradient(135deg, #FF6B35 0%, #8B5CF6 100%);
+
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.25);
+            --shadow-glow-blue: 0 0 20px rgba(0, 102, 255, 0.3);
+            --shadow-glow-cyan: 0 0 20px rgba(0, 212, 255, 0.3);
+
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: var(--space-2xl);
+            line-height: 1.6;
+        }
+
+        .error-container {
+            max-width: 600px;
+            padding: var(--space-2xl);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .error-logo {
+            margin-bottom: var(--space-lg);
+        }
+
+        .error-logo img {
+            max-width: 200px;
+            width: 100%;
+            height: auto;
+            /* Якщо GIF — анімація буде автоматично */
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: var(--space-md);
+        }
+
+        .error-text {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-xl);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow-blue);
+        }
+
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: skewX(-25deg);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::after {
+            left: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="error-container">
+        <div class="error-logo">
+            <img src="img/logo/logo.png" alt="Логотип или гифка" />
+        </div>
+        <div class="error-code">404</div>
+        <div class="error-text">Упс... Страница не найдена...</div>
+        <a href="/pbsproject/" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+</body>
+
+</html>

@@ -241,6 +241,12 @@
             margin: 0;
             padding: 0;
         }
+		
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
         .nav-link {
             color: var(--text-secondary);
@@ -290,6 +296,7 @@
             height: 40px;
             align-items: center;
             justify-content: center;
+            order: 2;
         }
 
         /* Hero Section */
@@ -1248,6 +1255,93 @@
             background: rgba(0, 0, 0, 0.8);
         }
 
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 32px;
+            border-radius: 50px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            cursor: pointer;
+            background: var(--bg-glass, rgba(255, 255, 255, 0.1));
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            line-height: 1;
+            box-sizing: border-box;
+            margin-top: -1px;
+            /* налаштувати вручну */
+            order: 1;
+        }
+
+        .theme-toggle i {
+            font-size: 16px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            vertical-align: middle;
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-toggle .toggle-indicator {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--accent-cyan, #00ffff);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            left: 4px;
+            top: 4px;
+            z-index: 0;
+        }
+
+        .icon-sun,
+        .icon-moon {
+            position: relative;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        html.light .icon-moon {
+            opacity: 0;
+        }
+
+        html:not(.light) .icon-sun {
+            opacity: 0;
+        }
+
+        html.light .theme-toggle .toggle-indicator {
+            transform: translateX(28px);
+        }
+
+        @media (max-width: 768px) {
+            .theme-toggle {
+                order: 2;
+                margin-left: auto;
+                margin-right: 8px;
+            }
+        }
+
+        html.light {
+            --bg-primary: #f9f9fc;
+            --bg-secondary: #f0f0f5;
+            --bg-tertiary: #e8e8f0;
+            --bg-card: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.85);
+
+            --text-primary: #0A0A0F;
+            --text-secondary: #444460;
+            --text-muted: #6c6c80;
+
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
 
         @keyframes fadeIn {
             from {
@@ -1263,7 +1357,7 @@
             margin-top: 100px;
             /* Можно изменить на больше или меньше */
         }
-        
+
         #premium {
             margin-top: 100px;
             /* Можно изменить на больше или меньше */

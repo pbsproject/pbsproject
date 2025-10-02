@@ -1,35 +1,26 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PBS.project - Твой ключ к лучшим модам для Proton Bus Simulator!</title>
-    <link rel="icon" href="pic/logo/logo.png" type="image/png">
-
-    <!-- Описание страницы -->
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
     <meta name="description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
-
-    <!-- Ключевые слова -->
     <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
-
-    <!-- Автор -->
     <meta name="author" content="Vitaliy Shkarupa" />
 
-    <!-- Open Graph для соцсетей -->
     <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
     <meta property="og:description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
-    <meta property="og:image" content="https://pbsproject.github.io/pbsproject/pic/logo/logo.png" />
+    <meta property="og:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
     <meta name="twitter:description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
-    <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/pic/logo/logo.png" />
+    <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
 
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -42,33 +33,22 @@
         gtag('config', 'G-FGLT883PDC');
     </script>
 
-    <!-- Стили -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Шрифты -->
+    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Иконки -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
-    <style>
-
-    </style>
 </head>
 
 <body>
-    <!-- Загрузочный экран -->
     <div class="loading" id="loading">
         <div class="spinner"></div>
         <div class="loading-text">Загрузка...</div>
     </div>
 
-    <!-- Шапка -->
     <header class="header" id="header">
         <div class="container">
             <nav class="nav">
                 <div class="logo">
-                    <img src="pic/logo/logo.png" alt="PBS.project Логотип">
+                    <img src="img/logo/logo.png" alt="PBS.project Логотип">
                     <div class="logo-text">
                         <div class="logo-title">PBS.project</div>
                         <div class="logo-subtitle"><br>Proton Bus Simulator</div>
@@ -82,14 +62,21 @@
                     <li><a href="about.html" class="nav-link">О нас</a></li>
                 </ul>
 
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <div class="nav-controls">
+                    <button id="theme-toggle" class="theme-toggle glass-effect" aria-label="Toggle Theme">
+                        <i class="fas fa-moon icon-moon"></i>
+                        <i class="fas fa-sun icon-sun"></i>
+                        <span class="toggle-indicator"></span>
+                    </button>
+
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
 
-    <!-- Контент моду -->
     <section id="modpage" class="section">
         <div class="container">
             <div class="section-header">
@@ -104,7 +91,6 @@
 
             <div class="card fade-in-up">
                 <p id="modDescription" style="font-size: 16px; line-height: 1.7; margin-bottom: var(--space-lg); color: var(--text-secondary);">
-                    <!-- Описание будет сюда -->
                 </p>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
@@ -115,7 +101,6 @@
                         <div>
                             <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор(-ы) модели:</h4>
                             <p id="modModelAuthor" style="color: var(--text-secondary); font-size: 12px;">
-                                <!-- Автор модели -->
                             </p>
                         </div>
                     </div>
@@ -127,7 +112,6 @@
                         <div>
                             <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор(-ы) конвертации:</h4>
                             <p id="modConvertAuthor" style="color: var(--text-secondary); font-size: 12px;">
-                                <!-- Автор конвертации -->
                             </p>
                         </div>
                     </div>
@@ -139,7 +123,6 @@
                         <div>
                             <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Вес дополнения:</h4>
                             <p id="modWeight" style="color: var(--text-secondary); font-size: 12px;">
-                                <!-- Вес -->
                             </p>
                         </div>
                     </div>
@@ -161,7 +144,6 @@
 
     </section>
 
-    <!-- Блок взаимодействия -->
     <section class="section" id="interaction" style="background: var(--bg-secondary);" data-id="">
         <div class="container">
             <div class="section-header">
@@ -174,7 +156,6 @@
                 </p>
             </div>
 
-            <!-- 🔹 Блок реакций -->
             <div class="reaction-box">
                 <button class="reaction-btn like-btn">
                     <i class="fas fa-thumbs-up"></i>
@@ -186,7 +167,6 @@
                 </button>
             </div>
 
-            <!-- 🔹 Блок комментариев -->
             <div class="comments-section">
                 <h2>Оставить комментарий</h2>
                 <br>
@@ -202,7 +182,6 @@
             </div>
     </section>
 
-    <!-- Блок социальных сетей -->
     <section class="section" id="socials" style="background: var(--bg-primary); padding-top: 60px; padding-bottom: 60px;">
         <div class="container">
             <div class="section-header">
@@ -229,13 +208,12 @@
                     <i class="fab fa-discord"></i>
                 </a>
                 <a href="https://boosty.to/vitaliyshkarupa" target="_blank" class="social-link" aria-label="Boosty" style="font-size: 32px; color: var(--accent-purple); transition: 0.3s;">
-                    <img src="pic/logo/boosty.svg" alt="Boosty" class="boosty-img">
+                    <img src="img/logo/boosty.svg" alt="Boosty" class="boosty-img">
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Футер -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -245,532 +223,12 @@
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
     <button class="scroll-to-top" id="scrollToTop">
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Firebase + скрипт -->
-    <script type="module">
-        import {
-            initializeApp
-        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import {
-            getDatabase,
-            ref,
-            get,
-            push,
-            update,
-            onValue
-        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
-            authDomain: "pbsproject-39041.firebaseapp.com",
-            databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "pbsproject-39041",
-            storageBucket: "pbsproject-39041.appspot.com",
-            messagingSenderId: "695400532049",
-            appId: "1:695400532049:web:31d2de08045c4d3eeb1070"
-        };
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        // беремо id з URL
-        const params = new URLSearchParams(window.location.search);
-        const pageId = params.get("id");
-        document.querySelector("#interaction").dataset.id = pageId;
-
-        // ----------------
-        // Модульная инфа
-        // ----------------
-        get(ref(db, "mods/" + pageId)).then(snap => {
-            if (snap.exists()) {
-                const mod = snap.val();
-                document.getElementById("modTitle").textContent = mod.title;
-                document.getElementById("modType").textContent = mod.type;
-                document.getElementById("modDescription").textContent = mod.description;
-                document.getElementById("modModelAuthor").textContent = mod.modelAuthor;
-                document.getElementById("modConvertAuthor").textContent = mod.convertAuthor;
-                document.getElementById("modWeight").textContent = mod.weight;
-                document.getElementById("modDownloadLink").href = mod.download;
-
-                // галерея
-                // Обработка изображений (массив или строка через запятую)
-                let imageUrls = [];
-
-                if (Array.isArray(mod.images)) {
-                    imageUrls = mod.images;
-                } else if (typeof mod.images === "string") {
-                    imageUrls = mod.images.split(",").map(url => url.trim());
-                }
-
-                // Устанавливаем главное изображение
-                const mainImage = document.getElementById("mainImage");
-                mainImage.src = imageUrls[0] || "https://via.placeholder.com/800x500?text=Нет+изображения";
-                mainImage.alt = mod.title || "Изображение дополнения";
-
-                // Очищаем и добавляем миниатюры
-                const thumbnailsContainer = document.getElementById("thumbnails");
-                thumbnailsContainer.innerHTML = "";
-
-                imageUrls.forEach((url, index) => {
-                    const thumb = document.createElement("img");
-                    thumb.src = url;
-                    thumb.className = "thumbnail" + (index === 0 ? " active" : "");
-                    thumb.onclick = () => {
-                        mainImage.src = url;
-
-                        // Активный стиль
-                        document.querySelectorAll(".thumbnail").forEach(t => t.classList.remove("active"));
-                        thumb.classList.add("active");
-
-                        // Прокрутка миниатюры к центру
-                        thumb.scrollIntoView({
-                            behavior: 'smooth',
-                            inline: 'center',
-                            block: 'nearest' // или 'center', но 'nearest' более аккуратно
-                        });
-                    };
-
-                    thumbnailsContainer.appendChild(thumb);
-                });
-
-            }
-        });
-
-        // Добавим возможность открыть главное изображение на весь экран
-        mainImage.addEventListener('click', () => {
-            const lightbox = document.createElement('div');
-            lightbox.classList.add('lightbox-overlay');
-
-            lightbox.innerHTML = `
-        <div class="lightbox-content">
-            <img src="${mainImage.src}" alt="${mainImage.alt}">
-            <button class="lightbox-close"><i class="fas fa-times"></i></button>
-        </div>
-    `;
-
-            document.body.appendChild(lightbox);
-
-            // Закрытие по кнопке
-            lightbox.querySelector('.lightbox-close').addEventListener('click', () => {
-                document.body.removeChild(lightbox);
-            });
-
-            // Закрытие по фону
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    document.body.removeChild(lightbox);
-                }
-            });
-
-            // Закрытие по Esc
-            document.addEventListener('keydown', function escHandler(e) {
-                if (e.key === 'Escape') {
-                    if (document.body.contains(lightbox)) {
-                        document.body.removeChild(lightbox);
-                        document.removeEventListener('keydown', escHandler);
-                    }
-                }
-            });
-        });
-
-        // ----------------
-        // Реакции
-        // ----------------
-        const likeBtn = document.querySelector(".like-btn");
-        const dislikeBtn = document.querySelector(".dislike-btn");
-        const likeCount = document.querySelector(".like-count");
-        const dislikeCount = document.querySelector(".dislike-count");
-        const reactRef = ref(db, "react/" + pageId);
-
-        onValue(reactRef, snap => {
-            const d = snap.val() || {
-                likes: 0,
-                dislikes: 0
-            };
-            likeCount.textContent = d.likes || 0;
-            dislikeCount.textContent = d.dislikes || 0;
-        });
-
-        let reacted = localStorage.getItem("reacted_" + pageId);
-        if (reacted === "like") likeBtn.classList.add("active");
-        if (reacted === "dislike") dislikeBtn.classList.add("active");
-
-        likeBtn.onclick = async () => {
-            const snap = await get(reactRef);
-            const d = snap.val() || {
-                likes: 0,
-                dislikes: 0
-            };
-            if (reacted === "like") {
-                update(reactRef, {
-                    likes: Math.max((d.likes || 0) - 1, 0)
-                });
-                localStorage.removeItem("reacted_" + pageId);
-                likeBtn.classList.remove("active");
-                reacted = null;
-            } else {
-                if (reacted === "dislike") update(reactRef, {
-                    dislikes: Math.max((d.dislikes || 0) - 1, 0)
-                });
-                update(reactRef, {
-                    likes: (d.likes || 0) + 1
-                });
-                reactbounce(likeCount);
-                localStorage.setItem("reacted_" + pageId, "like");
-                likeBtn.classList.add("active");
-                dislikeBtn.classList.remove("active");
-                reacted = "like";
-            }
-        };
-        
-        function reactbounce(el) {
-            el.classList.add("reactbounce");
-            setTimeout(() => el.classList.remove("reactbounce"), 400);
-         }
-
-        dislikeBtn.onclick = async () => {
-            const snap = await get(reactRef);
-            const d = snap.val() || {
-                likes: 0,
-                dislikes: 0
-            };
-            if (reacted === "dislike") {
-                update(reactRef, {
-                    dislikes: Math.max((d.dislikes || 0) - 1, 0)
-                });
-                localStorage.removeItem("reacted_" + pageId);
-                dislikeBtn.classList.remove("active");
-                reacted = null;
-            } else {
-                if (reacted === "like") update(reactRef, {
-                    likes: Math.max((d.likes || 0) - 1, 0)
-                });
-                update(reactRef, {
-                    dislikes: (d.dislikes || 0) + 1
-                });
-                reactbounce(dislikeCount);
-                localStorage.setItem("reacted_" + pageId, "dislike");
-                dislikeBtn.classList.add("active");
-                likeBtn.classList.remove("active");
-                reacted = "dislike";
-            }
-        };
-
-        // ----------------
-        // Комментарии
-        // ----------------
-        const commentForm = document.getElementById("commentForm");
-        const commentsList = document.getElementById("commentsList");
-        const commentsRef = ref(db, "comments/" + pageId);
-
-        function formatDate(ts) {
-            return new Intl.DateTimeFormat("ru-RU", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                timeZone: "Europe/Moscow"
-            }).format(new Date(ts));
-        }
-
-        commentForm.addEventListener("submit", e => {
-            e.preventDefault();
-            const nickname = document.getElementById("nickname").value.trim();
-            const text = document.getElementById("commentText").value.trim();
-            if (!nickname || !text) return;
-            push(commentsRef, {
-                nickname,
-                text,
-                timestamp: Date.now()
-            });
-            commentForm.reset();
-        });
-
-        onValue(commentsRef, snap => {
-            commentsList.innerHTML = "";
-            snap.forEach(child => {
-                const c = child.val();
-                const div = document.createElement("div");
-                div.classList.add("comment");
-                div.innerHTML = `
-          <div class="comment-header">
-            <span class="comment-nickname">${c.nickname}</span>
-            <span class="comment-time">${formatDate(c.timestamp)}</span>
-          </div>
-          <div class="comment-text">${c.text}</div>
-        `;
-                commentsList.appendChild(div);
-            });
-        });
-    </script>
-
-    <script type="module">
-        // Loading Screen
-        setTimeout(() => {
-            document.getElementById('loading').classList.add('hidden');
-        }, 1500);
-
-        // Header Scroll Effect
-        const header = document.getElementById('header');
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-
-        function updateScrollElements() {
-            const scrollY = window.scrollY;
-
-            if (scrollY > 100) {
-                header.classList.add('scrolled');
-                scrollToTopBtn.classList.add('visible');
-            } else {
-                header.classList.remove('scrolled');
-                scrollToTopBtn.classList.remove('visible');
-            }
-
-            updateActiveNavLink();
-        }
-
-        window.addEventListener('scroll', updateScrollElements);
-
-        // Mobile Menu
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        let menuOpen = false;
-
-        mobileMenuBtn.addEventListener('click', () => {
-            menuOpen = !menuOpen;
-            navMenu.classList.toggle('active');
-
-            const icon = mobileMenuBtn.querySelector('i');
-            if (menuOpen) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            }
-        });
-
-        // Close mobile menu when clicking on links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (menuOpen) {
-                    navMenu.classList.remove('active');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    icon.classList.add('fa-bars');
-                    icon.classList.remove('fa-times');
-                    menuOpen = false;
-                }
-            });
-        });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerHeight = header.offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 20;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Scroll to Top
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Active Navigation Link Update
-        function updateActiveNavLink() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const headerHeight = header.offsetHeight;
-
-            let currentSection = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - headerHeight - 50;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        // Intersection Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-
-                    // Animate counters for stat cards
-                    if (entry.target.classList.contains('stat-card')) {
-                        animateCounter(entry.target);
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.fade-in-up, .scale-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Counter Animation
-        function animateCounter(statCard) {
-            const numberElement = statCard.querySelector('.stat-number');
-            const target = parseInt(numberElement.dataset.target);
-            const duration = 2000;
-            const startTime = performance.now();
-
-            function updateCounter(currentTime) {
-                const elapsed = currentTime - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-
-                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-                const current = Math.floor(target * easeOutQuart);
-
-                numberElement.textContent = current;
-
-                if (progress < 1) {
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    numberElement.textContent = target;
-                }
-            }
-
-            requestAnimationFrame(updateCounter);
-        }
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                const isActive = faqItem.classList.contains('active');
-                const answer = faqItem.querySelector('.faq-answer');
-
-                // Close all FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    if (item !== faqItem) {
-                        item.classList.remove('active');
-                        const otherAnswer = item.querySelector('.faq-answer');
-                        otherAnswer.style.maxHeight = '0px';
-                    }
-                });
-
-                // Toggle clicked item
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                    answer.style.maxHeight = answer.scrollHeight + 'px';
-                } else {
-                    faqItem.classList.remove('active');
-                    answer.style.maxHeight = '0px';
-                }
-            });
-        });
-
-        // Gallery Lightbox
-        document.querySelectorAll('.gallery-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('.gallery-image');
-
-                const lightbox = document.createElement('div');
-                lightbox.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 0, 0, 0.9);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 10000;
-                    opacity: 0;
-                    transition: opacity 0.3s ease;
-                `;
-
-                const lightboxImg = document.createElement('img');
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-                lightboxImg.style.cssText = `
-                    max-width: 90%;
-                    max-height: 90%;
-                    object-fit: contain;
-                    border-radius: 12px;
-                `;
-
-                const closeBtn = document.createElement('button');
-                closeBtn.innerHTML = '<i class="fas fa-times"></i>';
-                closeBtn.style.cssText = `
-                    position: absolute;
-                    top: 20px;
-                    right: 20px;
-                    width: 40px;
-                    height: 40px;
-                    background: rgba(255, 255, 255, 0.1);
-                    border: none;
-                    color: white;
-                    font-size: 20px;
-                    padding: 10px;
-                    border-radius: 50%;
-                    cursor: pointer;
-                    backdrop-filter: blur(10px);
-                `;
-
-                lightbox.appendChild(lightboxImg);
-                lightbox.appendChild(closeBtn);
-                document.body.appendChild(lightbox);
-
-                setTimeout(() => {
-                    lightbox.style.opacity = '1';
-                }, 10);
-
-                const closeLightbox = () => {
-                    lightbox.style.opacity = '0';
-                    setTimeout(() => {
-                        document.body.removeChild(lightbox);
-                    }, 300);
-                };
-
-                closeBtn.addEventListener('click', closeLightbox);
-                lightbox.addEventListener('click', (e) => {
-                    if (e.target === lightbox) closeLightbox();
-                });
-
-                document.addEventListener('keydown', function escHandler(e) {
-                    if (e.key === 'Escape') {
-                        closeLightbox();
-                        document.removeEventListener('keydown', escHandler);
-                    }
-                });
-            });
-        });
-
-        console.log('PBS.project Website - Loaded successfully!');
-    </script>
+    <script type="module" src="js/firebase-mod.js"></script>
+    <script type="module" src="js/plugins.js"></script>
 </body>
 
 </html>
