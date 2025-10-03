@@ -22,6 +22,7 @@ import {
 
 from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+// Firebase config
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
@@ -97,9 +98,34 @@ get(ref(db, "mods1/" + pageId)).then(snap => {
 
                     ;
                     thumbnailsContainer.appendChild(thumb);
-                }
+        });
 
-            );
+			// === Динамічні <title> і мета-теги ===
+			const pageTitle = `PBS.project - ${mod.title}`;
+			document.title = pageTitle;
+
+			const ogTitle = document.querySelector('meta[property="og:title"]');
+			if (ogTitle) ogTitle.setAttribute("content", pageTitle);
+
+			const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+			if (twitterTitle) twitterTitle.setAttribute("content", pageTitle);
+
+			const metaDesc = document.querySelector('meta[name="description"]');
+			if (metaDesc) metaDesc.setAttribute("content", mod.description);
+
+			const ogDesc = document.querySelector('meta[property="og:description"]');
+			if (ogDesc) ogDesc.setAttribute("content", mod.description);
+
+			const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+			if (twitterDesc) twitterDesc.setAttribute("content", mod.description);
+
+			// === GA4 динамічний page_view ===
+			if (typeof gtag === "function") {
+				gtag('config', 'G-FGLT883PDC', {
+					page_path: window.location.pathname + window.location.search,
+					page_title: pageTitle
+				});
+			}
 
             mainImage.addEventListener('click', () => {
                     const lightbox = document.createElement('div');
@@ -244,6 +270,7 @@ onValue(commentsRef, snap => {
                 div.style.display = "flex";
                 div.style.gap = "10px";
                 div.style.marginBottom = "15px";
+                div.style.alignItems = "flex-start";
 
 				div.innerHTML = `
 					<img src="${avatar}" alt="Аватар" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">

@@ -98,9 +98,34 @@ get(ref(db, "mods/" + pageId)).then(snap => {
 
                     ;
                     thumbnailsContainer.appendChild(thumb);
-                }
+        });
 
-            );
+			// === Динамічні <title> і мета-теги ===
+			const pageTitle = `PBS.project - ${mod.title}`;
+			document.title = pageTitle;
+
+			const ogTitle = document.querySelector('meta[property="og:title"]');
+			if (ogTitle) ogTitle.setAttribute("content", pageTitle);
+
+			const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+			if (twitterTitle) twitterTitle.setAttribute("content", pageTitle);
+
+			const metaDesc = document.querySelector('meta[name="description"]');
+			if (metaDesc) metaDesc.setAttribute("content", mod.description);
+
+			const ogDesc = document.querySelector('meta[property="og:description"]');
+			if (ogDesc) ogDesc.setAttribute("content", mod.description);
+
+			const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+			if (twitterDesc) twitterDesc.setAttribute("content", mod.description);
+
+			// === GA4 динамічний page_view ===
+			if (typeof gtag === "function") {
+				gtag('config', 'G-FGLT883PDC', {
+					page_path: window.location.pathname + window.location.search,
+					page_title: pageTitle
+				});
+			}
 
             mainImage.addEventListener('click', () => {
                     const lightbox = document.createElement('div');

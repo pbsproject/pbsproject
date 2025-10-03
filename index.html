@@ -21,17 +21,21 @@
     <meta name="twitter:description" content="Официальный сайт проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+		function gtag() {
+			dataLayer.push(arguments);
+		}
 
-        gtag('config', 'G-FGLT883PDC');
-    </script>
+		gtag('js', new Date());
+
+		gtag('config', 'G-FGLT883PDC', {
+			'page_path': window.location.pathname,
+			'page_title': pageTitle
+		});
+	</script>
 
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
