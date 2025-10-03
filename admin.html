@@ -40,14 +40,14 @@
 
 <body>
     <div class="container">
-<div class="header-buttons">
-    <div class="left-buttons">
-        <a href="index.html" class="btn btn-primary">Главная</a>
-    </div>
-    <div class="right-buttons">
-        <a href="profile.html" class="btn btn-logout">Профиль</a>
-    </div>
-</div>
+        <div class="header-buttons">
+            <div class="left-buttons">
+                <a href="index.html" class="btn btn-primary">Главная</a>
+            </div>
+            <div class="right-buttons">
+                <a href="profile.html" class="btn btn-logout">Профиль</a>
+            </div>
+        </div>
 
         <div class="panel" id="loginPanel">
             <h2>🔒 Вход для администраторов</h2>
@@ -73,7 +73,7 @@
                 <input id="convertAuthor" type="text" placeholder="Автор конвертации" required>
                 <input id="weight" type="text" placeholder="Вес архива">
                 <input id="download" type="url" placeholder="Ссылка на мод" required>
-                <textarea id="images" placeholder="Ссылки на картинки через запьятую" required></textarea>
+                <textarea id="images" placeholder="Ссылки на картинки через запятую" required></textarea>
 
                 <!-- Прев’ю блок -->
                 <div id="previewWrap" class="img-preview-wrap hidden" style="margin-top:10px; margin-bottom:10px; padding:10px; border:1px solid rgba(255,255,255,0.08); border-radius:8px; background: rgba(255,255,255,0.02);">
@@ -130,9 +130,9 @@
                 <span class="modal-close">&times;</span>
                 <h3 id="modalTitle"></h3>
                 <p><strong>Тип:</strong> <span id="modalType"></span></p>
-                <p><strong>Автор модели:</strong> <span id="modalModelAuthor"></span></p>
-                <p><strong>Автор конвертации:</strong> <span id="modalConvertAuthor"></span></p>
                 <p><strong>Описание:</strong> <span id="modalDescription"></span></p>
+                <p><strong>Автор конвертации:</strong> <span id="modalConvertAuthor"></span></p>
+                <p><strong>Автор модели:</strong> <span id="modalModelAuthor"></span></p>
                 <p><strong>Ссылка:</strong> <a id="modalDownload" href="" target="_blank">Скачать</a></p>
                 <p><strong>Изображения:</strong></p>
                 <div id="modalImages" style="display:flex; overflow-x:auto;"></div>

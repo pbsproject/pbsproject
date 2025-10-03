@@ -32,7 +32,7 @@
 
         gtag('config', 'G-FGLT883PDC');
     </script>
-	
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/styles-profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -41,6 +41,15 @@
 
 <body>
     <div class="container">
+        <div class="header-buttons">
+            <div class="left-buttons">
+                <a href="index.html" class="btn btn-primary">Главная</a>
+            </div>
+            <div class="right-buttons">
+                <a href="admin.html" class="btn btn-primary">Админ-панель</a>
+            </div>
+        </div>
+
         <h2>Ваш профиль</h2>
         <img id="profilePhoto" src="img/default-avatar.png" alt="Аватар">
 
@@ -62,7 +71,7 @@
         <div class="modal-content">
             <span class="modal-close" id="closeNameModal">&times;</span>
             <div class="modal-title">Изменить имя</div>
-            <input type="text" id="newNameInput" placeholder="Введіть нове ім'я">
+            <input type="text" id="newNameInput" placeholder="Введите новое имя">
             <button id="saveNameBtn">Сохранить</button>
         </div>
     </div>
@@ -71,7 +80,7 @@
         <div class="modal-content">
             <span class="modal-close" id="closePhotoModal">&times;</span>
             <div class="modal-title">Сменить фото</div>
-            <input type="text" id="newPhotoInput" placeholder="Введіть URL нового фото">
+            <input type="text" id="newPhotoInput" placeholder="Введите URL вашего фото">
             <button id="savePhotoBtn">Сохранить</button>
         </div>
     </div>

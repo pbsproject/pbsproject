@@ -28,19 +28,23 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
+// --- Переключение форм ---
 const signupContainer = document.getElementById("signupContainer");
 const loginContainer = document.getElementById("loginContainer");
 
-document.getElementById("showLogin").onclick = () => {
+document.getElementById("showLogin").onclick = (e) => {
+    e.preventDefault();
     signupContainer.style.display = "none";
     loginContainer.style.display = "block";
 };
-document.getElementById("showSignup").onclick = () => {
+document.getElementById("showSignup").onclick = (e) => {
+    e.preventDefault();
     loginContainer.style.display = "none";
     signupContainer.style.display = "block";
 };
 
 // --- РЕЄСТРАЦІЯ ---
+const signupForm = document.getElementById("signupForm");
 signupForm.addEventListener("submit", async e => {
     e.preventDefault();
     const email = document.getElementById("signupEmail").value;
@@ -52,17 +56,19 @@ signupForm.addEventListener("submit", async e => {
         const user = userCredential.user;
 
         // Оновлюємо профіль у Firebase Auth
-        await updateProfile(user, { displayName });
+        await updateProfile(user, {
+            displayName
+        });
 
         // Запис у Realtime Database
-await set(ref(db, "users/" + user.uid), {
-    email: user.email,
-    displayName: displayName,
-    createdAt: Date.now(),
-    isAdmin: false,
-    isPremium: false,
-    isBanned: false  // добавил для единообразия
-});
+        await set(ref(db, "users/" + user.uid), {
+            email: user.email,
+            displayName: displayName,
+            createdAt: Date.now(),
+            isAdmin: false,
+            isPremium: false,
+            isBanned: false
+        });
 
         window.location.href = "profile.html";
     } catch (err) {
@@ -71,6 +77,7 @@ await set(ref(db, "users/" + user.uid), {
 });
 
 // --- ЛОГІН ---
+const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", async e => {
     e.preventDefault();
     const email = document.getElementById("loginEmail").value;
