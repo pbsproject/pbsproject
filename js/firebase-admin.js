@@ -114,11 +114,11 @@ onAuthStateChanged(auth, async (user) => {
         const snap = await get(userRef);
 
         if (!snap.exists()) {
-            // новий користувач → створюємо запис у users
+            // новый юзер — создаём запись
             await set(userRef, {
                 uid: user.uid,
                 email: user.email,
-                displayName: user.displayName || "Без імені",
+                displayName: user.displayName || "Без имени",
                 createdAt: Date.now(),
                 role: "user",
                 isAdmin: false,
@@ -127,9 +127,10 @@ onAuthStateChanged(auth, async (user) => {
             });
         }
 
-        // перевірка чи він адмін
-        const adminSnap = await get(ref(db, `admins/${user.uid}`));
-        if (adminSnap.exists()) {
+        const userData = (await get(userRef)).val();
+
+        if (userData.isAdmin) {
+            // ✅ доступ только для админов
             loginPanel.classList.add('hidden');
             adminPanel.classList.remove('hidden');
             modsApprovalPanel.classList.remove('hidden');
@@ -138,8 +139,9 @@ onAuthStateChanged(auth, async (user) => {
             loadUsers();
         } else {
             alert("Доступ только для администраторов");
-            signOut(auth);
+            await signOut(auth);
         }
+
     } else {
         loginPanel.classList.remove('hidden');
         adminPanel.classList.add('hidden');
