@@ -27,11 +27,28 @@ body {
     padding: 0 20px;
 }
 
+/* Шапка з кнопками */
 .header-buttons {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-bottom: 20px;
+    justify-content: space-between; /* головна зліва, профіль справа */
+    align-items: center;
+    margin-bottom: 30px; /* збільшений відступ від публікацій */
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.header-buttons .left-buttons,
+.header-buttons .right-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* Збільшуємо кнопки */
+.header-buttons .btn {
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 12px;
+    min-width: 120px;
 }
 
 .panel {
@@ -96,23 +113,23 @@ textarea {
 .btn-primary {
     background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
     color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
 }
 
 .btn-logout {
     background: #ff5d5d;
     color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .btn-logout:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(255, 93, 93, 0.4);
+    box-shadow: 0 0 25px rgba(255, 93, 93, 0.4);
 }
 
 .btn-small {
