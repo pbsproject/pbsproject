@@ -57,11 +57,11 @@ onAuthStateChanged(auth, async user => {
       ? new Date(data.createdAt).toLocaleString("ru-RU")
       : "Неизвестно";
 
-    // Ролі
+    // Статусы
     let roles = [];
-    if (data.role) roles.push(data.role);         // базова роль ("Пользователь")
     if (data.isAdmin) roles.push("Администратор");
     if (data.isPremium) roles.push("Премиум");
+    if (roles.length === 0) roles.push("Пользователь");
 
     profileRole.textContent = roles.join(", ");
   } else {
