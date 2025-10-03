@@ -40,6 +40,10 @@
 
 <body>
     <div class="container">
+        <div class="header-buttons">
+            <button onclick="window.location.href='index.html'" class="btn btn-primary btn-small">Главная</button>
+            <button onclick="window.location.href='profile.html'" class="btn btn-primary btn-small">Профиль</button>
+        </div>
 
         <div class="panel" id="loginPanel">
             <h2>🔒 Вход для администраторов</h2>
@@ -83,39 +87,39 @@
             <div id="modsList" class="panel-list"></div>
         </div>
 
-<div class="panel" id="usersPanel">
-    <h2>👥 Модерация пользователей</h2>
-    <input id="userSearch" type="text" placeholder="Поиск по имени или email" style="margin-bottom:10px; padding:8px 12px; border-radius:8px; width:100%; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.02); color:#fff;">
-    <table id="usersTable" border="0" cellpadding="10" cellspacing="0" style="width:100%; border-collapse:collapse;">
-        <thead>
-            <tr>
-                <th>Имя</th>
-                <th>Email</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
+        <div class="panel" id="usersPanel">
+            <h2>👥 Модерация пользователей</h2>
+            <input id="userSearch" type="text" placeholder="Поиск по имени или email" style="margin-bottom:10px; padding:8px 12px; border-radius:8px; width:100%; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.02); color:#fff;">
+            <table id="usersTable" border="0" cellpadding="10" cellspacing="0" style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Email</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
 
-<!-- Модальне вікно користувача -->
-<div id="userModal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <div style="text-align:center; margin-bottom:15px;">
-            <img id="modalUserPhoto" src="img/default-avatar.png" alt="Аватар" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+        <!-- Модальне вікно користувача -->
+        <div id="userModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <div style="text-align:center; margin-bottom:15px;">
+                    <img id="modalUserPhoto" src="img/default-avatar.png" alt="Аватар" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+                </div>
+                <h3 id="modalUserName"></h3>
+                <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
+                <p><strong>Дата регистрации:</strong> <span id="modalUserDate"></span></p>
+                <p><strong>Роль:</strong> <span id="modalUserRole"></span></p>
+                <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+                    <button id="modalPremiumBtn" class="btn btn-primary"></button>
+                    <button id="modalAdminBtn" class="btn btn-primary"></button>
+                    <button id="modalBanBtn" class="btn btn-logout"></button>
+                </div>
+            </div>
         </div>
-        <h3 id="modalUserName"></h3>
-        <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
-        <p><strong>Дата регистрации:</strong> <span id="modalUserDate"></span></p>
-        <p><strong>Роль:</strong> <span id="modalUserRole"></span></p>
-        <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-            <button id="modalPremiumBtn" class="btn btn-primary"></button>
-            <button id="modalAdminBtn" class="btn btn-primary"></button>
-            <button id="modalBanBtn" class="btn btn-logout"></button>
-        </div>
-    </div>
-</div>
         <!-- Модальне вікно -->
         <div id="modModal" class="modal">
             <div class="modal-content">

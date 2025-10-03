@@ -306,12 +306,12 @@ function openUserModal(uid, u) {
     modalUserName.textContent = u.displayName || '';
     modalUserEmail.textContent = u.email || '';
     modalUserDate.textContent = u.createdAt ? new Date(u.createdAt).toLocaleString("uk-UA") : '';
-    
+
     const roles = [];
-    if(u.isAdmin) roles.push("Админ");
-    if(u.isPremium) roles.push("Премиум");
-    if(u.isBanned) roles.push("Заблокирован");
-    if(roles.length === 0) roles.push("Пользователь");
+    if (u.isAdmin) roles.push("Админ");
+    if (u.isPremium) roles.push("Премиум");
+    if (u.isBanned) roles.push("Заблокирован");
+    if (roles.length === 0) roles.push("Пользователь");
     modalUserRole.textContent = roles.join(", ");
 
     modalPremiumBtn.textContent = u.isPremium ? 'Забрать премиум' : 'Выдать премиум';
@@ -319,19 +319,25 @@ function openUserModal(uid, u) {
     modalBanBtn.textContent = u.isBanned ? 'Разблокировать' : 'Заблокировать';
 
     modalPremiumBtn.onclick = async () => {
-        await update(ref(db, `users/${uid}`), { isPremium: !u.isPremium });
+        await update(ref(db, `users/${uid}`), {
+            isPremium: !u.isPremium
+        });
         u.isPremium = !u.isPremium;
         openUserModal(uid, u);
         loadUsers();
     }
     modalAdminBtn.onclick = async () => {
-        await update(ref(db, `users/${uid}`), { isAdmin: !u.isAdmin });
+        await update(ref(db, `users/${uid}`), {
+            isAdmin: !u.isAdmin
+        });
         u.isAdmin = !u.isAdmin;
         openUserModal(uid, u);
         loadUsers();
     }
     modalBanBtn.onclick = async () => {
-        await update(ref(db, `users/${uid}`), { isBanned: !u.isBanned });
+        await update(ref(db, `users/${uid}`), {
+            isBanned: !u.isBanned
+        });
         u.isBanned = !u.isBanned;
         openUserModal(uid, u);
         loadUsers();
@@ -342,6 +348,5 @@ function openUserModal(uid, u) {
 
 closeUserModal.onclick = () => userModal.style.display = 'none';
 window.onclick = e => {
-    if(e.target === userModal) userModal.style.display = 'none';
+    if (e.target === userModal) userModal.style.display = 'none';
 };
-
