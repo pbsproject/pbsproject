@@ -416,3 +416,8 @@ onValue(reactRef, snap => {
     }
 
 );
+
+if (window.innerWidth <= 768) {
+    const grid = document.querySelector('div[style*="grid-template-columns"]');
+    grid.style.gridTemplateColumns = '1fr';
+}
