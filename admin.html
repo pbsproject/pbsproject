@@ -85,6 +85,11 @@
 
         <div class="panel hidden" id="usersPanel">
             <h2>👥 Модерация пользователей (В разработке)</h2>
+			
+			<div style="margin-bottom:10px;">
+    <input type="text" id="userSearch" placeholder="Пошук по імені або email" style="width:100%; padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); color:var(--text-primary);">
+</div>
+
             <table id="usersTable" border="1" cellpadding="10" cellspacing="0" style="width:100%;border-collapse:collapse;">
                 <thead>
                     <tr>
@@ -117,6 +122,24 @@
                 </div>
             </div>
         </div>
+		
+		<div id="userModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+            <img id="modalUserPhoto" src="img/default-avatar.png" alt="Аватар" style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
+            <h3 id="modalUserName"></h3>
+            <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
+            <p><strong>Дата реєстрації:</strong> <span id="modalUserDate"></span></p>
+            <p><strong>Роль:</strong> <span id="modalUserRoles"></span></p>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+                <button id="modalAdminBtn" class="btn btn-primary"></button>
+                <button id="modalPremiumBtn" class="btn btn-primary"></button>
+                <button id="modalBanBtn" class="btn btn-logout"></button>
+            </div>
+        </div>
+    </div>
+</div>
 
         <script type="module" src="js/firebase-admin.js"></script>
 </body>

@@ -251,57 +251,94 @@ document.getElementById("rejectBtn").onclick = async () => {
 };
 
 // --- Users ---
-async function loadUsers() {
+async function loadUsers(filter = '') {
     usersTableBody.innerHTML = '';
     const snap = await get(ref(db, 'users'));
     if (snap.exists()) {
         const users = snap.val();
         Object.entries(users).forEach(([uid, u]) => {
-            const tr = document.createElement('tr');
-            const regDate = u.createdAt ? new Date(u.createdAt).toLocaleString('uk-UA') : '';
-            
-            // Формируем роль пользователя
-            let roles = [];
-            if (u.isAdmin) roles.push("Админ");
-            if (u.isPremium) roles.push("Премиум");
-            if (u.isBanned) roles.push("Заблокирован");
-            if (roles.length === 0) roles.push("Пользователь");
+            const displayName = u.displayName || '';
+            const email = u.email || '';
+            if (filter && !displayName.toLowerCase().includes(filter) && !email.toLowerCase().includes(filter)) return;
 
+            const regDate = u.createdAt ? new Date(u.createdAt).toLocaleString('uk-UA') : '';
+
+            const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>${u.displayName || ''}</td>
-                <td>${u.email || ''}</td>
+                <td>${displayName} <button class="btn btn-primary btn-small" id="viewUser-${uid}">Просмотреть</button></td>
+                <td>${email}</td>
                 <td>${regDate}</td>
-                <td>${roles.join(", ")}</td>
-                <td>
-                    <button class="btn btn-primary" id="premiumBtn-${uid}">${u.isPremium ? 'Забрать премиум' : 'Премиум'}</button>
-                    <button class="btn btn-primary" id="adminBtn-${uid}">${u.isAdmin ? 'Снять админку' : 'Админ'}</button>
-                    <button class="btn btn-logout" id="banBtn-${uid}">${u.isBanned ? 'Разблокировать' : 'Заблокировать'}</button>
-                </td>
+                <td>${u.isAdmin ? "Админ" : ""} ${u.isPremium ? "Премиум" : ""} ${u.isBanned ? "Заблокирован" : ""}</td>
             `;
             usersTableBody.appendChild(tr);
 
-            document.getElementById(`premiumBtn-${uid}`).onclick = async () => {
-                await update(ref(db, `users/${uid}`), { isPremium: !u.isPremium });
-                u.isPremium = !u.isPremium;
-                document.getElementById(`premiumBtn-${uid}`).textContent = u.isPremium ? 'Забрать премиум' : 'Премиум';
-                loadUsers(); // Обновляем отображение ролей
-            }
-
-            document.getElementById(`adminBtn-${uid}`).onclick = async () => {
-                await update(ref(db, `users/${uid}`), { isAdmin: !u.isAdmin });
-                u.isAdmin = !u.isAdmin;
-                document.getElementById(`adminBtn-${uid}`).textContent = u.isAdmin ? 'Снять админку' : 'Админ';
-                loadUsers();
-            }
-
-            document.getElementById(`banBtn-${uid}`).onclick = async () => {
-                await update(ref(db, `users/${uid}`), { isBanned: !u.isBanned });
-                u.isBanned = !u.isBanned;
-                document.getElementById(`banBtn-${uid}`).textContent = u.isBanned ? 'Разблокировать' : 'Заблокировать';
-                loadUsers();
-            }
+            const viewBtn = document.getElementById(`viewUser-${uid}`);
+            viewBtn.onclick = () => openUserModal(uid, u);
         });
     } else {
         usersTableBody.innerHTML = '<tr><td colspan="5"><i>Нет пользователей</i></td></tr>';
     }
 }
+
+// Пошук
+const userSearch = document.getElementById('userSearch');
+userSearch.addEventListener('input', () => {
+    const val = userSearch.value.trim().toLowerCase();
+    loadUsers(val);
+});
+
+// Модальне вікно користувача
+const userModal = document.getElementById('userModal');
+const closeUserModal = userModal.querySelector('.modal-close');
+const modalUserName = document.getElementById('modalUserName');
+const modalUserEmail = document.getElementById('modalUserEmail');
+const modalUserDate = document.getElementById('modalUserDate');
+const modalUserRoles = document.getElementById('modalUserRoles');
+const modalUserPhoto = document.getElementById('modalUserPhoto');
+const modalAdminBtn = document.getElementById('modalAdminBtn');
+const modalPremiumBtn = document.getElementById('modalPremiumBtn');
+const modalBanBtn = document.getElementById('modalBanBtn');
+
+let currentModalUid = null;
+
+function openUserModal(uid, u) {
+    currentModalUid = uid;
+    modalUserPhoto.src = u.photoURL || "img/default-avatar.png";
+    modalUserName.textContent = u.displayName || '';
+    modalUserEmail.textContent = u.email || '';
+    modalUserDate.textContent = u.createdAt ? new Date(u.createdAt).toLocaleString('uk-UA') : '';
+    const roles = [];
+    if (u.isAdmin) roles.push("Админ");
+    if (u.isPremium) roles.push("Премиум");
+    if (u.isBanned) roles.push("Заблокирован");
+    if (roles.length === 0) roles.push("Пользователь");
+    modalUserRoles.textContent = roles.join(", ");
+
+    modalAdminBtn.textContent = u.isAdmin ? "Снять админку" : "Выдать админку";
+    modalPremiumBtn.textContent = u.isPremium ? "Забрать премиум" : "Выдать премиум";
+    modalBanBtn.textContent = u.isBanned ? "Разблокировать" : "Заблокировать";
+
+    modalAdminBtn.onclick = async () => {
+        await update(ref(db, `users/${uid}`), { isAdmin: !u.isAdmin });
+        u.isAdmin = !u.isAdmin;
+        openUserModal(uid, u);
+        loadUsers(userSearch.value.toLowerCase());
+    };
+    modalPremiumBtn.onclick = async () => {
+        await update(ref(db, `users/${uid}`), { isPremium: !u.isPremium });
+        u.isPremium = !u.isPremium;
+        openUserModal(uid, u);
+        loadUsers(userSearch.value.toLowerCase());
+    };
+    modalBanBtn.onclick = async () => {
+        await update(ref(db, `users/${uid}`), { isBanned: !u.isBanned });
+        u.isBanned = !u.isBanned;
+        openUserModal(uid, u);
+        loadUsers(userSearch.value.toLowerCase());
+    };
+
+    userModal.style.display = 'block';
+}
+
+closeUserModal.onclick = () => userModal.style.display = 'none';
+window.onclick = e => { if (e.target === userModal) userModal.style.display = 'none'; };

@@ -290,3 +290,33 @@
             cursor: pointer;
             backdrop-filter: blur(10px);
         }
+		
+.btn-small {
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+@media(max-width: 600px){
+    #usersTable, #usersTable thead, #usersTable tbody, #usersTable th, #usersTable td, #usersTable tr {
+        display: block;
+    }
+    #usersTable thead tr {
+        display: none;
+    }
+    #usersTable td {
+        position: relative;
+        padding-left: 50%;
+        margin-bottom: 12px;
+    }
+    #usersTable td:before {
+        position: absolute;
+        left: 12px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: 600;
+    }
+    #usersTable td:nth-of-type(1):before { content: "Імя"; }
+    #usersTable td:nth-of-type(2):before { content: "Email"; }
+    #usersTable td:nth-of-type(3):before { content: "Дата"; }
+    #usersTable td:nth-of-type(4):before { content: "Роль"; }
+}
