@@ -141,11 +141,18 @@
                 div.style.marginBottom = "15px";
 
                 div.innerHTML = `
-            <img src="${avatar}" alt="Аватар" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
-            <div class="comment-body">
-                <div class="comment-header" style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:4px;">
-                    <span class="comment-nickname">${c.name}</span>
-                    <span class="comment-time">${formatDate(c.timestamp)}</span>
+            <img src="${avatar}" alt="Аватар" 
+                 style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+            
+            <div class="comment-body" style="flex:1;">
+                <div class="comment-header" 
+                     style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <span class="comment-nickname" style="font-weight:600; font-size:14px;">
+                        ${c.name}
+                    </span>
+                    <span class="comment-time" style="font-size:12px; color:var(--text-secondary);">
+                        ${formatDate(c.timestamp)}
+                    </span>
                 </div>
                 <div class="comment-text" style="font-size:15px;">${c.text}</div>
             </div>
