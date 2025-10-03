@@ -119,7 +119,7 @@ get(ref(db, "mods/" + pageId)).then(snap => {
 			const twitterDesc = document.querySelector('meta[name="twitter:description"]');
 			if (twitterDesc) twitterDesc.setAttribute("content", mod.description);
 
-			// === GA4 динамічний page_view ===
+			// GA4: оновлюємо page_view
 			if (typeof gtag === "function") {
 				gtag('config', 'G-FGLT883PDC', {
 					page_path: window.location.pathname + window.location.search,

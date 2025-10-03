@@ -24,18 +24,10 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-
+		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
-		gtag('config', 'G-FGLT883PDC', {
-			'page_path': window.location.pathname,
-			'page_title': pageTitle
-		});
-	</script>	
+		gtag('config', 'G-FGLT883PDC'); // спочатку без page_title
+	</script>
 
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
