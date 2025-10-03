@@ -251,90 +251,97 @@ document.getElementById("rejectBtn").onclick = async () => {
 };
 
 // --- Users ---
-async function loadUsers(filter = '') {
+const userSearch = document.getElementById("userSearch");
+const userModal = document.getElementById("userModal");
+const closeUserModal = userModal.querySelector(".modal-close");
+let currentUserId = null;
+
+// Modal elements
+const modalUserPhoto = document.getElementById("modalUserPhoto");
+const modalUserName = document.getElementById("modalUserName");
+const modalUserEmail = document.getElementById("modalUserEmail");
+const modalUserDate = document.getElementById("modalUserDate");
+const modalUserRole = document.getElementById("modalUserRole");
+const modalPremiumBtn = document.getElementById("modalPremiumBtn");
+const modalAdminBtn = document.getElementById("modalAdminBtn");
+const modalBanBtn = document.getElementById("modalBanBtn");
+
+async function loadUsers() {
     usersTableBody.innerHTML = '';
     const snap = await get(ref(db, 'users'));
-    if (snap.exists()) {
-        const users = snap.val();
-Object.entries(users).forEach(([uid, u]) => {
-    const tr = document.createElement('tr');
-
-    tr.innerHTML = `
-        <td>${u.displayName || ''}</td>
-        <td>${u.email || ''}</td>
-        <td>
-            <button class="btn btn-primary" id="viewBtn-${uid}">Просмотреть</button>
-        </td>
-    `;
-    usersTableBody.appendChild(tr);
-
-    document.getElementById(`viewBtn-${uid}`).onclick = () => openUserModal(uid, u);
-});
-
-    } else {
-        usersTableBody.innerHTML = '<tr><td colspan="5"><i>Нет пользователей</i></td></tr>';
+    if (!snap.exists()) {
+        usersTableBody.innerHTML = '<tr><td colspan="3"><i>Нет пользователей</i></td></tr>';
+        return;
     }
+
+    const users = snap.val();
+    Object.entries(users).forEach(([uid, u]) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${u.displayName || ''}</td>
+            <td>${u.email || ''}</td>
+            <td><button class="btn btn-primary viewUserBtn">Просмотреть</button></td>
+        `;
+        usersTableBody.appendChild(tr);
+
+        const viewBtn = tr.querySelector(".viewUserBtn");
+        viewBtn.onclick = () => openUserModal(uid, u);
+    });
 }
 
-// Пошук
-const userSearch = document.getElementById('userSearch');
-userSearch.addEventListener('input', () => {
-    const val = userSearch.value.trim().toLowerCase();
-    loadUsers(val);
+// --- Пошук ---
+userSearch.addEventListener("input", () => {
+    const query = userSearch.value.toLowerCase();
+    usersTableBody.querySelectorAll("tr").forEach(tr => {
+        const name = tr.cells[0].textContent.toLowerCase();
+        const email = tr.cells[1].textContent.toLowerCase();
+        tr.style.display = name.includes(query) || email.includes(query) ? "" : "none";
+    });
 });
 
-// Модальне вікно користувача
-const userModal = document.getElementById('userModal');
-const closeUserModal = userModal.querySelector('.modal-close');
-const modalUserName = document.getElementById('modalUserName');
-const modalUserEmail = document.getElementById('modalUserEmail');
-const modalUserDate = document.getElementById('modalUserDate');
-const modalUserRoles = document.getElementById('modalUserRoles');
-const modalUserPhoto = document.getElementById('modalUserPhoto');
-const modalAdminBtn = document.getElementById('modalAdminBtn');
-const modalPremiumBtn = document.getElementById('modalPremiumBtn');
-const modalBanBtn = document.getElementById('modalBanBtn');
-
-let currentModalUid = null;
-
+// --- Модальне вікно користувача ---
 function openUserModal(uid, u) {
-    currentModalUid = uid;
+    currentUserId = uid;
     modalUserPhoto.src = u.photoURL || "img/default-avatar.png";
     modalUserName.textContent = u.displayName || '';
     modalUserEmail.textContent = u.email || '';
-    modalUserDate.textContent = u.createdAt ? new Date(u.createdAt).toLocaleString('uk-UA') : '';
+    modalUserDate.textContent = u.createdAt ? new Date(u.createdAt).toLocaleString("uk-UA") : '';
+    
     const roles = [];
-    if (u.isAdmin) roles.push("Админ");
-    if (u.isPremium) roles.push("Премиум");
-    if (u.isBanned) roles.push("Заблокирован");
-    if (roles.length === 0) roles.push("Пользователь");
-    modalUserRoles.textContent = roles.join(", ");
+    if(u.isAdmin) roles.push("Админ");
+    if(u.isPremium) roles.push("Премиум");
+    if(u.isBanned) roles.push("Заблокирован");
+    if(roles.length === 0) roles.push("Пользователь");
+    modalUserRole.textContent = roles.join(", ");
 
-    modalAdminBtn.textContent = u.isAdmin ? "Снять админку" : "Выдать админку";
-    modalPremiumBtn.textContent = u.isPremium ? "Забрать премиум" : "Выдать премиум";
-    modalBanBtn.textContent = u.isBanned ? "Разблокировать" : "Заблокировать";
+    modalPremiumBtn.textContent = u.isPremium ? 'Забрать премиум' : 'Выдать премиум';
+    modalAdminBtn.textContent = u.isAdmin ? 'Снять админку' : 'Выдать админку';
+    modalBanBtn.textContent = u.isBanned ? 'Разблокировать' : 'Заблокировать';
 
-    modalAdminBtn.onclick = async () => {
-        await update(ref(db, `users/${uid}`), { isAdmin: !u.isAdmin });
-        u.isAdmin = !u.isAdmin;
-        openUserModal(uid, u);
-        loadUsers(userSearch.value.toLowerCase());
-    };
     modalPremiumBtn.onclick = async () => {
         await update(ref(db, `users/${uid}`), { isPremium: !u.isPremium });
         u.isPremium = !u.isPremium;
         openUserModal(uid, u);
-        loadUsers(userSearch.value.toLowerCase());
-    };
+        loadUsers();
+    }
+    modalAdminBtn.onclick = async () => {
+        await update(ref(db, `users/${uid}`), { isAdmin: !u.isAdmin });
+        u.isAdmin = !u.isAdmin;
+        openUserModal(uid, u);
+        loadUsers();
+    }
     modalBanBtn.onclick = async () => {
         await update(ref(db, `users/${uid}`), { isBanned: !u.isBanned });
         u.isBanned = !u.isBanned;
         openUserModal(uid, u);
-        loadUsers(userSearch.value.toLowerCase());
-    };
+        loadUsers();
+    }
 
     userModal.style.display = 'block';
 }
 
 closeUserModal.onclick = () => userModal.style.display = 'none';
-window.onclick = e => { if (e.target === userModal) userModal.style.display = 'none'; };
+window.onclick = e => {
+    if(e.target === userModal) userModal.style.display = 'none';
+};
+

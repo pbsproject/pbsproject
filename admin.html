@@ -83,23 +83,40 @@
             <div id="modsList" class="panel-list"></div>
         </div>
 
-<div class="panel hidden" id="usersPanel">
-    <h2>👥 Модерація користувачів</h2>
-    
-    <!-- Пошук -->
-    <input id="userSearch" type="text" placeholder="Пошук по імені або email" style="margin-bottom:10px; padding:10px; border-radius:8px; width:100%; border:1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); color:white;">
-
-    <table id="usersTable" border="0" cellpadding="10" cellspacing="0" style="width:100%;border-collapse:collapse;">
+<div class="panel" id="usersPanel">
+    <h2>👥 Модерация пользователей</h2>
+    <input id="userSearch" type="text" placeholder="Поиск по имени или email" style="margin-bottom:10px; padding:8px 12px; border-radius:8px; width:100%; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.02); color:#fff;">
+    <table id="usersTable" border="0" cellpadding="10" cellspacing="0" style="width:100%; border-collapse:collapse;">
         <thead>
             <tr>
-                <th>Ім'я</th>
+                <th>Имя</th>
                 <th>Email</th>
-                <th>Дії</th>
+                <th>Действия</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
 </div>
+
+<!-- Модальне вікно користувача -->
+<div id="userModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div style="text-align:center; margin-bottom:15px;">
+            <img id="modalUserPhoto" src="img/default-avatar.png" alt="Аватар" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+        </div>
+        <h3 id="modalUserName"></h3>
+        <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
+        <p><strong>Дата регистрации:</strong> <span id="modalUserDate"></span></p>
+        <p><strong>Роль:</strong> <span id="modalUserRole"></span></p>
+        <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+            <button id="modalPremiumBtn" class="btn btn-primary"></button>
+            <button id="modalAdminBtn" class="btn btn-primary"></button>
+            <button id="modalBanBtn" class="btn btn-logout"></button>
+        </div>
+    </div>
+</div>
+
 
         <!-- Модальне вікно -->
         <div id="modModal" class="modal">
@@ -119,24 +136,6 @@
                 </div>
             </div>
         </div>
-		
-		<div id="userModal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
-            <img id="modalUserPhoto" src="img/default-avatar.png" alt="Аватар" style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
-            <h3 id="modalUserName"></h3>
-            <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
-            <p><strong>Дата реєстрації:</strong> <span id="modalUserDate"></span></p>
-            <p><strong>Роль:</strong> <span id="modalUserRoles"></span></p>
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-                <button id="modalAdminBtn" class="btn btn-primary"></button>
-                <button id="modalPremiumBtn" class="btn btn-primary"></button>
-                <button id="modalBanBtn" class="btn btn-logout"></button>
-            </div>
-        </div>
-    </div>
-</div>
 
         <script type="module" src="js/firebase-admin.js"></script>
 </body>
