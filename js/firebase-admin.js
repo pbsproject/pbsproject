@@ -226,11 +226,6 @@ function openModal(id, mod) {
     });
 }
 
-closeModal.onclick = () => modal.style.display = 'none';
-window.onclick = e => {
-    if (e.target === modal) modal.style.display = 'none';
-};
-
 // --- Approve/Reject ---
 document.getElementById("approveBtn").onclick = async () => {
     if (!currentModId) return;
@@ -348,5 +343,6 @@ function openUserModal(uid, u) {
 
 closeUserModal.onclick = () => userModal.style.display = 'none';
 window.onclick = e => {
+    if (e.target === modal) modal.style.display = 'none';
     if (e.target === userModal) userModal.style.display = 'none';
 };
