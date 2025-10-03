@@ -1114,26 +1114,30 @@
             border-radius: var(--radius-md);
         }
 
-		.comment-header {
-			display: flex;
-			justify-content: space-between; /* нік зліва, дата справа */
-			align-items: center;
-			margin-bottom: 6px;
-		}
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            /* нік зліва, дата справа */
+            align-items: center;
+            margin-bottom: 6px;
+        }
 
-		.comment-nickname {
-			font-weight: 600;
-			font-size: 15px;
-			color: var(--text-primary);
-			margin-right: auto; /* тримає нік зліва */
-		}
+        .comment-nickname {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-primary);
+            margin-right: auto;
+            /* тримає нік зліва */
+        }
 
-		.comment-time {
-			font-size: 12px;
-			color: var(--text-secondary);
-			margin-left: auto; /* тримає час справа */
-			white-space: nowrap; /* щоб не переносився */
-		}
+        .comment-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-left: auto;
+            /* тримає час справа */
+            white-space: nowrap;
+            /* щоб не переносився */
+        }
 
         .comment-actions {
             display: flex;
