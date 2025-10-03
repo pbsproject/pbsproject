@@ -1123,7 +1123,7 @@
         }
 
         .comment-nickname {
-            font-weight: 700;
+            font-weight: 600;
             font-size: 15px;
             color: var(--text-primary);
         }
@@ -1136,6 +1136,7 @@
 			justify-content: space-between;
 			align-items: center;
 			width: 100%; /* чтобы заняло всю ширину контейнера */
+		    margin-top: 2px;	
 		}
 
         .comment-actions {
