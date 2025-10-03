@@ -265,29 +265,26 @@ const modalUserRole = document.getElementById("modalUserRole");
 const modalPremiumBtn = document.getElementById("modalPremiumBtn");
 const modalAdminBtn = document.getElementById("modalAdminBtn");
 const modalBanBtn = document.getElementById("modalBanBtn");
-const usersGrid = document.getElementById("usersGrid");
 
 async function loadUsers() {
-    usersGrid.innerHTML = '';
+    usersTableBody.innerHTML = '';
     const snap = await get(ref(db, 'users'));
     if (!snap.exists()) {
-        usersGrid.innerHTML = '<i>Нет пользователей</i>';
+        usersTableBody.innerHTML = '<tr><td colspan="3"><i>Нет пользователей</i></td></tr>';
         return;
     }
 
     const users = snap.val();
     Object.entries(users).forEach(([uid, u]) => {
-        const div = document.createElement('div');
-        div.className = 'user-card';
-        div.innerHTML = `
-            <img src="${u.photoURL || 'img/default-avatar.png'}" alt="Аватар">
-            <h4>${u.displayName || 'Без имени'}</h4>
-            <p>${u.email || ''}</p>
-            <button class="btn btn-primary viewUserBtn">Просмотреть</button>
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${u.displayName || ''}</td>
+            <td>${u.email || ''}</td>
+            <td><button class="btn btn-primary viewUserBtn">Просмотреть</button></td>
         `;
-        usersGrid.appendChild(div);
+        usersTableBody.appendChild(tr);
 
-        const viewBtn = div.querySelector(".viewUserBtn");
+        const viewBtn = tr.querySelector(".viewUserBtn");
         viewBtn.onclick = () => openUserModal(uid, u);
     });
 }
@@ -295,10 +292,10 @@ async function loadUsers() {
 // --- Пошук ---
 userSearch.addEventListener("input", () => {
     const query = userSearch.value.toLowerCase();
-    usersGrid.querySelectorAll(".user-card").forEach(card => {
-        const name = card.querySelector("h4").textContent.toLowerCase();
-        const email = card.querySelector("p").textContent.toLowerCase();
-        card.style.display = name.includes(query) || email.includes(query) ? "" : "none";
+    usersTableBody.querySelectorAll("tr").forEach(tr => {
+        const name = tr.cells[0].textContent.toLowerCase();
+        const email = tr.cells[1].textContent.toLowerCase();
+        tr.style.display = name.includes(query) || email.includes(query) ? "" : "none";
     });
 });
 
