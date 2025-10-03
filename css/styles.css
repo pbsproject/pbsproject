@@ -1128,10 +1128,11 @@
             color: var(--text-primary);
         }
 
-        .comment-time {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
+		.comment-time {
+			font-size: 12px;
+			color: var(--text-secondary);
+			text-align: right;
+		}
 
         .comment-actions {
             display: flex;

@@ -105,46 +105,46 @@
                 <tbody></tbody>
             </table>
         </div>
-	</div>
+    </div>
 
-        <!-- Модальне вікно користувача -->
-        <div id="userModal" class="modal">
-            <div class="modal-content">
-                <span class="modal-close">&times;</span>
-                <div style="text-align:center; margin-bottom:15px;">
-                    <img id="modalUserPhoto" src="img/default-avatar.png" alt="Аватар" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
-                </div>
-                <h3 id="modalUserName"></h3>
-                <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
-                <p><strong>Дата регистрации:</strong> <span id="modalUserDate"></span></p>
-                <p><strong>Роль:</strong> <span id="modalUserRole"></span></p>
-                <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-                    <button id="modalPremiumBtn" class="btn btn-primary"></button>
-                    <button id="modalAdminBtn" class="btn btn-primary"></button>
-                    <button id="modalBanBtn" class="btn btn-logout"></button>
-                </div>
+    <!-- Модальне вікно користувача -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div style="text-align:center; margin-bottom:15px;">
+                <img id="modalUserPhoto" src="img/default-avatar.png" alt="Аватар" style="width:100px; height:100px; border-radius:50%; object-fit:cover;">
+            </div>
+            <h3 id="modalUserName"></h3>
+            <p><strong>Email:</strong> <span id="modalUserEmail"></span></p>
+            <p><strong>Дата регистрации:</strong> <span id="modalUserDate"></span></p>
+            <p><strong>Роль:</strong> <span id="modalUserRole"></span></p>
+            <div style="margin-top:20px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+                <button id="modalPremiumBtn" class="btn btn-primary"></button>
+                <button id="modalAdminBtn" class="btn btn-primary"></button>
+                <button id="modalBanBtn" class="btn btn-logout"></button>
             </div>
         </div>
-        <!-- Модальне вікно -->
-        <div id="modModal" class="modal">
-            <div class="modal-content">
-                <span class="modal-close">&times;</span>
-                <h3 id="modalTitle"></h3>
-                <p><strong>Тип:</strong> <span id="modalType"></span></p>
-                <p><strong>Описание:</strong> <span id="modalDescription"></span></p>
-                <p><strong>Автор конвертации:</strong> <span id="modalConvertAuthor"></span></p>
-                <p><strong>Автор модели:</strong> <span id="modalModelAuthor"></span></p>
-                <p><strong>Ссылка:</strong> <a id="modalDownload" href="" target="_blank">Скачать</a></p>
-                <p><strong>Изображения:</strong></p>
-                <div id="modalImages" style="display:flex; overflow-x:auto;"></div>
-                <div style="margin-top:20px;">
-                    <button id="approveBtn" class="btn btn-primary">Одобрить</button>
-                    <button id="rejectBtn" class="btn btn-logout">Отклонить</button>
-                </div>
+    </div>
+    <!-- Модальне вікно -->
+    <div id="modModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <p><strong>Тип:</strong> <span id="modalType"></span></p>
+            <p><strong>Описание:</strong> <span id="modalDescription"></span></p>
+            <p><strong>Автор конвертации:</strong> <span id="modalConvertAuthor"></span></p>
+            <p><strong>Автор модели:</strong> <span id="modalModelAuthor"></span></p>
+            <p><strong>Ссылка:</strong> <a id="modalDownload" href="" target="_blank">Скачать</a></p>
+            <p><strong>Изображения:</strong></p>
+            <div id="modalImages" style="display:flex; overflow-x:auto;"></div>
+            <div style="margin-top:20px;">
+                <button id="approveBtn" class="btn btn-primary">Одобрить</button>
+                <button id="rejectBtn" class="btn btn-logout">Отклонить</button>
             </div>
         </div>
+    </div>
 
-        <script type="module" src="js/firebase-admin.js"></script>
+    <script type="module" src="js/firebase-admin.js"></script>
 </body>
 
 </html>
