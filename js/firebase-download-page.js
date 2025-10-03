@@ -2,10 +2,6 @@
             initializeApp
         } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import {
-            getAuth,
-            onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";		
-        import {
             getDatabase,
             ref,
             get
@@ -24,7 +20,6 @@
 		};
 
         const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
         const db = getDatabase(app);
 
         get(ref(db, "mods")).then(snapshot => {
@@ -75,18 +70,4 @@
             });
         }).catch(error => {
             console.error("Ошибка при загрузке модов:", error);
-        });
-		
-        // === Кнопка авторизації / профілю ===
-        const authBtn = document.getElementById("authBtn");
-
-        // початково кнопка "Увійти"
-        authBtn.href = "login.html";
-        authBtn.textContent = "Войти";
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                authBtn.href = "profile.html";
-                authBtn.textContent = "Профиль";
-            }
         });
