@@ -259,38 +259,46 @@ async function loadUsers() {
         Object.entries(users).forEach(([uid, u]) => {
             const tr = document.createElement('tr');
             const regDate = u.createdAt ? new Date(u.createdAt).toLocaleString('uk-UA') : '';
+            
+            // Формируем роль пользователя
+            let roles = [];
+            if (u.isAdmin) roles.push("Админ");
+            if (u.isPremium) roles.push("Премиум");
+            if (u.isBanned) roles.push("Заблокирован");
+            if (roles.length === 0) roles.push("Пользователь");
+
             tr.innerHTML = `
-                <td>${u.displayName||''}</td>
-                <td>${u.email||''}</td>
+                <td>${u.displayName || ''}</td>
+                <td>${u.email || ''}</td>
                 <td>${regDate}</td>
-                <td>${u.role||'user'}</td>
+                <td>${roles.join(", ")}</td>
                 <td>
-                    <button class="btn btn-primary" id="premiumBtn-${uid}">${u.isPremium?'Забрать премиум':'Премиум'}</button>
-                    <button class="btn btn-primary" id="adminBtn-${uid}">${u.isAdmin?'Снять админку':'Админ'}</button>
-                    <button class="btn btn-logout" id="banBtn-${uid}">${u.isBanned?'Разблокировать':'Заблокировать'}</button>
-                </td>`;
+                    <button class="btn btn-primary" id="premiumBtn-${uid}">${u.isPremium ? 'Забрать премиум' : 'Премиум'}</button>
+                    <button class="btn btn-primary" id="adminBtn-${uid}">${u.isAdmin ? 'Снять админку' : 'Админ'}</button>
+                    <button class="btn btn-logout" id="banBtn-${uid}">${u.isBanned ? 'Разблокировать' : 'Заблокировать'}</button>
+                </td>
+            `;
             usersTableBody.appendChild(tr);
 
             document.getElementById(`premiumBtn-${uid}`).onclick = async () => {
-                await update(ref(db, `users/${uid}`), {
-                    isPremium: !u.isPremium
-                });
+                await update(ref(db, `users/${uid}`), { isPremium: !u.isPremium });
                 u.isPremium = !u.isPremium;
                 document.getElementById(`premiumBtn-${uid}`).textContent = u.isPremium ? 'Забрать премиум' : 'Премиум';
+                loadUsers(); // Обновляем отображение ролей
             }
+
             document.getElementById(`adminBtn-${uid}`).onclick = async () => {
-                await update(ref(db, `users/${uid}`), {
-                    isAdmin: !u.isAdmin
-                });
+                await update(ref(db, `users/${uid}`), { isAdmin: !u.isAdmin });
                 u.isAdmin = !u.isAdmin;
                 document.getElementById(`adminBtn-${uid}`).textContent = u.isAdmin ? 'Снять админку' : 'Админ';
+                loadUsers();
             }
+
             document.getElementById(`banBtn-${uid}`).onclick = async () => {
-                await update(ref(db, `users/${uid}`), {
-                    isBanned: !u.isBanned
-                });
+                await update(ref(db, `users/${uid}`), { isBanned: !u.isBanned });
                 u.isBanned = !u.isBanned;
                 document.getElementById(`banBtn-${uid}`).textContent = u.isBanned ? 'Разблокировать' : 'Заблокировать';
+                loadUsers();
             }
         });
     } else {
