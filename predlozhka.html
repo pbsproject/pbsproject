@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBS.project - Твой ключ к лучшим модам для Proton Bus Simulator!</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
+    <meta name="description" content="Предложка проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
+    <meta name="author" content="Vitaliy Shkarupa" />
+
+    <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta property="og:description" content="Предложка проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
+    <meta property="og:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta name="twitter:description" content="Предложка проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FGLT883PDC');
+    </script>
+
+    <link rel="stylesheet" href="css/styles-predlozhka.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="panel" id="loginPanel">
+            <h2>🔒 Вход</h2>
+            <input id="email" type="email" placeholder="Email" required>
+            <div class="password-wrap">
+                <input id="password" type="password" placeholder="Пароль" required>
+                <button type="button" id="togglePass" class="toggle-pass"><i class="fa fa-eye"></i></button>
+            </div>
+            <button id="loginBtn" class="btn btn-primary">Войти</button>
+            <div id="loginError" class="msg" style="color:#ff8b8b;display:none;"></div>
+        </div>
+
+        <div class="panel hidden" id="adminPanel">
+            <h2>➕ Отослать мод на модерацию</h2>
+            <form id="addModForm">
+                <input id="title" type="text" placeholder="Название мода (Обязательно)" required>
+                <select id="type" required>
+                    <option value="" disabled selected>Выберите тип мода (Обязательно)</option>
+                    <option value="Автобус">Автобус</option>
+                    <option value="Тролейбус">Троллейбус</option>
+                    <option value="Карта">Карта</option>
+                    <option value="Проче">Прочее</option>
+                </select>
+                <textarea id="description" placeholder="Описание"></textarea>
+                <input id="modelAuthor" type="text" placeholder="Автор модели (Обязательно)" required>
+                <input id="convertAuthor" type="text" placeholder="Автор конвертации (Обязательно)" required>
+                <input id="weight" type="text" placeholder="Вес архива">
+                <input id="download" type="url" placeholder="Ссылка на мод (URL) (Обязательно)" required>
+                <textarea id="images" placeholder="Ссылка на картинки, загруженые через Imgur.com (через запьятую), первая — превью" required></textarea>
+
+                <div id="previewWrap" class="img-preview-wrap hidden">
+                    <div id="preview" class="img-preview"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Отправить на модерацию</button>
+                <button id="logoutBtn" type="button" class="btn btn-logout" style="float:right;">Выйти</button>
+                <div id="formMsg" class="msg"></div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/predlozhka.js"></script>
+</body>
+
+</html>

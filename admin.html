@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PBS.project - Твой ключ к лучшим модам для Proton Bus Simulator!</title>
     <link rel="icon" href="img/logo/logo.png" type="image/png">
-    <meta name="description" content="Админ-панель проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="description" content="Админ-панель сайта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
     <meta name="author" content="Vitaliy Shkarupa" />
 
     <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
-    <meta property="og:description" content="Админ-панель проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:description" content="Админ-панель сайта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
     <meta property="og:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
-    <meta name="twitter:description" content="Админ-панель проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:description" content="Админ-панель сайта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
@@ -40,37 +40,36 @@
 
 <body>
     <div class="container">
+
         <div class="panel" id="loginPanel">
-            <h2>🔒 Вход</h2>
+            <h2>🔒 Вход для администраторов</h2>
             <input id="email" type="email" placeholder="Email" required>
-            <div class="password-wrap">
-                <input id="password" type="password" placeholder="Пароль" required>
-                <button type="button" id="togglePass" class="toggle-pass"><i class="fa fa-eye"></i></button>
-            </div>
+            <input id="password" type="password" placeholder="Пароль" required>
             <button id="loginBtn" class="btn btn-primary">Войти</button>
             <div id="loginError" class="msg" style="color:#ff8b8b;display:none;"></div>
         </div>
 
         <div class="panel hidden" id="adminPanel">
-            <h2>➕ Добавить мод</h2>
+            <h2>➕ Публикация модов</h2>
             <form id="addModForm">
-                <input id="title" type="text" placeholder="Название мода (Обязательно)" required>
+                <input id="title" type="text" placeholder="Название мода" required>
                 <select id="type" required>
-                    <option value="" disabled selected>Выберите тип мода (Обязательно)</option>
+                    <option value="" disabled selected>Выберите тип мода</option>
                     <option value="Автобус">Автобус</option>
-                    <option value="Троллейбус">Троллейбус</option>
+                    <option value="Тролейбус">Троллейбус</option>
                     <option value="Карта">Карта</option>
                     <option value="Прочее">Прочее</option>
                 </select>
                 <textarea id="description" placeholder="Описание"></textarea>
-                <input id="modelAuthor" type="text" placeholder="Автор модели (Обязательно)" required>
-                <input id="convertAuthor" type="text" placeholder="Автор конвертации (Обязательно)" required>
-                <input id="weight" type="text" placeholder="Вес">
-                <input id="download" type="url" placeholder="Ссылка на мод (URL) (Обьязательно)" required>
-                <textarea id="images" placeholder="Ссылки на картинки (через запятую), первая — превью" required></textarea>
+                <input id="modelAuthor" type="text" placeholder="Автор модели" required>
+                <input id="convertAuthor" type="text" placeholder="Автор конвертации" required>
+                <input id="weight" type="text" placeholder="Вес архива">
+                <input id="download" type="url" placeholder="Ссылка на мод" required>
+                <textarea id="images" placeholder="Ссылки на картинки через запьятую" required></textarea>
 
-                <div id="previewWrap" class="img-preview-wrap hidden">
-                    <div id="preview" class="img-preview"></div>
+                <!-- Прев’ю блок -->
+                <div id="previewWrap" class="img-preview-wrap hidden" style="margin-top:10px; margin-bottom:10px; padding:10px; border:1px solid rgba(255,255,255,0.08); border-radius:8px; background: rgba(255,255,255,0.02);">
+                    <div id="preview" class="img-preview" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:8px;"></div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Опубликовать</button>
@@ -78,9 +77,48 @@
                 <div id="formMsg" class="msg"></div>
             </form>
         </div>
-    </div>
 
-    <script type="module" src="js/firebase-admin.js"></script>
+        <div class="panel hidden" id="modsApprovalPanel">
+            <h2>📝 Модерация предложеных модов</h2>
+            <div id="modsList" class="panel-list"></div>
+        </div>
+
+        <div class="panel hidden" id="usersPanel">
+            <h2>👥 Модерация пользователей (В разработке)</h2>
+            <table id="usersTable" border="1" cellpadding="10" cellspacing="0" style="width:100%;border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th>Імя</th>
+                        <th>Email</th>
+                        <th>Дата регистрации</th>
+                        <th>Роль</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Модальне вікно -->
+        <div id="modModal" class="modal">
+            <div class="modal-content">
+                <span class="modal-close">&times;</span>
+                <h3 id="modalTitle"></h3>
+                <p><strong>Тип:</strong> <span id="modalType"></span></p>
+                <p><strong>Автор модели:</strong> <span id="modalModelAuthor"></span></p>
+                <p><strong>Автор конвертации:</strong> <span id="modalConvertAuthor"></span></p>
+                <p><strong>Описание:</strong> <span id="modalDescription"></span></p>
+                <p><strong>Ссылка:</strong> <a id="modalDownload" href="" target="_blank">Скачать</a></p>
+                <p><strong>Изображения:</strong></p>
+                <div id="modalImages" style="display:flex; overflow-x:auto;"></div>
+                <div style="margin-top:20px;">
+                    <button id="approveBtn" class="btn btn-primary">Одобрить</button>
+                    <button id="rejectBtn" class="btn btn-logout">Отклонить</button>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="js/firebase-admin.js"></script>
 </body>
 
 </html>

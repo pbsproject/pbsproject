@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PBS.project - Твой ключ к лучшим модам для Proton Bus Simulator!</title>
     <link rel="icon" href="img/logo/logo.png" type="image/png">
-    <meta name="description" content="Информация о проекте PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
     <meta name="author" content="Vitaliy Shkarupa" />
 
     <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
-    <meta property="og:description" content="Информация о проекте PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
     <meta property="og:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
-    <meta name="twitter:description" content="Информация о проекте PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
@@ -60,10 +60,8 @@
                     <li><a href="download-page.html" class="nav-link">Страница загрузки</a></li>
                     <li><a href="download-page-offered.html" class="nav-link">Ваши дополнения</a></li>
                     <li><a href="pbs-project-plus.html" class="nav-link"><span class="gradient-text-orange">PBS.project+</span></a></li>
-                    <li><a href="about.html" class="nav-link active">О нас</a></li>
-                    <li>
-                        <a href="login.html" class="nav-link" id="authBtn">Войти</a>
-                    </li>
+                    <li><a href="about.html" class="nav-link">О нас</a></li>
+                    <li><a href="login.html" class="nav-link">Профиль</a></li>
                 </ul>
 
                 <div class="nav-controls">
@@ -81,163 +79,108 @@
         </div>
     </header>
 
-    <section id="aboutpage" class="section" style="background: var(--bg-secondary);">
+    <section id="modpage" class="section">
         <div class="container">
             <div class="section-header">
-                <div class="section-badge fade-in-up">О нас</div>
-                <h2 class="section-title fade-in-up">
-                    Кто мы, и что мы <span class="gradient-text">делаем</span>
-                </h2>
-                <p class="section-description fade-in-up">
-                    PBS.project — это ваш ключ к бесконечным возможностям в мире Proton Bus Simulator. Здесь вы можете найти уникальные моды, которые преобразят вашу игру и сделают каждую поездку незабываемой.
-                </p>
+                <div class="section-badge" id="modType">Тип мода</div>
+                <h2 class="section-title"><span class="gradient-text" id="modTitle">Название</span></h2>
+            </div>
+
+            <div class="carousel">
+                <img id="mainImage" class="main-image" src="" alt="Main Image">
+                <div class="thumbnails" id="thumbnails"></div>
             </div>
 
             <div class="card fade-in-up">
-                <p style="font-size: 16px; line-height: 1.7; margin-bottom: var(--space-lg); color: var(--text-secondary);">
-                    Хочешь к нам в комманду? Смело подавай заявку, возможно именно Ты завтра будешь радовать людей новыми дополнениями!
+                <p id="modDescription" style="font-size: 16px; line-height: 1.7; margin-bottom: var(--space-lg); color: var(--text-secondary);">
                 </p>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-lg); margin-bottom: var(--space-xl);">
                     <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
                         <div style="width: 40px; height: 40px; background: var(--gradient-primary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-cube" style="color: white; font-size: 16px;"></i>
+                            <i class="fa-solid fa-at" style="color: white; font-size: 16px;"></i>
                         </div>
                         <div>
-                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Если ты:</h4>
-                            <p style="color: var(--text-secondary); font-size: 12px;">Умеешь пользоватся Blender 3d!</p>
+                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор(-ы) модели:</h4>
+                            <p id="modModelAuthor" style="color: var(--text-secondary); font-size: 12px;">
+                            </p>
                         </div>
                     </div>
 
                     <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
                         <div style="width: 40px; height: 40px; background: var(--gradient-secondary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-book" style="color: white; font-size: 16px;"></i>
+                            <i class="fa-solid fa-at" style="color: white; font-size: 16px;"></i>
                         </div>
                         <div>
-                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Если ты:</h4>
-                            <p style="color: var(--text-secondary); font-size: 12px;">Готов учится!</p>
+                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор(-ы) конвертации:</h4>
+                            <p id="modConvertAuthor" style="color: var(--text-secondary); font-size: 12px;">
+                            </p>
                         </div>
                     </div>
 
                     <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
                         <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-people-group" style="color: white; font-size: 16px;"></i>
+                            <i class="fa-solid fa-scale-balanced" style="color: white; font-size: 16px;"></i>
                         </div>
                         <div>
-                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Если ты:</h4>
-                            <p style="color: var(--text-secondary); font-size: 12px;">Готов работать в комманде!</p>
+                            <h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Вес дополнения:</h4>
+                            <p id="modWeight" style="color: var(--text-secondary); font-size: 12px;">
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div style="text-align: center; padding: var(--space-lg); background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
-                    <h3 style="color: var(--accent-cyan); margin-bottom: var(--space-md); font-size: 18px; font-weight: 700;">Присоединяйся к команде!</h3>
-
                     <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSegE9H4wtw9-TzxmBvTiWBWgZvwsISQZCymgjwm-bI8KRgMoQ/viewform?usp=header" class="btn btn-secondary">
-                            <i class="fas fa-list"></i>
-                            Подать заявку в команду
+                        <a id="modDownloadLink" href="" class="btn btn-primary">
+                            <i class="fa-solid fa-download"></i>
+                            Скачать дополнение
+                        </a>
+                        <a href="https://pbsu.busmods.com/static/309/" class="btn btn-secondary">
+                            <i class="fa-solid fa-gamepad"></i>
+                            Скачать игру
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
+
     </section>
 
-    <section id="statistics" class="section">
+    <section class="section" id="interaction" style="background: var(--bg-secondary);" data-id="">
         <div class="container">
             <div class="section-header">
-                <div class="section-badge fade-in-up">Наши достижения</div>
+                <div class="section-badge fade-in-up">Отзывы</div>
                 <h2 class="section-title fade-in-up">
-                    Статистика <span class="gradient-text">работы</span>
+                    Оставь свой <span class="gradient-text">отзыв</span>
                 </h2>
                 <p class="section-description fade-in-up">
-                    Цифры, которые отображают нашу эффективность и проффесионализм!
+                    Ждём ваших отзывов и комментариев о наших модах!
                 </p>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-card fade-in-up scale-in">
-                    <div class="stat-icon">
-                        <i class="fa-solid fa-clipboard-check"></i>
-                    </div>
-                    <div class="stat-number" data-target="51">0</div>
-                    <div class="stat-label">Выпущеных дополнений</div>
-                </div>
-
-                <div class="stat-card fade-in-up scale-in">
-                    <div class="stat-icon">
-                        <i class="fa-solid fa-people-group"></i>
-                    </div>
-                    <div class="stat-number" data-target="2000">0</div>
-                    <div class="stat-label">Участников комьюнити</div>
-                </div>
-
-                <div class="stat-card fade-in-up scale-in">
-                    <div class="stat-icon">
-                        <i class="fa-solid fa-list-check"></i>
-                    </div>
-                    <div class="stat-number" data-target="3">0</div>
-                    <div class="stat-label">Дочерних проектов</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="leadership" class="section" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-badge fade-in-up">Наша команда</div>
-                <h2 class="section-title fade-in-up">
-                    Руководство <span class="gradient-text">PBS.project</span>
-                </h2>
-                <p class="section-description fade-in-up">
-                    Опытные разработчики, которые имеют не малый стаж.
-                </p>
+            <div class="reaction-box">
+                <button class="reaction-btn like-btn">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span class="like-count">0</span>
+                </button>
+                <button class="reaction-btn dislike-btn">
+                    <i class="fas fa-thumbs-down"></i>
+                    <span class="dislike-count">0</span>
+                </button>
             </div>
 
-            <div class="leadership-grid">
-                <div class="leader-card fade-in-up">
-                    <img src="https://i.postimg.cc/C5DnB2Gp/IMG-3552.jpg" alt="Виталий Шкарупа" class="leader-image">
-                    <div class="leader-info">
-                        <h3 class="leader-name">Виталий Шкарупа</h3>
-                        <div class="leader-position">Создатель проекта</div>
-                        <div class="leader-experience">
-                            <a href="https://t.me/zaliznyy_vershnyk" class="btn btn-primary">
-                                <i class="fas fa-paper-plane"></i>
-                                Telegram
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="leader-card fade-in-up">
-                    <img src="https://i.postimg.cc/fyXStPcw/IMG-5944.jpg" alt="Николай Дроздов" class="leader-image">
-                    <div class="leader-info">
-                        <h3 class="leader-name">Николай Дроздов</h3>
-                        <div class="leader-position">Заместитель создателя проекта</div>
-                        <div class="leader-experience">
-                            <a href="https://t.me/kran_013" class="btn btn-primary">
-                                <i class="fas fa-paper-plane"></i>
-                                Telegram
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="leader-card fade-in-up">
-                    <img src="https://img.freepik.com/free-vector/coming-soon-background-with-focus-light-effect-design_1017-27277.jpg" alt="Вакантно" class="leader-image">
-                    <div class="leader-info">
-                        <h3 class="leader-name">Вакантно</h3>
-                        <div class="leader-position">Разработчик модов</div>
-                        <div class="leader-experience">
-                            <i class="fa-solid fa-user-plus" style="color: var(--accent-cyan);"></i>
-                            Подавайте заявку и присоиденяйтесь к команде!
-                        </div>
-                    </div>
-                </div>
+            <div class="comments-section">
+                <h2>Оставить комментарий</h2>
+                <br>
+                <form id="commentForm" class="comment-form">
+                    <textarea id="commentText" placeholder="Ваш комментарий..." required></textarea>
+                    <button type="submit">Отправить</button>
+                </form>
+                <br>
+                <h2>Комментарии</h2>
+                <br>
+                <div id="commentsList"></div>
             </div>
-        </div>
     </section>
 
     <section class="section" id="socials" style="background: var(--bg-primary); padding-top: 60px; padding-bottom: 60px;">
@@ -285,6 +228,7 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <script type="module" src="js/firebase-mod-offered.js"></script>
     <script type="module" src="js/plugins.js"></script>
 </body>
 

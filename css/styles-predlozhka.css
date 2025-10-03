@@ -1,7 +1,7 @@
         :root {
             --bg-primary: #081016;
-            --bg-tertiary: rgba(255, 255, 255, 0.03);
             --card: rgba(255, 255, 255, 0.04);
+            --bg-tertiary: rgba(255, 255, 255, 0.03);
             --text-primary: #E6F0F6;
             --text-secondary: rgba(230, 240, 246, 0.7);
             --accent-cyan: #00d4ff;
@@ -32,7 +32,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: var(--radius-md);
             padding: 22px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         h2 {
@@ -49,6 +49,13 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             background: rgba(255, 255, 255, 0.02);
             color: var(--text-primary);
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--accent-cyan);
+            outline: none;
         }
 
         textarea {
@@ -116,28 +123,20 @@
             font-size: 14px;
         }
 
-        .panel-list {
-            max-height: 400px;
-            overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 10px;
+        .password-wrap {
+            position: relative;
         }
 
-        .panel-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .panel-item:last-child {
-            border-bottom: none;
-        }
-
-        .panel-item button {
-            margin-left: 5px;
+        .toggle-pass {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 16px;
         }
 
         select {
@@ -166,74 +165,56 @@
             padding: 10px;
         }
 
-        /* Модальне вікно */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            padding-top: 60px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .modal-content {
-            background: #111;
-            margin: auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 700px;
+        select option:hover {
+            background: var(--accent-blue);
             color: #fff;
         }
 
-        .modal-close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
+        .img-preview-wrap {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
         }
 
-        .modal-close:hover {
-            color: white;
+        .img-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
         }
 
-        #modalImages img {
-            width: 100px;
-            height: auto;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        /* Прев’ю картинок */
-        .img-preview .gallery-item {
+        .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
+            background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #000;
         }
 
-        .img-preview .gallery-image {
+        .gallery-image {
             width: 100%;
             height: auto;
-            max-height: 140px;
+            max-height: 180px;
             object-fit: contain;
             transition: transform .3s ease;
         }
 
-        .img-preview .gallery-item:hover .gallery-image {
+        @media(max-width:600px) {
+            .gallery-image {
+                max-height: 140px;
+            }
+        }
+
+        .gallery-item:hover .gallery-image {
             transform: scale(1.05);
         }
 
-        .img-preview .gallery-overlay {
+        .gallery-overlay {
             position: absolute;
             inset: 0;
             background: rgba(0, 0, 0, 0.4);
@@ -247,7 +228,7 @@
             transition: opacity .3s ease;
         }
 
-        .img-preview .gallery-item:hover .gallery-overlay {
+        .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
 
@@ -263,11 +244,7 @@
             justify-content: center;
             z-index: 10000;
             opacity: 0;
-            transition: opacity .3s ease;
-        }
-
-        .lightbox.show {
-            opacity: 1;
+            transition: opacity 0.3s ease;
         }
 
         .lightbox img {
@@ -275,6 +252,10 @@
             max-height: 90%;
             object-fit: contain;
             border-radius: 12px;
+        }
+
+        .lightbox.show {
+            opacity: 1;
         }
 
         .lightbox-close {

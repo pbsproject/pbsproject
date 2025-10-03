@@ -14,7 +14,6 @@ import {
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// Firebase config
 		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 		const firebaseConfig = {
 		  apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
@@ -40,7 +39,7 @@ const pageId = params.get("id") || "default-id";
 // ==================
 // Модульна інфо
 // ==================
-get(ref(db, "mods/" + pageId)).then(snap => {
+get(ref(db, "mods1/" + pageId)).then(snap => {
     if (snap.exists()) {
         const mod = snap.val();
         document.getElementById("modTitle").textContent = mod.title;

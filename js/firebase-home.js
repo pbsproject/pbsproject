@@ -7,15 +7,17 @@
             get
         } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
-            authDomain: "pbsproject-39041.firebaseapp.com",
-            databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "pbsproject-39041",
-            storageBucket: "pbsproject-39041.appspot.com",
-            messagingSenderId: "695400532049",
-            appId: "1:695400532049:web:31d2de08045c4d3eeb1070"
-        };
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		const firebaseConfig = {
+		  apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
+		  authDomain: "pbsproject-39041.firebaseapp.com",
+		  databaseURL: "https://pbsproject-39041-default-rtdb.europe-west1.firebasedatabase.app",
+		  projectId: "pbsproject-39041",
+		  storageBucket: "pbsproject-39041.firebasestorage.app",
+		  messagingSenderId: "695400532049",
+		  appId: "1:695400532049:web:31d2de08045c4d3eeb1070",
+		  measurementId: "G-FGLT883PDC"
+		};
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);

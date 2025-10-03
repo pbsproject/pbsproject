@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBS.project - Твой ключ к лучшим модам для Proton Bus Simulator!</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
+    <meta name="description" content="Профиль на сайте PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
+    <meta name="author" content="Vitaliy Shkarupa" />
+
+    <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta property="og:description" content="Профиль на сайте PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
+    <meta property="og:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta name="twitter:description" content="Профиль на сайте PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FGLT883PDC');
+    </script>
+	
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles-profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Ваш профиль</h2>
+        <img id="profilePhoto" src="img/default-avatar.png" alt="Аватар">
+
+        <div class="profile-info">
+            <p><b>Имя:</b> <span id="profileName"></span></p>
+            <p><b>Email:</b> <span id="profileEmail"></span></p>
+            <p><b>Дата регистрации:</b> <span id="profileDate"></span></p>
+            <p><b>Роль:</b> <span id="profileRole"></span></p>
+        </div>
+
+        <button id="editNameBtn"><i class="fas fa-user-edit"></i> Изменить имя</button>
+        <button id="editPhotoBtn"><i class="fas fa-image"></i> Сменить фото</button>
+        <button id="goToPredlozhka"><i class="fas fa-plus"></i> Предложить мод</button>
+        <button id="logoutBtn"><i class="fas fa-right-from-bracket"></i> Выйти</button>
+    </div>
+
+    <!-- Модальні -->
+    <div id="nameModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeNameModal">&times;</span>
+            <div class="modal-title">Изменить имя</div>
+            <input type="text" id="newNameInput" placeholder="Введіть нове ім'я">
+            <button id="saveNameBtn">Сохранить</button>
+        </div>
+    </div>
+
+    <div id="photoModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="closePhotoModal">&times;</span>
+            <div class="modal-title">Сменить фото</div>
+            <input type="text" id="newPhotoInput" placeholder="Введіть URL нового фото">
+            <button id="savePhotoBtn">Сохранить</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/profile.js"></script>
+</body>
+
+</html>

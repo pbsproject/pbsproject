@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBS.project - Твой ключ к лучшим модам для Proton Bus Simulator!</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
+    <meta name="description" content="Официальный сайт проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
+    <meta name="author" content="Vitaliy Shkarupa" />
+
+    <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta property="og:description" content="Официальный сайт проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
+    <meta property="og:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta name="twitter:description" content="Официальный сайт проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FGLT883PDC');
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles-login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="container">
+        <div id="signupContainer">
+            <h2>Регистрация</h2>
+            <form id="signupForm">
+                <input type="text" id="signupName" placeholder="Ваше імя" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Пароль" required>
+                <button type="submit">Зарегистрироватся</button>
+            </form>
+            <p>Уже есть акаунт? <a href="#" id="showLogin">Войти</a></p>
+        </div>
+
+        <div id="loginContainer" style="display:none;">
+            <h2>Вход</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+            <p>Немає акаунту? <a href="#" id="showSignup">Зареєструватися</a></p>
+        </div>
+    </main>
+
+    <script type="module" src="js/login.js"></script>
+</body>
+
+</html>
