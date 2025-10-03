@@ -256,25 +256,21 @@ async function loadUsers(filter = '') {
     const snap = await get(ref(db, 'users'));
     if (snap.exists()) {
         const users = snap.val();
-        Object.entries(users).forEach(([uid, u]) => {
-            const displayName = u.displayName || '';
-            const email = u.email || '';
-            if (filter && !displayName.toLowerCase().includes(filter) && !email.toLowerCase().includes(filter)) return;
+Object.entries(users).forEach(([uid, u]) => {
+    const tr = document.createElement('tr');
 
-            const regDate = u.createdAt ? new Date(u.createdAt).toLocaleString('uk-UA') : '';
+    tr.innerHTML = `
+        <td>${u.displayName || ''}</td>
+        <td>${u.email || ''}</td>
+        <td>
+            <button class="btn btn-primary" id="viewBtn-${uid}">Просмотреть</button>
+        </td>
+    `;
+    usersTableBody.appendChild(tr);
 
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${displayName} <button class="btn btn-primary btn-small" id="viewUser-${uid}">Просмотреть</button></td>
-                <td>${email}</td>
-                <td>${regDate}</td>
-                <td>${u.isAdmin ? "Админ" : ""} ${u.isPremium ? "Премиум" : ""} ${u.isBanned ? "Заблокирован" : ""}</td>
-            `;
-            usersTableBody.appendChild(tr);
+    document.getElementById(`viewBtn-${uid}`).onclick = () => openUserModal(uid, u);
+});
 
-            const viewBtn = document.getElementById(`viewUser-${uid}`);
-            viewBtn.onclick = () => openUserModal(uid, u);
-        });
     } else {
         usersTableBody.innerHTML = '<tr><td colspan="5"><i>Нет пользователей</i></td></tr>';
     }

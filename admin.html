@@ -78,31 +78,23 @@
             </form>
         </div>
 
-        <div class="panel hidden" id="modsApprovalPanel">
-            <h2>📝 Модерация предложеных модов</h2>
-            <div id="modsList" class="panel-list"></div>
-        </div>
+<div class="panel hidden" id="usersPanel">
+    <h2>👥 Модерація користувачів</h2>
+    
+    <!-- Пошук -->
+    <input id="userSearch" type="text" placeholder="Пошук по імені або email" style="margin-bottom:10px; padding:10px; border-radius:8px; width:100%; border:1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.02); color:white;">
 
-        <div class="panel hidden" id="usersPanel">
-            <h2>👥 Модерация пользователей (В разработке)</h2>
-			
-			<div style="margin-bottom:10px;">
-    <input type="text" id="userSearch" placeholder="Пошук по імені або email" style="width:100%; padding:10px; border-radius:10px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.02); color:var(--text-primary);">
+    <table id="usersTable" border="0" cellpadding="10" cellspacing="0" style="width:100%;border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th>Ім'я</th>
+                <th>Email</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
 </div>
-
-            <table id="usersTable" border="1" cellpadding="10" cellspacing="0" style="width:100%;border-collapse:collapse;">
-                <thead>
-                    <tr>
-                        <th>Імя</th>
-                        <th>Email</th>
-                        <th>Дата регистрации</th>
-                        <th>Роль</th>
-                        <th>Дії</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
 
         <!-- Модальне вікно -->
         <div id="modModal" class="modal">
