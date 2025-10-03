@@ -1,18 +1,9 @@
+// --- Firebase скрипт ---
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import {
-  getAuth,
-  signOut,
-  onAuthStateChanged,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import {
-  getDatabase,
-  ref,
-  get,
-  update
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import { getAuth, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-// Firebase config
+// --- Конфіг ---
 const firebaseConfig = {
   apiKey: "AIzaSyDpeYw8bt1j4fqSvXtAPyRmaMZK_UICX94",
   authDomain: "pbsproject-39041.firebaseapp.com",
@@ -27,6 +18,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
+// --- DOM елементи ---
 const profileName = document.getElementById("profileName");
 const profileEmail = document.getElementById("profileEmail");
 const profilePhoto = document.getElementById("profilePhoto");
@@ -47,7 +39,7 @@ const newPhotoInput = document.getElementById("newPhotoInput");
 const saveNameBtn = document.getElementById("saveNameBtn");
 const savePhotoBtn = document.getElementById("savePhotoBtn");
 
-// Відображення даних користувача
+// --- Перевірка авторизації ---
 onAuthStateChanged(auth, async user => {
   if (!user) return window.location.href = "login.html";
 
@@ -55,15 +47,22 @@ onAuthStateChanged(auth, async user => {
   profileEmail.textContent = user.email;
   profilePhoto.src = user.photoURL || "img/default-avatar.png";
 
+  // --- Витягуємо дані з бази ---
   const snap = await get(ref(db, `users/${user.uid}`));
   if (snap.exists()) {
     const data = snap.val();
-    profileDate.textContent = data.createdAt ? new Date(data.createdAt).toLocaleString('ru-RU') : "Неизвестно";
 
+    // Дата
+    profileDate.textContent = data.createdAt
+      ? new Date(data.createdAt).toLocaleString("ru-RU")
+      : "Неизвестно";
+
+    // Ролі
     let roles = [];
+    if (data.role) roles.push(data.role);         // базова роль ("Пользователь")
     if (data.isAdmin) roles.push("Администратор");
     if (data.isPremium) roles.push("Премиум");
-    if (roles.length === 0) roles.push("Пользователь");
+
     profileRole.textContent = roles.join(", ");
   } else {
     profileDate.textContent = "Неизвестно";
@@ -71,52 +70,58 @@ onAuthStateChanged(auth, async user => {
   }
 });
 
-// Вихід
+// --- Вихід ---
 logoutBtn.onclick = async () => {
   await signOut(auth);
   window.location.href = "login.html";
 };
-
-// Перехід
 goToPredlozhka.onclick = () => {
   window.location.href = "predlozhka.html";
 };
 
-// Зміна імені
+// --- Редагування імені ---
 editNameBtn.onclick = () => {
   newNameInput.value = profileName.textContent;
   nameModal.style.display = "flex";
+};
+closeNameModal.onclick = () => {
+  nameModal.style.display = "none";
 };
 saveNameBtn.onclick = async () => {
   const user = auth.currentUser;
   if (user) {
     await updateProfile(user, { displayName: newNameInput.value });
-    await update(ref(db, "users/" + user.uid), { name: newNameInput.value }); // 🔥 оновлення в БД
+    await update(ref(db, `users/${user.uid}`), {
+      displayName: newNameInput.value
+    });
     profileName.textContent = newNameInput.value;
     nameModal.style.display = "none";
-    alert("Імя обновлено!");
+    alert("Имя обновлено!");
   }
 };
 
-// Зміна фото
+// --- Редагування фото ---
 editPhotoBtn.onclick = () => {
   newPhotoInput.value = profilePhoto.src;
   photoModal.style.display = "flex";
+};
+closePhotoModal.onclick = () => {
+  photoModal.style.display = "none";
 };
 savePhotoBtn.onclick = async () => {
   const user = auth.currentUser;
   if (user) {
     await updateProfile(user, { photoURL: newPhotoInput.value });
-    await update(ref(db, "users/" + user.uid), { photoURL: newPhotoInput.value }); // 🔥 оновлення в БД
+    await update(ref(db, `users/${user.uid}`), {
+      photoURL: newPhotoInput.value
+    });
     profilePhoto.src = newPhotoInput.value;
     photoModal.style.display = "none";
     alert("Фото обновлено!");
   }
 };
 
-// Закриття модалок
-closeNameModal.onclick = () => nameModal.style.display = "none";
-closePhotoModal.onclick = () => photoModal.style.display = "none";
+// --- Закриття модалки по кліку на фон ---
 window.onclick = e => {
   if (e.target === nameModal) nameModal.style.display = "none";
   if (e.target === photoModal) photoModal.style.display = "none";
