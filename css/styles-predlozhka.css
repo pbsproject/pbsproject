@@ -138,6 +138,30 @@
             cursor: pointer;
             font-size: 16px;
         }
+		
+		/* Шапка з кнопками */
+.header-buttons {
+    display: flex;
+    justify-content: space-between; /* головна зліва, профіль справа */
+    align-items: center;
+    margin-bottom: 30px; /* збільшений відступ від публікацій */
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.header-buttons .left-buttons,
+.header-buttons .right-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* Збільшуємо кнопки */
+.header-buttons .btn {
+    padding: 14px 24px;
+    font-size: 16px;
+    border-radius: 12px;
+    min-width: 120px;
+}
 
         select {
             appearance: none;
