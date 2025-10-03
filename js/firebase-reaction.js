@@ -157,6 +157,10 @@
                 <div class="comment-text" style="font-size:15px;">${c.text}</div>
             </div>
         `;
+		div.querySelector('.comment-body').style.flex = '1';
+        div.querySelector('.comment-header').style.display = 'flex';
+        div.querySelector('.comment-header').style.justifyContent = 'space-between';
+
                 commentsList.appendChild(div);
             });
         });
