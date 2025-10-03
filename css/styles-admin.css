@@ -320,3 +320,77 @@
     #usersTable td:nth-of-type(3):before { content: "Дата"; }
     #usersTable td:nth-of-type(4):before { content: "Роль"; }
 }
+
+#userSearch {
+    margin-bottom: 15px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+    color: var(--text-primary);
+}
+
+.users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.user-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-md);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.user-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0,212,255,0.3);
+}
+
+.user-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.user-card h4 {
+    margin: 5px 0;
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+.user-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 5px 0 10px 0;
+}
+
+.user-card button {
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 8px;
+}
+
+.modal-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.modal-buttons {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}

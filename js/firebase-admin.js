@@ -265,26 +265,29 @@ const modalUserRole = document.getElementById("modalUserRole");
 const modalPremiumBtn = document.getElementById("modalPremiumBtn");
 const modalAdminBtn = document.getElementById("modalAdminBtn");
 const modalBanBtn = document.getElementById("modalBanBtn");
+const usersGrid = document.getElementById("usersGrid");
 
 async function loadUsers() {
-    usersTableBody.innerHTML = '';
+    usersGrid.innerHTML = '';
     const snap = await get(ref(db, 'users'));
     if (!snap.exists()) {
-        usersTableBody.innerHTML = '<tr><td colspan="3"><i>Нет пользователей</i></td></tr>';
+        usersGrid.innerHTML = '<i>Нет пользователей</i>';
         return;
     }
 
     const users = snap.val();
     Object.entries(users).forEach(([uid, u]) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td>${u.displayName || ''}</td>
-            <td>${u.email || ''}</td>
-            <td><button class="btn btn-primary viewUserBtn">Просмотреть</button></td>
+        const div = document.createElement('div');
+        div.className = 'user-card';
+        div.innerHTML = `
+            <img src="${u.photoURL || 'img/default-avatar.png'}" alt="Аватар">
+            <h4>${u.displayName || 'Без имени'}</h4>
+            <p>${u.email || ''}</p>
+            <button class="btn btn-primary viewUserBtn">Просмотреть</button>
         `;
-        usersTableBody.appendChild(tr);
+        usersGrid.appendChild(div);
 
-        const viewBtn = tr.querySelector(".viewUserBtn");
+        const viewBtn = div.querySelector(".viewUserBtn");
         viewBtn.onclick = () => openUserModal(uid, u);
     });
 }
@@ -292,10 +295,10 @@ async function loadUsers() {
 // --- Пошук ---
 userSearch.addEventListener("input", () => {
     const query = userSearch.value.toLowerCase();
-    usersTableBody.querySelectorAll("tr").forEach(tr => {
-        const name = tr.cells[0].textContent.toLowerCase();
-        const email = tr.cells[1].textContent.toLowerCase();
-        tr.style.display = name.includes(query) || email.includes(query) ? "" : "none";
+    usersGrid.querySelectorAll(".user-card").forEach(card => {
+        const name = card.querySelector("h4").textContent.toLowerCase();
+        const email = card.querySelector("p").textContent.toLowerCase();
+        card.style.display = name.includes(query) || email.includes(query) ? "" : "none";
     });
 });
 
