@@ -21,13 +21,16 @@
     <meta name="twitter:description" content="Мод от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
     <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
 
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'G-FGLT883PDC'); // спочатку без page_title
-	</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-FGLT883PDC'); // спочатку без page_title
+    </script>
 
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -91,7 +94,7 @@
                 <p id="modDescription" style="font-size: 16px; line-height: 1.7; margin-bottom: var(--space-lg); color: var(--text-secondary);">
                 </p>
 
-			<div style="display: grid; grid-template-columns: repeat(2,1fr); gap:16px; margin-bottom:32px;">
+			<div style="display: grid; grid-template-columns: repeat(2,1fr); gap:16px; margin-bottom:32px;" id="modInfoGrid">
 
 				<!-- Автор моделі -->
 				<div style="display:flex; align-items:center; gap:12px; padding:12px; background:#1e1e1e; border-radius:8px;">
@@ -138,22 +141,21 @@
 				</div>
 
 			</div>
-                </div>
 
-                <div style="text-align: center; padding: var(--space-lg); background: var(--bg-tertiary); border-radius: var(--radius-md); border: 1px solid rgba(0, 212, 255, 0.2);">
-                    <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
-                        <a id="modDownloadLink" href="" class="btn btn-primary">
-                            <i class="fa-solid fa-download"></i>
-                            Скачать дополнение
-                        </a>
-                        <a href="https://pbsu.busmods.com/static/309/" class="btn btn-secondary">
-                            <i class="fa-solid fa-gamepad"></i>
-                            Скачать игру
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+			<!-- Кнопки завантаження -->
+			<div style="text-align: center; padding:16px; background:#1e1e1e; border-radius:12px; border: 1px solid rgba(0, 212, 255, 0.2); margin-bottom:32px;">
+				<div style="display: flex; gap:12px; justify-content: center; flex-wrap: wrap;">
+					<a id="modDownloadLink" href="" class="btn btn-primary" style="display:flex; align-items:center; gap:8px; padding:8px 16px;">
+						<i class="fa-solid fa-download"></i>
+						Скачать дополнение
+					</a>
+					<a href="https://pbsu.busmods.com/static/309/" class="btn btn-secondary" style="display:flex; align-items:center; gap:8px; padding:8px 16px;">
+						<i class="fa-solid fa-gamepad"></i>
+						Скачать игру
+					</a>
+				</div>
+			</div>
+        </div>
     </section>
 
     <section class="section" id="interaction" style="background: var(--bg-secondary);" data-id="">
