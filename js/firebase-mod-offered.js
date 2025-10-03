@@ -58,6 +58,7 @@ get(ref(db, "mods1/" + pageId)).then(snap => {
             document.getElementById("modDescription").textContent = mod.description;
             document.getElementById("modModelAuthor").textContent = mod.modelAuthor;
             document.getElementById("modConvertAuthor").textContent = mod.convertAuthor;
+			document.getElementById("modAuthor").textContent = mod.author || "Неизвестно";
             document.getElementById("modWeight").textContent = mod.weight;
             document.getElementById("modDownloadLink").href = mod.download;
 
@@ -119,7 +120,7 @@ get(ref(db, "mods1/" + pageId)).then(snap => {
 			const twitterDesc = document.querySelector('meta[name="twitter:description"]');
 			if (twitterDesc) twitterDesc.setAttribute("content", mod.description);
 
-			// === GA4 динамічний page_view ===
+			// GA4: оновлюємо page_view
 			if (typeof gtag === "function") {
 				gtag('config', 'G-FGLT883PDC', {
 					page_path: window.location.pathname + window.location.search,

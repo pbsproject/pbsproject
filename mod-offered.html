@@ -24,17 +24,9 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-
+		function gtag(){dataLayer.push(arguments);}
 		gtag('js', new Date());
-
-		gtag('config', 'G-FGLT883PDC', {
-			'page_path': window.location.pathname,
-			'page_title': pageTitle
-		});
+		gtag('config', 'G-FGLT883PDC'); // спочатку без page_title
 	</script>
 
     <link rel="stylesheet" href="css/styles.css">
@@ -122,7 +114,18 @@
                         </div>
                     </div>
 
-                    <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+					<div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm);">
+						<div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
+							<i class="fa-solid fa-user" style="color: white; font-size: 16px;"></i>
+						</div>
+						<div>
+							<h4 style="color: var(--text-primary); margin-bottom: 4px; font-size: 14px; font-weight: 600;">Автор публикации:</h4>
+							<p id="modAuthor" style="color: var(--text-secondary); font-size: 12px;">
+							</p>
+						</div>
+					</div>
+					
+                    <div style="display: flex; align-items: center; gap: var(--space-md); padding: var(--space-md); background: var(--bg-tertiary); border-radius: var(--radius-sm); grid-column: 1 / -2; justify-self: center;">">
                         <div style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center;">
                             <i class="fa-solid fa-scale-balanced" style="color: white; font-size: 16px;"></i>
                         </div>
