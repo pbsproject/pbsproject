@@ -28,79 +28,79 @@ const pageId = params.get("id") || "default-id";
 // Модульна інфо
 // ==================
 get(ref(db, "mods/" + pageId)).then(snap => {
-    if (!snap.exists()) return;
-    const mod = snap.val();
+    if (snap.exists()) {
+        const mod = snap.val();
+        document.getElementById("modTitle").textContent = mod.title;
+        document.getElementById("modType").textContent = mod.type;
+        document.getElementById("modDescription").textContent = mod.description;
+        document.getElementById("modModelAuthor").textContent = mod.modelAuthor;
+        document.getElementById("modConvertAuthor").textContent = mod.convertAuthor;
+        document.getElementById("modWeight").textContent = mod.weight;
+        document.getElementById("modDownloadLink").href = mod.download;
 
-    document.getElementById("modTitle").textContent = mod.title || "Без назви";
-    document.getElementById("modType").textContent = mod.type || "";
-    document.getElementById("modDescription").textContent = mod.description || "";
-    document.getElementById("modModelAuthor").textContent = mod.modelAuthor || "";
-    document.getElementById("modConvertAuthor").textContent = mod.convertAuthor || "";
-    document.getElementById("modWeight").textContent = mod.weight || "";
-    document.getElementById("modDownloadLink").href = mod.download || "#";
-    document.getElementById("modAuthor").textContent = mod.author || "Неизвестно";
+        // Галерея
+        let imageUrls = [];
+        if (Array.isArray(mod.images)) imageUrls = mod.images;
+        else if (typeof mod.images === "string") imageUrls = mod.images.split(",").map(url => url.trim());
 
-    // Галерея
-    let imageUrls = [];
-    if (Array.isArray(mod.images)) imageUrls = mod.images;
-    else if (typeof mod.images === "string") imageUrls = mod.images.split(",").map(url => url.trim());
+        const mainImage = document.getElementById("mainImage");
+        mainImage.src = imageUrls[0] || "https://via.placeholder.com/800x500?text=Нет+изображения";
+        mainImage.alt = mod.title || "Изображение дополнения";
 
-    const mainImage = document.getElementById("mainImage");
-    mainImage.src = imageUrls[0] || "https://via.placeholder.com/800x500?text=Нет+изображения";
-    mainImage.alt = mod.title || "Изображение дополнения";
+        const thumbnailsContainer = document.getElementById("thumbnails");
+        thumbnailsContainer.innerHTML = "";
 
-    const thumbnailsContainer = document.getElementById("thumbnails");
-    thumbnailsContainer.innerHTML = "";
+        imageUrls.forEach((url, index) => {
+            const thumb = document.createElement("img");
+            thumb.src = url;
+            thumb.className = "thumbnail" + (index === 0 ? " active" : "");
+            thumb.onclick = () => {
+                mainImage.src = url;
+                document.querySelectorAll(".thumbnail").forEach(t => t.classList.remove("active"));
+                thumb.classList.add("active");
+                thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            };
+            thumbnailsContainer.appendChild(thumb);
+        });
 
-    imageUrls.forEach((url, index) => {
-        const thumb = document.createElement("img");
-        thumb.src = url;
-        thumb.className = "thumbnail" + (index === 0 ? " active" : "");
-        thumb.onclick = () => {
-            mainImage.src = url;
-            document.querySelectorAll(".thumbnail").forEach(t => t.classList.remove("active"));
-            thumb.classList.add("active");
-            thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        };
-        thumbnailsContainer.appendChild(thumb);
-    });
+        // Динамічні <title> і мета-теги
+        const pageTitle = `PBS.project - ${mod.title}`;
+        document.title = pageTitle;
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.setAttribute("content", pageTitle);
+        const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twitterTitle) twitterTitle.setAttribute("content", pageTitle);
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute("content", mod.description);
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc) ogDesc.setAttribute("content", mod.description);
+        const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twitterDesc) twitterDesc.setAttribute("content", mod.description);
 
-    // Динамічні <title> і мета-теги
-    const pageTitle = `PBS.project - ${mod.title}`;
-    document.title = pageTitle;
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute("content", pageTitle);
-    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
-    if (twitterTitle) twitterTitle.setAttribute("content", pageTitle);
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute("content", mod.description || "");
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute("content", mod.description || "");
-    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
-    if (twitterDesc) twitterDesc.setAttribute("content", mod.description || "");
+        // GA4
+        if (typeof gtag === "function") {
+            gtag('config', 'G-FGLT883PDC', {
+                page_path: window.location.pathname + window.location.search,
+                page_title: pageTitle
+            });
+        }
 
-    if (typeof gtag === "function") {
-        gtag('config', 'G-FGLT883PDC', {
-            page_path: window.location.pathname + window.location.search,
-            page_title: pageTitle
+        mainImage.addEventListener('click', () => {
+            const lightbox = document.createElement('div');
+            lightbox.classList.add('lightbox-overlay');
+            lightbox.innerHTML = `<div class="lightbox-content"><img src="${mainImage.src}" alt="${mainImage.alt}"><button class="lightbox-close"><i class="fas fa-times"></i></button></div>`;
+            document.body.appendChild(lightbox);
+
+            lightbox.querySelector('.lightbox-close').addEventListener('click', () => document.body.removeChild(lightbox));
+            lightbox.addEventListener('click', e => { if (e.target === lightbox) document.body.removeChild(lightbox); });
+            document.addEventListener('keydown', function escHandler(e) {
+                if (e.key === 'Escape' && document.body.contains(lightbox)) {
+                    document.body.removeChild(lightbox);
+                    document.removeEventListener('keydown', escHandler);
+                }
+            });
         });
     }
-
-    mainImage.addEventListener('click', () => {
-        const lightbox = document.createElement('div');
-        lightbox.classList.add('lightbox-overlay');
-        lightbox.innerHTML = `<div class="lightbox-content"><img src="${mainImage.src}" alt="${mainImage.alt}"><button class="lightbox-close"><i class="fas fa-times"></i></button></div>`;
-        document.body.appendChild(lightbox);
-
-        lightbox.querySelector('.lightbox-close').addEventListener('click', () => document.body.removeChild(lightbox));
-        lightbox.addEventListener('click', e => { if (e.target === lightbox) document.body.removeChild(lightbox); });
-        document.addEventListener('keydown', function escHandler(e) {
-            if (e.key === 'Escape' && document.body.contains(lightbox)) {
-                document.body.removeChild(lightbox);
-                document.removeEventListener('keydown', escHandler);
-            }
-        });
-    });
 });
 
 // ==================
@@ -109,6 +109,7 @@ get(ref(db, "mods/" + pageId)).then(snap => {
 const interactionBlock = document.getElementById("interaction");
 interactionBlock.style.position = "relative";
 
+// Overlay для неавторизованих
 const authOverlay = document.createElement("div");
 authOverlay.style.cssText = `
     position: absolute;
@@ -124,7 +125,7 @@ authOverlay.style.cssText = `
     z-index: 10;
     border-radius: 12px;
 `;
-authOverlay.innerHTML = `<p style="margin-bottom: 16px;">Ввойдите или зарегистрируйтесь, чтобы оставлять комментарии или ставить реакции !</p><a href="login.html" class="btn btn-primary">Вход / Регистрация</a>`;
+authOverlay.innerHTML = `<p style="margin-bottom: 16px;">Ввойдите или зарегистрируйтесь, чтобы оставлять комментарии или ставить реакции!</p><a href="login.html" class="btn btn-primary">Вход / Регистрация</a>`;
 interactionBlock.appendChild(authOverlay);
 
 // Коментарі
@@ -150,7 +151,13 @@ function reactbounce(el) {
 }
 
 function formatDate(ts) {
-    return new Intl.DateTimeFormat("ru-RU", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }).format(new Date(ts));
+    return new Intl.DateTimeFormat("ru-RU", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+    }).format(new Date(ts));
 }
 
 // -----------------------
