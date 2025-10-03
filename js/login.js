@@ -55,14 +55,14 @@ signupForm.addEventListener("submit", async e => {
         await updateProfile(user, { displayName });
 
         // Запис у Realtime Database
-        await set(ref(db, "users/" + user.uid), {
-            email: user.email,
-            displayName: displayName,
-            createdAt: Date.now(),
-            role: "Пользователь", // базова роль
-            isAdmin: false,
-            isPremium: false
-        });
+await set(ref(db, "users/" + user.uid), {
+    email: user.email,
+    displayName: displayName,
+    createdAt: Date.now(),
+    isAdmin: false,
+    isPremium: false,
+    isBanned: false  // добавил для единообразия
+});
 
         window.location.href = "profile.html";
     } catch (err) {
