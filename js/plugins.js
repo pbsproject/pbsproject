@@ -281,16 +281,21 @@
 
 			if (!closed) {
 				setTimeout(() => {
-					document.getElementById("promoModal").classList.add("show");
+					const modal = document.getElementById("promoModal");
+					modal.style.display = "flex";   // ← додаємо
+					modal.classList.add("show");
 				}, 3000);
 			}
 		});
 
-		// Закрити модал
 		function closePromoModal() {
 			const modal = document.getElementById("promoModal");
 			modal.classList.remove("show");
-			setTimeout(() => modal.style.display = "none", 400);
+
+			setTimeout(() => {
+				modal.style.display = "none";
+			}, 400);
+
 			localStorage.setItem("promoModalClosed", "true");
 		}
 
