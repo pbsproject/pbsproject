@@ -277,7 +277,9 @@
         applyTheme(savedTheme);
 
 		window.addEventListener("load", () => {
-			if (!localStorage.getItem("promoModalClosed")) {
+			const closed = localStorage.getItem("promoModalClosed") === "true";
+
+			if (!closed) {
 				setTimeout(() => {
 					document.getElementById("promoModal").classList.add("show");
 				}, 3000);
@@ -288,8 +290,7 @@
 		function closePromoModal() {
 			const modal = document.getElementById("promoModal");
 			modal.classList.remove("show");
-
-			// Запам'ятовуємо, що користувач закрив
+			setTimeout(() => modal.style.display = "none", 400);
 			localStorage.setItem("promoModalClosed", "true");
 		}
 
