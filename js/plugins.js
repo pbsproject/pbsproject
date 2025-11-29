@@ -281,16 +281,13 @@
 
 			if (!closed) {
 				setTimeout(() => {
-					const modal = document.getElementById("promoModal");
-					modal.classList.add("show");
+					document.getElementById("promoModal").classList.add("show");
 				}, 3000);
 			}
 		});
 
 		function closePromoModal() {
-			const modal = document.getElementById("promoModal");
-			modal.classList.remove("show");
-
+			document.getElementById("promoModal").classList.remove("show");
 			localStorage.setItem("promoModalClosed", "true");
 		}
 
