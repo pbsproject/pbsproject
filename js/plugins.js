@@ -282,7 +282,6 @@
 			if (!closed) {
 				setTimeout(() => {
 					const modal = document.getElementById("promoModal");
-					modal.style.display = "flex";   // ← додаємо
 					modal.classList.add("show");
 				}, 3000);
 			}
@@ -291,10 +290,6 @@
 		function closePromoModal() {
 			const modal = document.getElementById("promoModal");
 			modal.classList.remove("show");
-
-			setTimeout(() => {
-				modal.style.display = "none";
-			}, 400);
 
 			localStorage.setItem("promoModalClosed", "true");
 		}
