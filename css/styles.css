@@ -1554,6 +1554,7 @@
 			align-items: center;
 			opacity: 0;
 			pointer-events: none;
+		    visibility: hidden;       /* ← додати */
 			transition: 0.4s ease;
 			z-index: 99999;
 		}
@@ -1561,6 +1562,7 @@
 		.promo-modal.show {
 			opacity: 1;
 			pointer-events: all;
+		    visibility: visible;      /* ← додати */
 		}
 
 		.promo-modal-content {
