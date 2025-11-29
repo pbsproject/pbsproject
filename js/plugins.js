@@ -284,8 +284,16 @@
 					document.getElementById("promoModal").classList.add("show");
 				}, 3000);
 			}
+			
+			// ДОДАТКОВИЙ КОД: Додаємо обробник подій для кнопки закриття
+			const closeButton = document.getElementById("promoClose");
+			if (closeButton) {
+				closeButton.addEventListener("click", closePromoModal);
+			}
 		});
 
+		// Функція залишається визначеною глобально (або як вище в addEventListener, 
+		// але краще залишити її тут, якщо ви її використовуєте в addEventListener)
 		function closePromoModal() {
 			document.getElementById("promoModal").classList.remove("show");
 			localStorage.setItem("promoModalClosed", "true");
