@@ -280,7 +280,7 @@
 			if (!localStorage.getItem("promoModalClosed")) {
 				setTimeout(() => {
 					document.getElementById("promoModal").classList.add("show");
-				}, 5000);
+				}, 3000);
 			}
 		});
 

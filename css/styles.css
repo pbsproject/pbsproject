@@ -1631,7 +1631,7 @@
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 			margin-bottom: var(--space-lg);
-			opacity: 0;
+			opacity: 1;
 			transform: translateY(20px);
 			animation: fadeInText 0.6s ease forwards;
 			animation-delay: 0.2s;
@@ -1646,7 +1646,7 @@
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;
 			margin-bottom: var(--space-lg);
-			opacity: 0;
+			opacity: 1;
 			transform: translateY(20px);
 			animation: fadeInText 0.6s ease forwards;
 			animation-delay: 0.2s;
