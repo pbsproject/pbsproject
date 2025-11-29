@@ -276,27 +276,26 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         applyTheme(savedTheme);
 
+		// Запуск після завантаження сторінки
 		window.addEventListener("load", () => {
-			const closed = localStorage.getItem("promoModalClosed") === "true";
+			const modal = document.getElementById("promoModal");
+			const closeButton = document.getElementById("promoClose");
 
+			// Відкриваємо модалку, якщо вона ще не закрита
+			const closed = localStorage.getItem("promoModalClosed") === "true";
 			if (!closed) {
 				setTimeout(() => {
-					document.getElementById("promoModal").classList.add("show");
+					modal.classList.add("show");
 				}, 3000);
 			}
-			
-			// ДОДАТКОВИЙ КОД: Додаємо обробник подій для кнопки закриття
-			const closeButton = document.getElementById("promoClose");
+
+			// Додаємо обробник кнопки закриття
 			if (closeButton) {
-				closeButton.addEventListener("click", closePromoModal);
+				closeButton.addEventListener("click", () => {
+					modal.classList.remove("show");          // приховуємо модалку
+					localStorage.setItem("promoModalClosed", "true");
+				});
 			}
 		});
-
-		// Функція залишається визначеною глобально (або як вище в addEventListener, 
-		// але краще залишити її тут, якщо ви її використовуєте в addEventListener)
-		function closePromoModal() {
-			document.getElementById("promoModal").classList.remove("show");
-			localStorage.setItem("promoModalClosed", "true");
-		}
 
         console.log('PBS.project Website - Loaded successfully!');
