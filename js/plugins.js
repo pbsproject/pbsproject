@@ -276,4 +276,21 @@
         const savedTheme = localStorage.getItem('theme') || 'dark';
         applyTheme(savedTheme);
 
+		window.addEventListener("load", () => {
+			if (!localStorage.getItem("promoModalClosed")) {
+				setTimeout(() => {
+					document.getElementById("promoModal").classList.add("show");
+				}, 5000);
+			}
+		});
+
+		// Закрити модал
+		function closePromoModal() {
+			const modal = document.getElementById("promoModal");
+			modal.classList.remove("show");
+
+			// Запам'ятовуємо, що користувач закрив
+			localStorage.setItem("promoModalClosed", "true");
+		}
+
         console.log('PBS.project Website - Loaded successfully!');
