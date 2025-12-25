@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBS.project - Твой ключ к лучшим модам для Proton Bus Simulator!</title>
+    <link rel="icon" href="img/logo/logo.png" type="image/png">
+    <meta name="description" content="Новогодняя акция от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="keywords" content="pbs, пбс, Proton Bus, Протон Бас, Proton Bus Simulator, pbsproject, pbs.project, Моды, моды, моды для игры, mods, mod" />
+    <meta name="author" content="Vitaliy Shkarupa" />
+
+    <meta property="og:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta property="og:description" content="Новогодняя акция от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pbsproject.github.io/pbsproject/" />
+    <meta property="og:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PBS.project - лучшие моды для Proton Bus Simulator!" />
+    <meta name="twitter:description" content="Новогодняя акция от проекта PBS.project. Мы занимаемся разработкой дополнений для игры Proton Bus Simulator. Если хотите получить крутые моды - вам до нас!" />
+    <meta name="twitter:image" content="https://pbsproject.github.io/pbsproject/img/logo/logo.png" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGLT883PDC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-FGLT883PDC', {
+            'page_path': window.location.pathname,
+            'page_title': document.title // <- бере заголовок сторінки з <title>
+        });
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<!-- Snow -->
+<canvas id="snow-canvas"></canvas>
+
+<!-- Christmas Lights -->
+<div id="christmas-lights"></div>
+
+<body>
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Загрузка...</div>
+    </div>
+
+    <a href="merry-cristmas.html" class="promo-ribbon">
+        <img src="img/promo.png" alt="Happy New Ear">
+    </a>
+
+    <div id="promoModal" class="promo-modal">
+        <div class="promo-modal-content">
+            <span class="promo-txt1">Акция в честь Нового Года!</span>
+            <span class="promo-txt2">Скидка до -50% на все наши продукты!</span>
+            <span class="promo-txt2">А так же новогодний розыгрыш!</span>
+
+            <a href="merry-cristmas.html" class="btn btn-promo">УЗНАТЬ ПОДРОБНЕЕ</a>
+
+            <div class="promo-close-text" id="promoClose">Закрыть окно</div>
+        </div>
+    </div>
+
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <img src="img/logo/logo.png" alt="PBS.project Логотип">
+                    <div class="logo-text">
+                        <div class="logo-title">PBS.project</div>
+                        <div class="logo-subtitle"><br>Proton Bus Simulator</div>
+                    </div>
+                </div>
+
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="download-page.html" class="nav-link">Страница загрузки</a></li>
+                    <li><a href="download-page-offered.html" class="nav-link">Ваши дополнения</a></li>
+                    <li><a href="pbs-project-plus.html" class="nav-link"><span class="gradient-text-orange">PBS.project+</span></a></li>
+                    <li><a href="about.html" class="nav-link">О нас</a></li>
+                    <li><a href="profile.html" class="nav-link">Профиль</a></li>
+                </ul>
+
+                <div class="nav-controls">
+                    <button id="theme-toggle" class="theme-toggle glass-effect" aria-label="Toggle Theme">
+                        <i class="fas fa-moon icon-moon"></i>
+                        <i class="fas fa-sun icon-sun"></i>
+                        <span class="toggle-indicator"></span>
+                    </button>
+
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ARTICLE -->
+    <section class="section" id="aboutpage">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="section-badge">Новость</span>
+                <h1 class="section-title gradient-text">
+                    С Наступающим Новым 2026 годом и Рождеством Христовым!
+                </h1>
+                <p class="section-description">
+                    В честь Нового Года и Рождества Христового мы делаем для вас новогодний розыгрыш, а так же скидки на все наши продукты до 50%!
+                </p>
+            </div>
+
+            <div class="card" style="padding: 0; margin-bottom: 40px;">
+                <a href="https://cdn.imgpile.com/f/0EWg3pF_xl.png" target="_blank">
+                    <img src="https://cdn.imgpile.com/f/0EWg3pF_xl.png" alt="Головне зображення статті" class="gallery-image" style="border-radius: 16px;">
+                </a>
+            </div>
+
+            <!-- ТЕКСТ -->
+            <div class="card">
+                <p class="gradient-text-orange">
+                    Скидки на все продукты проекта!
+                </p>
+
+                <br>
+
+                <p>
+                    В честь Нового Года мы решили вас порадовать огромными скидками на наши продукты и на наши услуги!
+                    Актуальные цены во время акции:
+                </p>
+
+                <br>
+
+                <li>PBS.project+ - 750 российских рублей / 400 гривен / 8 евро</li>
+                <li>Мастерская Project-ора - 500 российских рублей / 270 гривен / 6 евро</li>
+                <li>Объединение тестеров - 750 российских рублей / 400 грн / 8 евро</li>
+                <li>Конвертация Т/С из OMSI 2, GTA SA, игр на Unity - от 1000 российских рублей / 550 гривен / 12 евро</li>
+                <li>Переделки Т/С (Без 3D-моделирования) - от 500 российских рублей / 270 гривен / 6 евро</li>
+                <li>Переделки Т/С (С 3D-моделированием) - от 1000 российских рублей / 550 гривен / 12 евро</li>
+
+                <br>
+
+                <p>
+                    Примеры работ на заказ на скринах ниже. Есть все варианты оплаты. Напишите в Telegram администратору проекта, по поводу покупки или для запроса подробной информации -
+                    <a href="https://t.me/zaliznyy_vershnyk" target="_blank">НАПИСАТЬ</a>
+                </p>
+
+                <br>
+
+                <p class="gradient-text-orange">
+                    Новогодний розыгрыш!
+                </p>
+
+                <br>
+
+                <p>
+                    Для того чтобы поучаствовать в нашем конкурсе вам нужно выполнить все пункты из списка ниже. Результаты конкурса будут опубликованы в нашем Telegram-канале 3 января, после чего победители получат свои подарки.
+                    Для участия в конкурсе вам нужно:
+                </p>
+
+                <br>
+
+                <li>Быть подписаным на наши <a href="https://t.me/pbs_project" target="_blank">Telegram</a> и <a href="https://www.youtube.com/@vitaliy_shkarupa" target="_blank">YouTube</a> каналы.</li>
+                <li>(Для граждан из РФ или РБ) Задонатить 100 российских рублей на наш <a href="https://boosty.to/vitaliyshkarupa/donate" target="_blank">Boosty</a></li>
+                <li>(Для граждан из Украины) Задонатить 50 гривен на карту ПриватБанка: 5149 4999 9393 4031</li>
+                <li>(Для граждан из Европы) Задонатить 1 евро на PayPal: vitaliysh0705@gmail.com</li>
+                <li>Сохранить скриншот успешного доната</li>
+
+                <br>
+
+                <p>
+                    После готовности всех пунктов, вам нужно заполнить <a href="https://forms.gle/vbLXyaqUnCVkckvw6" target="_blank">ФОРМУ</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" id="gallery">
+        <div class="container">
+
+            <div class="section-header">
+                <span class="section-badge">Галерея</span>
+                <h2 class="section-title">Примеры готовых заказов</h2>
+                <p class="section-description">
+                    Клик по картинке открывает изображение
+                </p>
+            </div>
+
+            <div class="gallery-grid">
+
+                <!-- КАРТИНКА 1 -->
+                <a href="https://cdn.imgpile.com/f/8aQixZJ_xl.png" target="_blank" class="gallery-item">
+                    <img src="https://cdn.imgpile.com/f/8aQixZJ_xl.png" class="gallery-image" alt="Image 1">
+                    <div class="gallery-overlay">
+                        <span>Открыть изображение</span>
+                    </div>
+                </a>
+
+                <!-- КАРТИНКА 2 -->
+                <a href="https://cdn.imgpile.com/f/inCif9p_xl.png" target="_blank" class="gallery-item">
+                    <img src="https://cdn.imgpile.com/f/inCif9p_xl.png" class="gallery-image" alt="Image 2">
+                    <div class="gallery-overlay">
+                        <span>Открыть изображение</span>
+                    </div>
+                </a>
+
+                <!-- КАРТИНКА 3 -->
+                <a href="https://cdn.imgpile.com/f/srsn7tN_xl.png" target="_blank" class="gallery-item">
+                    <img src="https://cdn.imgpile.com/f/srsn7tN_xl.png" class="gallery-image" alt="Image 3">
+                    <div class="gallery-overlay">
+                        <span>Открыть изображение</span>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section" id="socials" style="background: var(--bg-primary); padding-top: 60px; padding-bottom: 60px;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge fade-in-up">Мы в соцсетях</div>
+                <h2 class="section-title fade-in-up">
+                    Подпишитесь на наши <span class="gradient-text">социальные сети</span>
+                </h2>
+                <p class="section-description fade-in-up">
+                    Будьте в курсе обновлений, модов и новостей!
+                </p>
+            </div>
+
+            <div class="social-icons fade-in-up" style="display: flex; justify-content: center; gap: 30px; margin-top: 40px;">
+                <a href="https://t.me/pbs_project" target="_blank" class="social-link" aria-label="Telegram" style="font-size: 32px; color: var(--accent-cyan); transition: 0.3s;">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://vk.com/pbs.project" target="_blank" class="social-link" aria-label="VK" style="font-size: 32px; color: var(--accent-blue); transition: 0.3s;">
+                    <i class="fab fa-vk"></i>
+                </a>
+                <a href="https://www.youtube.com/@vitaliy_shkarupa" target="_blank" class="social-link" aria-label="YouTube" style="font-size: 32px; color: var(--accent-red); transition: 0.3s;">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://discord.gg/PZ5eaEhFfS" target="_blank" class="social-link" aria-label="Discord" style="font-size: 32px; color: var(--accent-purple); transition: 0.3s;">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="https://boosty.to/vitaliyshkarupa" target="_blank" class="social-link" aria-label="Boosty" style="font-size: 32px; color: var(--accent-purple); transition: 0.3s;">
+                    <img src="img/logo/boosty.svg" alt="Boosty" class="boosty-img">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p style="margin-bottom: var(--space-sm);">&copy; 2025 PBS.project. Все права защищены.</p>
+                <p class="footer-highlight">Per aspera ad astra...</p>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script type="module" src="js/firebase-home.js"></script>
+    <script type="module" src="js/plugins.js"></script>
+</body>
+
+</html>
