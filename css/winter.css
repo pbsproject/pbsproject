@@ -1,9 +1,11 @@
 /* ❄️ Snow canvas */
 #snow-canvas {
     position: fixed;
-    inset: 0;
+    inset: 0; /* топ, ліво, низ, право = 0 */
     pointer-events: none;
     z-index: 9998;
+    width: 100%;
+    height: 100%;
 }
 
 /* 🎄 Christmas lights */
@@ -12,12 +14,12 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: auto;
+    height: 40px; /* або скільки потрібно */
+    display: flex;
+    justify-content: center; /* центр */
+    gap: 8px; /* відстань між лампочками */
     z-index: 9999;
     pointer-events: none;
-    display: flex;
-    justify-content: center; /* вирівнювання по центру */
-    gap: 8px; /* відстань між лампочками */
 }
 
 #christmas-lights .light {

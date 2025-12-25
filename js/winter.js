@@ -35,7 +35,7 @@ if (isWinter) {
             if (this.y > h) this.reset();
         }
 		draw() {
-			const isLightTheme = document.body.classList.contains("light-theme");
+			const isLightTheme = document.documentElement.classList.contains("light");
 
 			ctx.beginPath();
 			ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
