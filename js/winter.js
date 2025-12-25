@@ -34,16 +34,17 @@ if (isWinter) {
             this.x += this.dx;
             if (this.y > h) this.reset();
         }
-		draw() {
-			const isLightTheme = document.documentElement.classList.contains("light");
+        draw() {
+            // Динамічно перевіряємо тему кожного кадру
+            const isLightTheme = document.documentElement.classList.contains("light");
 
-			ctx.beginPath();
-			ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-			ctx.fillStyle = isLightTheme
-				? `rgba(200,200,200,${this.o})`
-				: `rgba(255,255,255,${this.o})`;
-			ctx.fill();
-		}
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = isLightTheme
+                ? `rgba(200,200,200,${this.o})`
+                : `rgba(255,255,255,${this.o})`;
+            ctx.fill();
+        }
     }
 
     for (let i = 0; i < 160; i++) flakes.push(new Snowflake());
