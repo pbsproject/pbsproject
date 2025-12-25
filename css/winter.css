@@ -12,14 +12,18 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 0;               /* 🔥 КЛЮЧОВЕ */
+    height: auto;
     z-index: 9999;
     pointer-events: none;
+    display: flex;
+    justify-content: center; /* вирівнювання по центру */
+    gap: 8px; /* відстань між лампочками */
 }
 
 #christmas-lights .light {
     position: relative;
     top: 12px;
+    flex-shrink: 0; /* щоб лампочки не стисувались */
 }
 
 .light {
