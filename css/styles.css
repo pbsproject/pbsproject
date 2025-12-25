@@ -1671,12 +1671,14 @@
     top: 0;
     left: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    padding: 8px 0;
+    height: 0;               /* 🔥 КЛЮЧОВЕ */
     z-index: 9999;
     pointer-events: none;
+}
+
+#christmas-lights .light {
+    position: relative;
+    top: 12px;
 }
 
 .light {

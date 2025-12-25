@@ -38,6 +38,7 @@
     </script>
 
     <link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/winter.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -89,6 +90,18 @@
                     <li><a href="about.html" class="nav-link">О нас</a></li>
                     <li><a href="profile.html" class="nav-link">Профиль</a></li>
                 </ul>
+
+                <div class="nav-controls">
+                    <button id="theme-toggle" class="theme-toggle glass-effect" aria-label="Toggle Theme">
+                        <i class="fas fa-moon icon-moon"></i>
+                        <i class="fas fa-sun icon-sun"></i>
+                        <span class="toggle-indicator"></span>
+                    </button>
+
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </nav>
         </div>
     </header>
@@ -262,6 +275,7 @@
 
     <script type="module" src="js/firebase-home.js"></script>
     <script type="module" src="js/plugins.js"></script>
+    <script type="module" src="js/winter.js"></script>
 </body>
 
 </html>
