@@ -1,11 +1,9 @@
-// ❄️ Проверка зимы (декабрь–февраль)
+// ❄️ Проверка зимы
 const month = new Date().getMonth();
 const isWinter = month === 11 || month === 0 || month === 1;
 
 if (isWinter) {
-    /* =====================
-       ❄️ SNOW
-    ===================== */
+    // ===== SNOW =====
     const canvas = document.getElementById("snow-canvas");
     const ctx = canvas.getContext("2d");
 
@@ -35,13 +33,11 @@ if (isWinter) {
             if (this.y > h) this.reset();
         }
         draw() {
-            // Динамічно перевіряємо тему кожного кадру
             const isLightTheme = document.documentElement.classList.contains("light");
-
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
             ctx.fillStyle = isLightTheme
-                ? `rgba(200,200,200,${this.o})`
+                ? `rgba(180,180,180,${this.o})`
                 : `rgba(255,255,255,${this.o})`;
             ctx.fill();
         }
@@ -55,9 +51,7 @@ if (isWinter) {
         requestAnimationFrame(animate);
     })();
 
-    /* =====================
-       🎄 CHRISTMAS LIGHTS
-    ===================== */
+    // ===== CHRISTMAS LIGHTS =====
     const lights = document.getElementById("christmas-lights");
     const colors = ["#ff3b3b", "#ffd93b", "#3bff6f", "#3bbcff", "#ff3bf2"];
 
